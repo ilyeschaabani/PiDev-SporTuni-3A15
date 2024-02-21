@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherC">
+   <children>
+      <TableView fx:id="tv_cour" layoutX="14.0" layoutY="55.0" prefHeight="246.0" prefWidth="574.0" stylesheets="@css/styles.css">
+        <columns>
+          <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom Cours" />
+          <TableColumn fx:id="col_discipline" prefWidth="75.0" text="Discipline" />
+            <TableColumn fx:id="col_salle" prefWidth="75.0" text="salle" />
+            <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="col_duree" prefWidth="75.0" text="Duree" />
+            <TableColumn fx:id="col_heure" prefWidth="75.0" text="Heure" />
+            <TableColumn fx:id="col_participant" prefWidth="122.39999999999998" text="Nombre Participants" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

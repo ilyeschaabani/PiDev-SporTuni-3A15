@@ -1,0 +1,79 @@
+.title {
+    -fx-font-size: 2em;
+    -fx-text-fill: #ce071d;
+    -fx-font-weight: bold ;
+}
+
+.form_container {
+    -fx-background-color: #EEEEEE;
+}
+
+.form_container Text {
+    -fx-font-size:1.2em;
+    -fx-fill: #888888;
+}
+
+.form_container VBox{
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: #420404;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+
+}
+
+.form_container TextField {
+    -fx-pref-height: 250;
+    -fx-pref-height: 35;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 1.3em;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 3,0,0,3);
+}
+
+.form_container Button {
+    -fx-background-color: linear-gradient(to right, #af041e, #790714);
+    -fx-effect: dropshadow(three-pass-box,#AAAAAA ,3,0,0,3);
+    -fx-pref-width: 100;
+    -fx-font-size: 1.5em;
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #FFFFFF;
+}
+
+.form_container Button:hover {
+    -fx-cursor: hand;
+}
+
+
+.form_container textfield{
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #420404);
+    -fx-border-width:.8px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:4px;
+}
+.textfield:focused{
+    -fx-border-width:1.8px;
+    -fx-background-color:#fff;
+}
+
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #010518, #ce071d);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right, #010518, #ce071d);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+}
