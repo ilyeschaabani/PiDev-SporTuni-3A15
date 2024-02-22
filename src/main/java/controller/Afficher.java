@@ -1,8 +1,9 @@
 package controller;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
-
+import util.DataSource;
 import entity.Salle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.SalleService;
@@ -63,6 +66,9 @@ public class Afficher {
     @FXML
     private TableView<Salle> tvsalle;
     private Salle salle;
+    @FXML
+    private Button btnstat;
+
     @FXML
     private Button btnmodif;
 
@@ -181,6 +187,18 @@ public class Afficher {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    void stat(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Stat.fxml"));
+            tfnom1.getScene().setRoot(root);
+
+        }catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 
 
@@ -192,4 +210,17 @@ public class Afficher {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    public void home(ActionEvent actionEvent) {
+        try {
+            Parent root =FXMLLoader.load(getClass().getResource("/Afficher.fxml"));
+            tfnom1.getScene().setRoot(root);
+
+        }catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 }

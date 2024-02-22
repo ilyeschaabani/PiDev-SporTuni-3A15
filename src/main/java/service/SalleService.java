@@ -124,5 +124,31 @@ public class SalleService implements IService<Salle> {
         }
         return salle;
     }
+    public int NbrDeSalleTotale() {
+        String req = "SELECT COUNT(id) AS total From salle";
+        try {
+            PreparedStatement ste = connexion.prepareStatement(req);
+            ResultSet rs = ste.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0; // Return 0 if there's an error or no salles
+    }
+    public int NbrDeSalleDispo() {
+        String req = "SELECT COUNT(id) AS total FROM salle WHERE dispo = true";
+        try {
+            PreparedStatement ste = connexion.prepareStatement(req);
+            ResultSet rs = ste.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0; // Return 0 if there's an error or no salle with dispo=true
+    }
 
 }

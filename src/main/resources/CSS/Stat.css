@@ -40,6 +40,9 @@
 .button:hover {
     -fx-background-color:linear-gradient(to bottom, #521818,FF5555FF) ; /* Darker Green on hover */
 }
+.button1:hover {
+    -fx-background-color:transparent; /* Darker Green on hover */
+}
 
 /* Style for TableView columns */
 .table-column {
@@ -95,16 +98,25 @@
     -fx-text-fill:#fff;
     -fx-alignment:CENTER-LEFT;
 }
-.search{
-    -fx-background-color:transparent;
-    -fx-border-color:linear-gradient(to bottom right,#521818 ,#932828 );
-    -fx-border-radius:5px;
-    -fx-font-size:13px;
-    -fx-font-family:"Arial";
-    -fx-border-width:1px;
-    -fx-padding:0px 0px 0px 28px;
-}
-.search:focused{
-    -fx-border-width:2px;
+.semi-top-form{
+    -fx-background-color:#efefef;
+    -fx-border-color:#000;
+    -fx-border-width:.2px .4px .8px .4px;
 }
 
+.white-bg{
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+}
+.card{
+    -fx-background-color:linear-gradient(to right, #e54f4f, #521818);
+    -fx-background-radius:5px;
+}
+.gray-bg{
+    -fx-background-color: #d3d3d3;
+    -fx-background-radius:8px;
+}
+.red-bg{
+    -fx-background-color:linear-gradient(to right, #ffacac, #b23434);
+    -fx-background-radius: 8px;
+}

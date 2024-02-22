@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="800.0" prefWidth="1315.0" styleClass="AncorPane" stylesheets="@CSS/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Stat">
+    <children>
+        <BorderPane prefHeight="800.0" prefWidth="1315.0">
+            <top>
+                <AnchorPane prefHeight="42.0" prefWidth="1315.0" styleClass="menu-foukani" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="14.0" layoutY="6.0" text="Gestion des Salles">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane prefHeight="750.0" prefWidth="200.0" styleClass="menu-jannoubi" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="btnhome" layoutX="-1.0" layoutY="269.0" mnemonicParsing="false" onAction="#home" prefHeight="40.0" prefWidth="198.0" styleClass="nav-btn" stylesheets="@CSS/afficher.css" text="Home" textAlignment="CENTER" />
+                        <Button fx:id="btnstat" layoutX="-2.0" layoutY="309.0" mnemonicParsing="false" onAction="#stat" prefHeight="43.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@CSS/afficher.css" text="Statistiques" />
+                  <ImageView fitHeight="135.0" fitWidth="137.0" layoutX="22.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/stat.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="57.40000915527344" layoutX="108.0" layoutY="236.0" startX="-76.99998474121094" stroke="WHITE" />
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane prefHeight="748.0" prefWidth="1112.0" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane layoutX="12.0" layoutY="16.0" prefHeight="733.0" prefWidth="1091.0" stylesheets="@CSS/Stat.css">
+                            <styleClass>
+                                <String fx:value="shadow" />
+                                <String fx:value="white-bg" />
+                            </styleClass>
+                     <children>
+                         <PieChart fx:id="pie" layoutX="417.0" layoutY="405.0" prefHeight="300.0" prefWidth="300.0" />
+                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="227.0" prefWidth="1042.0" stylesheets="@CSS/Stat.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane layoutX="25.0" layoutY="14.0" prefHeight="200.0" prefWidth="410.0" styleClass="card" stylesheets="@CSS/Stat.css">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="150.0" text="Total des salles de sport" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="117.0" fitWidth="104.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/3.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="lbltotale" alignment="CENTER_RIGHT" layoutX="185.0" layoutY="20.0" prefHeight="70.0" prefWidth="210.0" text="0" textAlignment="RIGHT" textFill="#eae5e5">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="608.0" layoutY="14.0" prefHeight="200.0" prefWidth="410.0" styleClass="card" stylesheets="@CSS/Stat.css">
+                                 <children>
+                                    <Label layoutX="58.0" layoutY="150.0" text="Nombre des salles disponibles" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lbldispo" alignment="CENTER_RIGHT" layoutX="185.0" layoutY="14.0" prefHeight="70.0" prefWidth="210.0" text="0" textAlignment="RIGHT" textFill="#eae5e5">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="112.0" fitWidth="117.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/tick.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>

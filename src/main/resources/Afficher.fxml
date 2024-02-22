@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1315.0" styleClass="AncorPane" stylesheets="@CSS/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficher">
@@ -29,18 +30,21 @@
          <left>
             <AnchorPane prefHeight="750.0" prefWidth="200.0" styleClass="menu-jannoubi" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="btnhome" layoutX="-1.0" layoutY="269.0" mnemonicParsing="false" onAction="#home" prefHeight="40.0" prefWidth="198.0" styleClass="nav-btn" stylesheets="@CSS/afficher.css" text="Home" textAlignment="CENTER" />
+                  <Button fx:id="btnstat" layoutX="-2.0" layoutY="309.0" mnemonicParsing="false" onAction="#stat" prefHeight="43.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@CSS/afficher.css" text="Statistiques" />
+                  <ImageView fitHeight="115.0" fitWidth="130.0" layoutX="41.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/pc2.png" />
+                        <Image url="@Images/home.png" />
                      </image>
                   </ImageView>
+                  <Line endX="61.99998474121094" layoutX="100.0" layoutY="235.0" startX="-66.80000305175781" stroke="WHITE" />
                </children>
             </AnchorPane>
          </left>
          <center>
             <AnchorPane prefHeight="748.0" prefWidth="1112.0" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="12.0" layoutY="16.0" prefHeight="733.0" prefWidth="1091.0" stylesheets="@CSS/afficher.css">
+                  <AnchorPane layoutX="12.0" layoutY="16.0" prefHeight="733.0" prefWidth="1091.0">
                      <children>
                         <TableView fx:id="tvsalle" layoutX="399.0" layoutY="179.0" onMouseClicked="#mouseClicked1" prefHeight="299.0" prefWidth="550.0" styleClass="column-header-background" stylesheets="@CSS/afficher.css">
                           <columns>
@@ -52,14 +56,14 @@
                           </columns>
                         </TableView>
                         <Button fx:id="btnsupp" layoutX="595.0" layoutY="507.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Supprimer" textFill="#ff5555" />
-                        <Button fx:id="btnmodif" layoutX="728.0" layoutY="507.0" mnemonicParsing="false" onAction="#update" prefHeight="47.0" prefWidth="111.0" text="Modifier" />
+                        <Button fx:id="btnmodif" layoutX="750.0" layoutY="507.0" mnemonicParsing="false" onAction="#update" prefHeight="47.0" prefWidth="111.0" text="Modifier" />
                         <TextField fx:id="tfsurf1" layoutX="175.0" layoutY="271.0" promptText="Surface" stylesheets="@CSS/afficher.css" />
                         <TextField fx:id="tfnom1" layoutX="175.0" layoutY="220.0" promptText="Nom" stylesheets="@CSS/afficher.css" />
                         <TextField fx:id="tfcapa1" layoutX="175.0" layoutY="329.0" promptText="Capacité" stylesheets="@CSS/afficher.css" />
                         <TextField fx:id="tfdispo1" layoutX="175.0" layoutY="430.0" promptText="Disponibilité" />
                         <TextField fx:id="tfdisc1" layoutX="175.0" layoutY="377.0" promptText="Discipline" />
-                        <Button fx:id="btnadd1" layoutX="433.0" layoutY="507.0" mnemonicParsing="false" onAction="#add" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Add New" textFill="#ff5555" />
-                        <TextField fx:id="searchField" layoutX="437.0" layoutY="115.0" onAction="#recherche" prefHeight="32.0" prefWidth="473.0" promptText="Search" />
+                        <Button fx:id="btnadd1" layoutX="447.0" layoutY="507.0" mnemonicParsing="false" onAction="#add" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Add New" textFill="#ff5555" />
+                        <TextField fx:id="searchField" layoutX="395.0" layoutY="115.0" onAction="#recherche" prefHeight="32.0" prefWidth="550.0" promptText="Search" styleClass="search" stylesheets="@CSS/afficher.css" />
                      </children>
                      <styleClass>
                         <String fx:value="white-bg" />
