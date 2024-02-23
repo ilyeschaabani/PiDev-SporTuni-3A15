@@ -1,0 +1,7 @@
+Service\IService.class
+org\example\MainFX.class
+Service\UserService.class
+org\example\Main.class
+Entity\User.class
+Controller\InscriptionController.class
+utils\DataSource.class
