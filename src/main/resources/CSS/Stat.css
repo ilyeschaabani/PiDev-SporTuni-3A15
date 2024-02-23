@@ -111,12 +111,15 @@
 .card{
     -fx-background-color:linear-gradient(to right, #e54f4f, #521818);
     -fx-background-radius:5px;
+    
+
+
 }
 .gray-bg{
-    -fx-background-color: #d3d3d3;
+    -fx-background-color: #ffffff;
     -fx-background-radius:8px;
 }
 .red-bg{
-    -fx-background-color:linear-gradient(to right, #ffacac, #b23434);
+    -fx-background-color:linear-gradient(to right, #fc6161, #b23434);
     -fx-background-radius: 8px;
 }

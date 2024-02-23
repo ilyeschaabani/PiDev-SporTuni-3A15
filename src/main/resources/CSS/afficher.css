@@ -48,7 +48,7 @@
 
 /* Style for TableView columns */
 .table-column {
-    -fx-background-color: #bfbfc5;
+    -fx-background-color: #efefef;
     -fx-alignment: CENTER;
     -fx-font-weight: bold;
 }
@@ -106,5 +106,36 @@
 }
 .search:focused{
     -fx-border-width:2px;
+}
+.table-view {
+    -fx-background-color: #f4f4f4;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #932828;
+}
+
+.table-view .column-header,
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #ecf0f1;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #d5dbdb;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #932828;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header{
+    -fx-background-color: #932828;
 }
 

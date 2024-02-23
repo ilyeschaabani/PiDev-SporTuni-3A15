@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import entity.Salle;
@@ -23,6 +24,11 @@ import service.SalleService;
 import javafx.scene.input.MouseEvent;
 
 public class Stat {
+
+
+
+    @FXML
+    private PieChart pi_chart;
     @FXML
     private Button btnhome;
 
@@ -54,11 +60,13 @@ public class Stat {
                 lbltotale.setText(String.valueOf(ss.NbrDeSalleTotale()));
                 lbldispo.setText(String.valueOf(ss.NbrDeSalleDispo()));
 
-
+                statPi();
 
             }catch (Exception e){
                 throw new RuntimeException(e);
             }
+
+
 
         }
 
@@ -90,25 +98,27 @@ public class Stat {
     public void stat(ActionEvent actionEvent) {
     }
 
-    public void statis(MouseEvent mouseEvent) {
-        System.out.println("statis method triggered");
-        SalleService salleService = new SalleService();
-        List<Salle> salleList = salleService.readAll();
+public void statPi(){
+    ObservableList<Salle> observableList = FXCollections.observableList(ss.readAll());
 
-        // Collect the statistics based on "discipline"
-        Map<String, Long> disciplineStats = salleList.stream()
-                .collect(Collectors.groupingBy(Salle::getDiscipline, Collectors.counting()));
+    List<String> disciplines = observableList.stream()
+            .map(Salle::getDiscipline)
+            .collect(Collectors.toList());
 
-        // Create PieChart.Data from the statistics
-        List<PieChart.Data> pieChartData = disciplineStats.entrySet().stream()
-                .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList());
+    // Count the occurrences of each discipline
+    Map<String, Long> disciplineCounts = disciplines.stream()
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        // Set the data to the PieChart
-        pie.setData(FXCollections.observableArrayList(pieChartData));
+    // Create PieChart Data
+    ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+    disciplineCounts.forEach((discipline, count) -> {
+        PieChart.Data data = new PieChart.Data(discipline, count);
+        pieChartData.add(data);
+    });
 
-    }
-
+    // Set PieChart data
+    pi_chart.setData(pieChartData);
+}
 
 
 
