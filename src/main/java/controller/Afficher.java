@@ -1,8 +1,16 @@
 package controller;
 
+import java.awt.*;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import util.DataSource;
 import entity.Salle;
 import javafx.collections.FXCollections;
@@ -118,9 +126,12 @@ public class Afficher {
         try {
             SalleService ss = new SalleService();
             if (salle != null) {
-                ss.delete(salle.getId());
-                initialize();
-                showAlert("Information", "Salle supprimée", Alert.AlertType.INFORMATION);
+                // Show confirmation dialog
+                if (showDeleteConfirmationDialog()) {
+                    ss.delete(salle.getId());
+                    initialize();
+                    showAlert("Information", "Salle supprimée", Alert.AlertType.INFORMATION);
+                }
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -154,6 +165,8 @@ public class Afficher {
             showAlert("Information", "Salle ajoutée", Alert.AlertType.INFORMATION);
             } else {
                 showAlert("Error", "Veuillez remplir tous les champs correctement.", Alert.AlertType.ERROR);
+                showNotification("Error", "Veuillez remplir tous les champs correctement.");
+
             }
         } catch(Exception e){
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);}
@@ -211,6 +224,7 @@ public class Afficher {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     void stat(ActionEvent event) {
         try {
@@ -224,15 +238,21 @@ public class Afficher {
 
     }
 
-
-
-
-
     private void showAlert(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    private boolean showDeleteConfirmationDialog() {
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText(null);
+        confirmationDialog.setContentText("Are you sure you want to delete this item?");
+
+        Optional<ButtonType> result = confirmationDialog.showAndWait();
+
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
     public void home(ActionEvent actionEvent) {
@@ -246,5 +266,26 @@ public class Afficher {
         }
 
     }
+   private void showNotification(String title, String message) {
+       if (SystemTray.isSupported()) {
+           try {
+               SystemTray tray = SystemTray.getSystemTray();
+               Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\zarro\\IdeaProjects\\GestionSalles\\src\\main\\resources\\Images\\notif.png");
+
+               TrayIcon trayIcon = new TrayIcon(icon, "Notification");
+               trayIcon.setImageAutoSize(true);
+
+               trayIcon.addActionListener(e -> {
+                   // Handle the tray icon click event if needed
+               });
+
+               tray.add(trayIcon);
+               trayIcon.displayMessage(title, message, TrayIcon.MessageType.INFO);
+           } catch (AWTException e) {
+               e.printStackTrace();
+           }
+       }
+   }
+
 
 }
