@@ -17,11 +17,9 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Modification Utilisateurs");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

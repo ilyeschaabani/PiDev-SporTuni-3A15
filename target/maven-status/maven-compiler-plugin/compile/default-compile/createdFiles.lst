@@ -1,8 +1,9 @@
 Service\IService.class
+Entity\User.class
+Controller\InscriptionController.class
 org\example\MainFX.class
 Service\UserService.class
 org\example\Main.class
+Controller\LoginController.class
 Controller\MenuController.class
-Entity\User.class
-Controller\InscriptionController.class
 utils\DataSource.class
