@@ -147,12 +147,36 @@ public class Afficher {
 
     public void add(ActionEvent actionEvent) {
         try {
+            if (validateInput()) {
             ss.add(new Salle(tfnom1.getText(),Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText(), Boolean.parseBoolean(tfdispo1.getText())));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             initialize();
             showAlert("Information", "Salle ajoutée", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Error", "Veuillez remplir tous les champs correctement.", Alert.AlertType.ERROR);
+            }
         } catch(Exception e){
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);}
+    }
+    private boolean validateInput() {
+        return !tfnom1.getText().isEmpty()
+                && !tfsurf1.getText().isEmpty()
+                && !tfcapa1.getText().isEmpty()
+                && isNumeric(tfsurf1.getText()) // Validation numérique pour la surface
+                && isNumeric(tfcapa1.getText()) // Validation numérique pour la capacité
+                && isValidDiscipline(tfdisc1.getText()) // Validation pour l'attribut discipline
+                && !tfdispo1.getText().isEmpty();
+    }
+    private boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    private boolean isValidDiscipline(String discipline) {
+        return discipline.matches("[a-zA-Z]+");//vérification si la chaîne ne contient que des caractères alphabétiques
     }
 
     public void recherche(ActionEvent actionEvent) {
