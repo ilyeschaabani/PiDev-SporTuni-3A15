@@ -164,7 +164,7 @@ public class Afficher {
             initialize();
             showAlert("Information", "Salle ajoutée", Alert.AlertType.INFORMATION);
             } else {
-                showAlert("Error", "Veuillez remplir tous les champs correctement.", Alert.AlertType.ERROR);
+//                showAlert("Error", "Veuillez remplir tous les champs correctement.", Alert.AlertType.ERROR);
                 showNotification("Error", "Veuillez remplir tous les champs correctement.");
 
             }
@@ -172,12 +172,20 @@ public class Afficher {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);}
     }
     private boolean validateInput() {
+        validateAndShowError(tfnom1, "Nom");
+        validateAndShowError(tfsurf1, "Surface");
+        validateAndShowError(tfcapa1, "Capacite");
+        validateAndShowNumericError(tfsurf1, "Surface");
+        validateAndShowNumericError(tfcapa1, "Capacite");
+        validateAndShowDisciplineError(tfdisc1, "Discipline");
+        validateAndShowError(tfdispo1, "Dispo");
+
         return !tfnom1.getText().isEmpty()
                 && !tfsurf1.getText().isEmpty()
                 && !tfcapa1.getText().isEmpty()
-                && isNumeric(tfsurf1.getText()) // Validation numérique pour la surface
-                && isNumeric(tfcapa1.getText()) // Validation numérique pour la capacité
-                && isValidDiscipline(tfdisc1.getText()) // Validation pour l'attribut discipline
+                && isNumeric(tfsurf1.getText())
+                && isNumeric(tfcapa1.getText())
+                && isValidDiscipline(tfdisc1.getText())
                 && !tfdispo1.getText().isEmpty();
     }
     private boolean isNumeric(String str) {
@@ -190,6 +198,23 @@ public class Afficher {
     }
     private boolean isValidDiscipline(String discipline) {
         return discipline.matches("[a-zA-Z]+");//vérification si la chaîne ne contient que des caractères alphabétiques
+    }
+    private void validateAndShowError(TextInputControl inputControl, String fieldName) {
+        if (inputControl.getText().isEmpty()) {
+            showAlert("Error", fieldName + " is required", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void validateAndShowNumericError(TextField textField, String fieldName) {
+        if (!isNumeric(textField.getText())) {
+            showAlert("Error", fieldName + " must be a number", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void validateAndShowDisciplineError(TextField textField, String fieldName) {
+        if (!isValidDiscipline(textField.getText())) {
+            showAlert("Error", "Invalid " + fieldName, Alert.AlertType.ERROR);
+        }
     }
 
     public void recherche(ActionEvent actionEvent) {
