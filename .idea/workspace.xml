@@ -8,13 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37b1952a-8139-456c-a16a-fb56ef2330f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utiils/SessionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UseerSignup.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Image/Backgound.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Image/Backgound.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/InscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/InscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller/InscriptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/InscriptionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Entity/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -27,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -47,33 +55,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.SporTuni-User [javafx:run].executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.SporTuni-User [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.SporTuni-User [org.apache.maven.plugins:maven-clean-plugin:3.2.0:help].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.SporTuni-User [org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.SporTuni-User [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.SporTuni-User [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Gestion-User&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ilyes/d-lab/PiDev-SporTuni-3A15&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/JAVA/SporTuni-User/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.SporTuni-User [javafx:run].executor": "Debug",
+    "Maven.SporTuni-User [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.SporTuni-User [org.apache.maven.plugins:maven-clean-plugin:3.2.0:help].executor": "Run",
+    "Maven.SporTuni-User [org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file].executor": "Run",
+    "Maven.SporTuni-User [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
+    "Maven.SporTuni-User [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Gestion-User",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ilyes/Desktop/SportuniProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/JAVA/SporTuni-User/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ilyes\d-lab\PiDev-SporTuni-3A15\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SporTuni-User [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
@@ -138,6 +151,8 @@
       <workItem from="1708634900509" duration="2325000" />
       <workItem from="1708723695165" duration="481000" />
       <workItem from="1708725691500" duration="4441000" />
+      <workItem from="1708813425117" duration="5182000" />
+      <workItem from="1708860884638" duration="6742000" />
     </task>
     <servers />
   </component>

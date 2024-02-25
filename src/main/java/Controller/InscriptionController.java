@@ -1,6 +1,7 @@
 package Controller;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,38 +12,40 @@ import service.UserService;
 import Entity.User;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class InscriptionController {
     service.UserService us = new service.UserService();
     @FXML
-    private ComboBox<String> Roles;
+    private Button btn_isncri;
 
     @FXML
-    private Button btn;
+    private ComboBox <String> cmbRole;
 
     @FXML
-    private TextField tf_Motdepasse;
+    private TextField tfadress;
 
     @FXML
-    private TextField tf_Nom;
+    private TextField tfemail;
 
     @FXML
-    private TextField tf_adrdess;
+    private TextField tfnom;
 
     @FXML
-    private TextField tf_email;
+    private TextField tfnumero;
 
     @FXML
-    private TextField tf_numero;
+    private TextField tfprenom;
 
     @FXML
-    private TextField tf_prenom;
+    private TextField tfpwd;
 
+    private Connection cnx;
     @FXML
     void add(ActionEvent event) {
         try {
-            User u = new User(tf_Nom.getText(), tf_prenom.getText(), tf_email.getText(), tf_Motdepasse.getText(), Roles.getValue(), Integer.parseInt(tf_numero.getText()), tf_adrdess.getText());
+            User u = new User(tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfpwd.getText(), getSelectedValue(), Integer.parseInt(tfnumero.getText()), tfadress.getText());
             us.add(u);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -54,9 +57,19 @@ public class InscriptionController {
             alert.setContentText("Error adding user");
             alert.showAndWait();
         }
+    };
+
+    public void initialize() {
+//        ObservableList<String> roles = FXCollections.observableArrayList("Admin", "Client");
+//        cmbRole.setItems(roles);
+        cmbRole.getItems().addAll("Coach", "adherant");
+        cmbRole.setValue("Option 1");
+
     }
-    public void initialize(URL url, ResourceBundle rb) {
-        Roles.setItems(FXCollections.observableArrayList("coach","adherant","arbitre"));
+
+    // Method to get the selected value
+    public String getSelectedValue() {
+        return cmbRole.getValue();
     }
 
 

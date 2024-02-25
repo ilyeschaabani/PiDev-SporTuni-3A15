@@ -47,6 +47,19 @@ public class UserService implements IService<User> {
         }
         return list;
     }
+    // delete user with id
+
+    public void delete(int id) {
+        try {
+            String requete = "delete from user where id=?";
+            PreparedStatement pst = connexion.prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            System.out.println("Suppression avec succes");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     @Override
     public void delete(User user) {

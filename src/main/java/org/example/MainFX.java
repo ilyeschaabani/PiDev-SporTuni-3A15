@@ -17,14 +17,14 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/UseerSignup.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            // Print the exception stack trace
+
             e.printStackTrace();
         }
     }

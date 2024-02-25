@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String password;
     private String role;
+    public static User Current_User;
 
     public User(int id_user, String nom, String prenom, String email, String password, String role , int Numero , String Adresse) {
         this.id_user = id_user;
@@ -53,6 +54,11 @@ public class User {
     public String getAdresse() {
         return Adresse;
     }
+
+    public static User getCurrent_User() {
+        return Current_User;
+    }
+
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
@@ -76,6 +82,9 @@ public class User {
     }
     public void setAdresse(String Adresse) {
         this.Adresse = Adresse;
+    }
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
     }
     @Override
     public String toString() {

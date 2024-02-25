@@ -1,4 +1,5 @@
 Service\IService.class
+Utiils\SessionManager.class
 Entity\User.class
 Controller\InscriptionController.class
 org\example\MainFX.class
