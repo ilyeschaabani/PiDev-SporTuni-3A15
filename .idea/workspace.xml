@@ -8,23 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37b1952a-8139-456c-a16a-fb56ef2330f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utiils/SessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UseerSignup.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/InscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/InscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/InscriptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/InscriptionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +136,7 @@
       <workItem from="1708723695165" duration="481000" />
       <workItem from="1708725691500" duration="4441000" />
       <workItem from="1708813425117" duration="5182000" />
-      <workItem from="1708860884638" duration="6742000" />
+      <workItem from="1708860884638" duration="7615000" />
     </task>
     <servers />
   </component>
