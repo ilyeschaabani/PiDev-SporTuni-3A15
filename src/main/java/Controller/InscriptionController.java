@@ -63,7 +63,7 @@ public class InscriptionController {
 //        ObservableList<String> roles = FXCollections.observableArrayList("Admin", "Client");
 //        cmbRole.setItems(roles);
         cmbRole.getItems().addAll("Coach", "adherant");
-        cmbRole.setValue("Option 1");
+        cmbRole.setValue("Role");
 
     }
 
