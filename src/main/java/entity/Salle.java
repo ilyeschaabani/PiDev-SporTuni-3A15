@@ -1,30 +1,32 @@
 package entity;
 
+import java.util.List;
+
 public class Salle {
 private int id;
 private String nom;
 private int surface;
 private int capacite;
 private String discipline;
-private boolean dispo;
+
+    private List<Dispo> dispoList;
+
 
     public Salle() {
     }
 
-    public Salle(int id,String nom, int surface, int capacite, String discipline, boolean dispo) {
+    public Salle(int id,String nom, int surface, int capacite, String discipline ) {
         this.id = id;
         this.nom=nom;
         this.surface = surface;
         this.capacite = capacite;
         this.discipline = discipline;
-        this.dispo = dispo;
     }
-    public Salle(String nom,int surface, int capacite, String discipline, boolean dispo) {
+    public Salle(String nom,int surface, int capacite, String discipline) {
         this.nom = nom;
         this.surface = surface;
         this.capacite = capacite;
         this.discipline = discipline;
-        this.dispo = dispo;
     }
 
     public int getId() {
@@ -67,12 +69,12 @@ private boolean dispo;
         this.discipline = discipline;
     }
 
-    public boolean getDispo() {
-        return dispo;
+    public List<Dispo> getDispoList() {
+        return dispoList;
     }
 
-    public void setDispo(boolean dispo) {
-        this.dispo = dispo;
+    public void setDispoList(List<Dispo> dispoList) {
+        this.dispoList = dispoList;
     }
 
     @Override
@@ -83,7 +85,6 @@ private boolean dispo;
                 ", surface=" + surface +
                 ", capacite=" + capacite +
                 ", discipline='" + discipline + '\'' +
-                ", dispo=" + dispo +
                 '}';
     }
 }

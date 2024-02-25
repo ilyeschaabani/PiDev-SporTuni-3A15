@@ -107,12 +107,11 @@ public class Afficher {
             System.out.println(s);
             if(s !=null) {
 
-                salle = new Salle(s.getId(), s.getNom(), s.getSurface(), s.getCapacite(), s.getDiscipline(), s.getDispo());
+                salle = new Salle(s.getId(), s.getNom(), s.getSurface(), s.getCapacite(), s.getDiscipline());
                 tfnom1.setText(salle.getNom());
                 tfsurf1.setText(String.valueOf(salle.getSurface()));
                 tfcapa1.setText(String.valueOf(salle.getCapacite()));
                 tfdisc1.setText(String.valueOf(salle.getDiscipline()));
-                tfdispo1.setText(String.valueOf(salle.getDispo()));
 
             }
 
@@ -143,9 +142,7 @@ public class Afficher {
         try {
 
              SalleService ss = new SalleService();
-            String dispoText = tfdispo1.getText();
-            boolean dispoValue = Boolean.parseBoolean(dispoText);
-            salle = new Salle(salle.getId(), tfnom1.getText(), Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText(), dispoValue);
+            salle = new Salle(salle.getId(), tfnom1.getText(), Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText());
             ss.updato(salle);
             initialize();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -159,7 +156,7 @@ public class Afficher {
     public void add(ActionEvent actionEvent) {
         try {
             if (validateInput()) {
-            ss.add(new Salle(tfnom1.getText(),Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText(), Boolean.parseBoolean(tfdispo1.getText())));
+            ss.add(new Salle(tfnom1.getText(),Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             initialize();
             showAlert("Information", "Salle ajoutée", Alert.AlertType.INFORMATION);
@@ -235,8 +232,7 @@ public class Afficher {
                     return salle.getNom().toLowerCase().contains(lowerCaseFilter)
                             || String.valueOf(salle.getSurface()).contains(lowerCaseFilter)
                             || String.valueOf(salle.getCapacite()).contains(lowerCaseFilter)
-                            || salle.getDiscipline().toLowerCase().contains(lowerCaseFilter)
-                            || String.valueOf(salle.getDispo()).toLowerCase().contains(lowerCaseFilter);
+                            || salle.getDiscipline().toLowerCase().contains(lowerCaseFilter);
                 });
             });
 

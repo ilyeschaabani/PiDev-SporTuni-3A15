@@ -51,7 +51,7 @@ public class Ajouter {
     @FXML
     void add(ActionEvent event) {
         try {
-            ss.add(new Salle(tfnom.getText(),Integer.parseInt(tfsurface.getText()), Integer.parseInt(tfcapacite.getText()), tfdiscipline.getText(), Boolean.parseBoolean(tfdispo.getText())));
+            ss.add(new Salle(tfnom.getText(),Integer.parseInt(tfsurface.getText()), Integer.parseInt(tfcapacite.getText()), tfdiscipline.getText()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("success");
             alert.setContentText("salle ajoutée");
