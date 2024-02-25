@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>sportuni</artifactId>
+    <artifactId>PIDev</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,14 +14,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -32,14 +29,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>17.0.6</version>
         </dependency>
-
-
-
-
-
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -47,11 +37,9 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>controllers.MainFX</mainClass>
+                    <mainClass>controller.MainFx</mainClass>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
 

@@ -1,23 +1,25 @@
 package org.example;
 
+import entity.Cour;
 import service.CourService;
-import utils.DataSource;
-import entities.cour;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import service.DisciplineService;
 
+import java.sql.Date;
 
 public class Main {
-
     public static void main(String[] args) {
-        cour c1 = new cour("cour 1", Date.valueOf("2024-02-13"), "15:30:00", "60", "salle1", "30");
-        cour c2 = new cour("cour 2", Date.valueOf("2024-02-16"), "11:30:00", "30", "salle5", "20");
+        CourService cs = new CourService();
 
-        CourService cs=new CourService();
-        cs.add(c2);
-        //cs.delete(5);
-        cs.readAll().forEach(System.out::println);
+        DisciplineService ss=new DisciplineService();
+        //ss.add(s1);
+        //ss.add(s2);
+        //ss.add(s4);
+      //  ss.readAll().forEach(System.out::println);
+       // ss.update(s5,2);
+        //ss.delete(s4);
+     //   ss.readAll().forEach(System.out::println);
+        //System.out.println(ss.readById(11));
+       // Cour c1 = new Cour("cour 1", Date.valueOf("2024-02-13"), "15:30:00", "16:30:00", "salle1", "30","box");
+        //cs.add(c1);
     }
 }

@@ -1,71 +1,91 @@
 package service;
 
-import entities.cour;
-import utils.DataSource;
-import entities.discipline;
+import util.DataSource;
+import entity.Discipline;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class DisciplineService implements IService<discipline>{
-    private Connection conn;
-    private Statement ste;
-
-    private PreparedStatement pst;
-    public DisciplineService() {
-        conn= DataSource.getInstance().getCnx();
+public class DisciplineService implements IService<Discipline> {
+    private Connection connexion;
+    public DisciplineService(){
+        connexion= DataSource.getInstance().getCnx();
     }
-
-    @Override
-    public void add(discipline d) {
-        String requete="insert into discipline (nom_discipline, description) values ('"+d.getNom_discipline()+"','"+d.getDescription()+"')";
+    private Statement ste ;//yebath lel sql heya interface
+    public void add(Discipline s) {
+        String requete = "INSERT INTO discipline (nom_discipline, description) VALUES (?, ?)";
         try {
-            ste=conn.createStatement();
-            ste.executeUpdate(requete);
+            PreparedStatement preparedStatement = connexion.prepareStatement(requete);
+            preparedStatement.setString(1, s.getNom_discipline());
+            preparedStatement.setString(2, s.getDescription());
+            preparedStatement.executeUpdate();
+            System.out.println("discipline ajouté ");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
     public void delete(int id) {
-        String requete="delete from discipline where id_discipline="+id;
+        String requete = "DELETE FROM discipline WHERE id_discipline = ?";
         try {
-            ste=conn.createStatement();
-            ste.executeUpdate(requete);
+            PreparedStatement preparedStatement = connexion.prepareStatement(requete);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            System.out.println("discipline deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void update(discipline d) {
-        String requete="update discipline set nom_discipline=?,description=? where id_discipline=?";
-        try {
-            pst=conn.prepareStatement(requete);
-            pst.setString(1, d.getDescription());
-            pst.setString(2,d.getNom_discipline());
+    public void update(Discipline salle, int id) {
 
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
+/*
+     public void update(Discipline s ,int id  ) {
+         String requete = "UPDATE discipline SET nom_discipline=?, description = ? WHERE id = ?";
+         try {
+             PreparedStatement ps= connexion.prepareStatement(requete);
+             ps.setString(1, s.getNom_discipline());
+             ps.setString(2, s.getDescription());
+             ps.setInt(3,s.getId_discipline());
+             ps.executeUpdate();
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
 
-    @Override
-    public List<discipline> readAll() {
-        String requete="select * from cour";
-        List<discipline> list=new ArrayList<>();
-        try {
-            ste= conn.createStatement();
-            ResultSet rs =ste.executeQuery(requete);
-            while (rs.next()){
-                list.add(new discipline(rs.getString("nom_discipline") ,rs.getString("description")));
+     }*/
+    public void updato(Discipline s){
+
+
+        String requete = "UPDATE discipline SET nom_discipline=?, description = ? WHERE id = ?";
+            try {
+                PreparedStatement ps = connexion.prepareStatement(requete);
+                ps.setString(1, s.getNom_discipline());
+                ps.setString(2, s.getDescription());
+                ps.setInt(3,s.getId_discipline());
+                ps.executeUpdate();
+                System.out.println("discipline updated!");
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
             }
-            //pst.close();
 
+
+    }
+
+    public List<Discipline> readAll() {
+        String requete="SELECT * FROM discipline";
+        List<Discipline> list=new ArrayList<>();
+        try {
+            ste= connexion.createStatement();
+            ResultSet rs= ste.executeQuery(requete);
+            while(rs.next()){
+                  list.add(new Discipline(
+                          rs.getInt("id_discipline"),
+                        rs.getString("nom_discipline"),
+                        rs.getString("description")));
+
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -73,24 +93,21 @@ public  class DisciplineService implements IService<discipline>{
     }
 
     @Override
-    public discipline readById(int id) {
-        String requete="select * from discipline where id_discipline="+id;
-        discipline d = new discipline();
+    public Discipline readById(int id) {
+        String requete="select * from discilpine where id="+id;
+        Discipline discipline = null;
         try {
-            ste= conn.createStatement();
-            ResultSet rs =ste.executeQuery(requete);
-            while (rs.next()){
-                d.setNom_discipline(rs.getString("nom_discipline"));
-                d.setDescription(rs.getString("description"));
-
-            }
-            //pst.close();
-
+            ste= connexion.createStatement();
+            ResultSet rs= ste.executeQuery(requete);
+            while(rs.next()){
+                discipline = new Discipline(
+                        rs.getInt("id_discipline"),
+                        rs.getString("nom_discipline"),
+                        rs.getString("description"));            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return d;
-
+        return discipline ;
     }
-}
 
+}
