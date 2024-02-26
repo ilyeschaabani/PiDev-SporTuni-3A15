@@ -19,7 +19,7 @@ public class EvenementService implements Gservice<Evenement> {
     public EvenementService() {
     }
 
-    public EvenementService(TextField dateDebut, TextField dateFin, TextField description,TextField nbr_max, TextField nom_discipline, TextField nom_e, TextField nom_salle) {
+    public  EvenementService(TextField dateDebut, TextField dateFin, TextField description,TextField nbr_max, TextField nom_discipline, TextField nom_e, TextField nom_salle) {
     }
 
 
