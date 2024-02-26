@@ -93,6 +93,8 @@ public class AjouterCompetitionController {
         alert.setContentText("Compétition ajoutée.");
         alert.showAndWait();
 
+        afficherCompetitions();
+
     }
 
 
@@ -114,6 +116,10 @@ public class AjouterCompetitionController {
 
         // Appeler la méthode pour afficher les compétitions
         afficherCompetitions();
+        //preparation des buttons
+        initializetreetableviewbutton();
+        activation_des_cellules();
+
     }
 
 
@@ -224,24 +230,73 @@ public class AjouterCompetitionController {
     public Void onDeleteButtonClick(Competition item) {
         cs.delete(item.getId_comp());
         System.out.println("Supprimer: " + item);
+        afficherCompetitions();
         return null;
     }
+
+
+    public void activation_des_cellules() {
+        // Activer l'édition des cellules dans chaque colonne
+        id_comp.setEditable(true);
+        NomCompetition.setEditable(true);
+        Lieu.setEditable(true);
+        Datetvc.setEditable(true);
+        Discipline.setEditable(true);
+        IDsalle.setEditable(true);
+        System.out.println("Accès validé !");
+
+        // Ajouter des écouteurs pour détecter les modifications
+        id_comp.setOnEditCommit(event -> {
+            // Mettre à jour les données dans la TreeTableView en fonction de la nouvelle valeur
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setId_comp(event.getNewValue());
+        });
+
+        NomCompetition.setOnEditCommit(event -> {
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setNom_comp(event.getNewValue());
+        });
+
+        Lieu.setOnEditCommit(event -> {
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setLieu_comp(event.getNewValue());
+        });
+
+        Datetvc.setOnEditCommit(event -> {
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setDate(event.getNewValue());
+        });
+
+        Discipline.setOnEditCommit(event -> {
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setDiscipline(event.getNewValue());
+        });
+
+        IDsalle.setOnEditCommit(event -> {
+            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setId_salle(event.getNewValue());
+        });
+
+
+    }
+
 
     // Méthode pour gérer le clic sur le bouton Modifier
     public Void onEditButtonClick(Competition item) {
-
-        System.out.println("Modifier: " + item);
+        try {
+            activation_des_cellules();
+            cs.update(item);
+            System.out.println("Modifier: " + item);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
+
     // Méthode pour charger les données dans le TableView
-    private void initializetreetableview() {
+    private void initializetreetableviewbutton() {
 
         TreeTableColumn<Competition, Void> actionColumn = new TreeTableColumn<>("Actions");
         actionColumn.setCellFactory(new ButtonCellFactory(tvc, this::onDeleteButtonClick, this::onEditButtonClick));
 
 // Ajouter la colonne d'actions à votre TreeTableView
         tvc.getColumns().add(actionColumn);
+
 
     }
 }

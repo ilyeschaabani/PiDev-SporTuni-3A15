@@ -33,6 +33,7 @@ public class CompetitionService implements IService<Competition> {
     @Override
     public void delete(int id) {
         String requete = "delete from competition where id_comp=" + id;
+        System.out.println("dinaaaaa");
         try {
             ste = conn.createStatement();
             ste.executeUpdate(requete);
@@ -43,7 +44,7 @@ public class CompetitionService implements IService<Competition> {
 
 
     @Override
-    public void update(Competition competition, int id_com) {
+    public void update(Competition competition) {
         String requete = "UPDATE competition SET nom_comp=?, lieu=?, date=?, discipline=?, id_salle=? WHERE id_comp=?";
         try {
             pst = conn.prepareStatement(requete);
@@ -53,7 +54,7 @@ public class CompetitionService implements IService<Competition> {
             pst.setDate(3, competition.getDate());
             pst.setString(4, competition.getDiscipline());
             pst.setInt(5, competition.getId_salle());
-            pst.setInt(6, id_com); // Utilisation de l'ID de la compétition pour identifier l'entrée à mettre à jour
+            pst.setInt(6, competition.getId_comp()); // Utilisation de l'ID de la compétition pour identifier l'entrée à mettre à jour
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
