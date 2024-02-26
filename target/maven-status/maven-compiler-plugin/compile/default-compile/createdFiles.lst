@@ -2,6 +2,7 @@ Service\IService.class
 Utiils\SessionManager.class
 Entity\User.class
 Controller\InscriptionController.class
+Controller\UserDashbordController.class
 org\example\MainFX.class
 Service\UserService.class
 org\example\Main.class
