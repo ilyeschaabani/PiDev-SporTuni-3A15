@@ -15,13 +15,13 @@ public class DataSource {
 private static DataSource instance;
 
 
-    private DataSource() {
+    public DataSource() {
 
             try {
                 cnx= DriverManager.getConnection(url,login,pwd);
                 System.out.println("success");
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("echec");
             }
         }
 

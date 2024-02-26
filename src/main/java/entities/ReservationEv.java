@@ -3,16 +3,20 @@ import java.sql.Date;
 public class ReservationEv {
     private int idR;
     private Date dateR;
-    private   int id_u;
+    private int id_u;
     private Evenement nbr_max;
     private Evenement id_e;
 
-    public ReservationEv(int idR,Date dateR,Evenement nbr_max,Evenement id_e) {
+    public ReservationEv(int idR, Date dateR, Evenement nbr_max, Evenement id_e) {
         this.idR = idR;
         this.dateR = dateR;
         this.id_u = id_u;
         this.nbr_max = nbr_max;
         this.id_e = id_e;
+    }
+
+    public ReservationEv() {
+
     }
 
     public int getIdR() {
@@ -39,6 +43,10 @@ public class ReservationEv {
         this.dateR = dateR;
     }
 
+
+
+
+
     @Override
     public String toString() {
         return "ReservationEv{" +
@@ -49,4 +57,5 @@ public class ReservationEv {
                 ", id_e=" + id_e +
                 '}';
     }
+
 }

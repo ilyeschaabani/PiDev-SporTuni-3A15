@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import services.EvenementService;
 
+import java.util.List;
+
 public class AfficherEvenementController {
 
     @FXML
@@ -46,9 +48,9 @@ public class AfficherEvenementController {
     @FXML
     void initialize() {
         try {
-            EvenementService es = new EvenementService();
-            ObservableList<Evenement> observableList = FXCollections.observableList(es.readAll());
-            tv_evenements.setItems(observableList);
+            //EvenementService es = new EvenementService();
+            //ObservableList<Evenement> observableList = FXCollections.observableList(es.readAll());
+           // tv_evenements.setItems(observableList);
             clnom_e.setCellValueFactory(new PropertyValueFactory<>("nom_e"));
             clnom_salle.setCellValueFactory(new PropertyValueFactory<>("nom_salle"));
             cldateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
@@ -56,9 +58,16 @@ public class AfficherEvenementController {
             cldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
             clnbr_max.setCellValueFactory(new PropertyValueFactory<>("nbr_max"));
             cldateFin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
+            loadEvents();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void loadEvents(){
+        EvenementService es =new EvenementService();
+        List <Evenement> events =es.readAll();
+        ObservableList<Evenement> observableList = FXCollections.observableList(events);
+        tv_evenements.setItems(observableList);
     }
 }
 

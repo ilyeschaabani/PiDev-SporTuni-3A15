@@ -47,6 +47,9 @@ public class Evenement {
 
     }
 
+    public Evenement(int idE, String nomE, String nomSalle, Date dateDebut, String nomDiscipline, String description, int nbrMax, Date dateFin) {
+    }
+
 
     // Getters et setters
         public int getId_e() {

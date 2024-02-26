@@ -12,17 +12,20 @@ import javafx.scene.control.TextField;
 
 
 public class EvenementService implements Gservice<Evenement> {
-    private static Connection connexion = DataSource.getInstance().getCnx();
+
+
+    private static EvenementService instance;
+    private  Connection connexion ;
+
+
+
     private static Statement ste;
     private PreparedStatement pst;
 
+
     public EvenementService() {
+        connexion = DataSource.getInstance().getCnx();
     }
-
-    public  EvenementService(TextField dateDebut, TextField dateFin, TextField description,TextField nbr_max, TextField nom_discipline, TextField nom_e, TextField nom_salle) {
-    }
-
-
 
     public void add(Evenement evenement) {
 
@@ -128,6 +131,10 @@ public class EvenementService implements Gservice<Evenement> {
             }
             return evenement;
         }
+
+
+
+
 
 
 
