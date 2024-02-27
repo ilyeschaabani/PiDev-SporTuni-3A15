@@ -6,9 +6,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import service.CompetitionService;
 
 import java.sql.Date;
@@ -118,7 +121,17 @@ public class AjouterCompetitionController {
         afficherCompetitions();
         //preparation des buttons
         initializetreetableviewbutton();
-        activation_des_cellules();
+        // Ajoutez un écouteur d'événements à la sélection de la TreeTableView
+        tvc.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Récupérez l'objet Competition correspondant à la ligne sélectionnée
+                Competition selectedCompetition = newSelection.getValue();
+                // Activez l'édition des cellules pour cet objet
+                activation_des_cellules(selectedCompetition);
+                //update selected object
+                //onEditButtonClick(selectedCompetition);
+            }
+        });
 
     }
 
@@ -235,54 +248,73 @@ public class AjouterCompetitionController {
     }
 
 
-    public void activation_des_cellules() {
+    public void activation_des_cellules(Competition item) {
         // Activer l'édition des cellules dans chaque colonne
-        id_comp.setEditable(true);
-        NomCompetition.setEditable(true);
-        Lieu.setEditable(true);
-        Datetvc.setEditable(true);
-        Discipline.setEditable(true);
-        IDsalle.setEditable(true);
-        System.out.println("Accès validé !");
+        NomCompetition.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        Lieu.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        Discipline.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        IDsalle.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn(new IntegerStringConverter()));
+// Configuration de la colonne Datetvc pour utiliser TextFieldTreeTableCell
+        Datetvc.setCellFactory(column -> {
+            TextFieldTreeTableCell<Competition, Date> cell = new TextFieldTreeTableCell<>();
+            cell.setConverter(new StringConverter<Date>() {
+                @Override
+                public String toString(Date object) {
+                    return object != null ? object.toString() : "";
+                }
 
-        // Ajouter des écouteurs pour détecter les modifications
-        id_comp.setOnEditCommit(event -> {
-            // Mettre à jour les données dans la TreeTableView en fonction de la nouvelle valeur
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setId_comp(event.getNewValue());
+                @Override
+                public Date fromString(String string) {
+                    return string != null && !string.isEmpty() ? Date.valueOf(string) : null;
+                }
+            });
+            return cell;
         });
 
+// Conversion java.sql.Date en String et vice versa
+        Datetvc.setCellValueFactory(new TreeItemPropertyValueFactory<>("date"));
+
+
+        // Ajouter des écouteurs pour détecter les modifications
+
+
         NomCompetition.setOnEditCommit(event -> {
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setNom_comp(event.getNewValue());
+            item.setNom_comp(event.getNewValue());
         });
 
         Lieu.setOnEditCommit(event -> {
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setLieu_comp(event.getNewValue());
+            item.setLieu_comp(event.getNewValue());
         });
 
         Datetvc.setOnEditCommit(event -> {
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setDate(event.getNewValue());
+            item.setDate(event.getNewValue());
         });
 
         Discipline.setOnEditCommit(event -> {
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setDiscipline(event.getNewValue());
+            item.setDiscipline(event.getNewValue());
         });
 
         IDsalle.setOnEditCommit(event -> {
-            event.getTreeTableView().getTreeItem(event.getTreeTablePosition().getRow()).getValue().setId_salle(event.getNewValue());
+            item.setId_salle(event.getNewValue());
         });
-
-
     }
 
 
     // Méthode pour gérer le clic sur le bouton Modifier
     public Void onEditButtonClick(Competition item) {
-        try {
-            activation_des_cellules();
-            cs.update(item);
-            System.out.println("Modifier: " + item);
-        } catch (Exception e) {
-            e.printStackTrace();
+        TreeItem<Competition> selectedTreeItem = tvc.getSelectionModel().getSelectedItem();
+        if (selectedTreeItem != null) {
+            Competition selectedCompetition = selectedTreeItem.getValue();
+            try {
+                // Mettre à jour l'objet Competition dans la base de données
+                cs.update(selectedCompetition);
+                System.out.println("Modifier: " + selectedCompetition);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Aucune ligne sélectionnée, afficher un message d'erreur ou prendre d'autres mesures
+            System.err.println("Aucune ligne sélectionnée.");
         }
         return null;
     }
