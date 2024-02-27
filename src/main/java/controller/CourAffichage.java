@@ -87,28 +87,32 @@ public class CourAffichage {
             clDate.setCellValueFactory(new PropertyValueFactory<>("date"));
             clHeureDebut.setCellValueFactory(new PropertyValueFactory<>("heure_debut"));
             clHeureFin.setCellValueFactory(new PropertyValueFactory<>("heure_fin"));
-            clNbParticipants.setCellValueFactory(new PropertyValueFactory<>("nombre_participants"));
+            clNbParticipants.setCellValueFactory(new PropertyValueFactory<>("nb_max"));
             clNomSalle.setCellValueFactory(new PropertyValueFactory<>("nom_salle"));
         } catch (Exception e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
+
     @FXML
     void add2(ActionEvent event) {
         try {
+            // Récupérer les valeurs des champs depuis l'interface utilisateur
             String nomCours = tfnom2.getText().trim();
             String nomDiscipline = tfdesc2.getText().trim();
             String heureDebut = tfhd.getText().trim();
             String heureFin = tfhf.getText().trim();
             String nomSalle = tfns.getText().trim();
-            String nbParticipants = tfnbm.getText().trim();
+            String nb_max = tfnbm.getText().trim();
 
-            if (nomCours.isEmpty() || nomDiscipline.isEmpty() || heureDebut.isEmpty() || heureFin.isEmpty() || nomSalle.isEmpty() || nbParticipants.isEmpty()) {
+            // Vérifier si tous les champs sont remplis
+            if (nomCours.isEmpty() || nomDiscipline.isEmpty() || heureDebut.isEmpty() || heureFin.isEmpty() || nomSalle.isEmpty() || nb_max.isEmpty()) {
                 showAlert("Error", "Veuillez remplir tous les champs", Alert.AlertType.ERROR);
                 return;
             }
 
+            // Récupérer la date depuis le DatePicker
             LocalDate localDate = tfdate.getValue();
             if (localDate == null) {
                 showAlert("Error", "Veuillez sélectionner une date", Alert.AlertType.ERROR);
@@ -116,13 +120,23 @@ public class CourAffichage {
             }
             Date date = Date.valueOf(localDate);
 
-            cs.add(new Cour(nomCours, date, heureDebut, heureFin, nomSalle, nbParticipants, nomDiscipline));
+            // Créer un nouvel objet Cour avec les données saisies
+            Cour nouveauCour = new Cour(nomCours, date, heureDebut, heureFin, nomSalle, nb_max, nomDiscipline);
+
+            // Utiliser le service CourService pour ajouter le nouveau cours à la base de données
+            cs.add(nouveauCour);
+
+            // Actualiser l'affichage de la table
             initialize();
-            showAlert("Information", "Cours ajouté", Alert.AlertType.INFORMATION);
+
+            // Afficher une notification de succès
+            showAlert("Information", "Cours ajouté avec succès", Alert.AlertType.INFORMATION);
         } catch (Exception e) {
+            // En cas d'erreur, afficher un message d'erreur
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
 
     @FXML
     void delete2(ActionEvent event) {
@@ -185,10 +199,27 @@ public class CourAffichage {
         }
     }
 
+
     @FXML
+
     void update2(ActionEvent event) {
         try {
             if (cour != null) {
+                // Récupérer les valeurs des champs depuis l'interface utilisateur
+                String nomCours = tfnom2.getText().trim();
+                String nomDiscipline = tfdesc2.getText().trim();
+                String heureDebut = tfhd.getText().trim();
+                String heureFin = tfhf.getText().trim();
+                String nomSalle = tfns.getText().trim();
+                String nb_max = tfnbm.getText().trim();
+
+                // Vérifier si tous les champs sont remplis
+                if (nomCours.isEmpty() || nomDiscipline.isEmpty() || heureDebut.isEmpty() || heureFin.isEmpty() || nomSalle.isEmpty() || nb_max.isEmpty()) {
+                    showAlert("Error", "Veuillez remplir tous les champs", Alert.AlertType.ERROR);
+                    return;
+                }
+
+                // Récupérer la date depuis le DatePicker
                 LocalDate localDate = tfdate.getValue();
                 if (localDate == null) {
                     showAlert("Error", "Veuillez sélectionner une date", Alert.AlertType.ERROR);
@@ -196,24 +227,33 @@ public class CourAffichage {
                 }
                 Date date = Date.valueOf(localDate);
 
-                cour.setNom_cour(tfnom2.getText());
-                cour.setNom_discipline(tfdesc2.getText());
+                // Mettre à jour les informations du cours
+                cour.setNom_cour(nomCours);
+                cour.setNom_discipline(nomDiscipline);
                 cour.setDate(date);
-                cour.setHeure_debut(tfhd.getText());
-                cour.setHeure_fin(tfhf.getText());
-                cour.setNom_salle(tfns.getText());
-                cour.setNb_max(tfnbm.getText());
+                cour.setHeure_debut(heureDebut);
+                cour.setHeure_fin(heureFin);
+                cour.setNom_salle(nomSalle);
+                cour.setNb_max(nb_max);
 
+                // Utiliser le service CourService pour mettre à jour le cours dans la base de données
                 cs.updato(cour);
+
+                // Actualiser l'affichage de la table
                 initialize();
-                showAlert("Information", "Cours modifié", Alert.AlertType.INFORMATION);
+
+                // Afficher une notification de succès
+                showAlert("Information", "Cours modifié avec succès", Alert.AlertType.INFORMATION);
             } else {
                 showAlert("Error", "Veuillez sélectionner un cours à modifier", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
+            // En cas d'erreur, afficher un message d'erreur
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
+
     private void showAlert(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

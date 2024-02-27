@@ -65,24 +65,27 @@ public CourService() {
         }
     }
 */
-    @Override
-    public void updato(Cour c) {
-        String requete = "UPDATE cour SET nom_cour=?, date=?, heure_debut=?, heure_fin=?, nom_salle=?, nb_max=? WHERE id_cour=?";
+    public void updato(Cour cour) throws SQLException {
+        String query = "UPDATE cour SET nom_cour=?, nom_discipline=?, date=?, heure_debut=?, heure_fin=?, nom_salle=?, nb_max=? WHERE id_cour=?";
+        PreparedStatement pst = null;
         try {
-            PreparedStatement ps = conn.prepareStatement(requete);
-            pst.setString(1, c.getNom_cour());
-            pst.setDate(2, c.getDate());
-            pst.setString(3, c.getHeure_debut());
-            pst.setString(4, c.getHeure_fin());
-            pst.setString(5, c.getNom_salle());
-            pst.setString(6, c.getNb_max());
-            pst.setInt(7, c.getId_cour());
+            pst = conn.prepareStatement(query);
+            pst.setString(1, cour.getNom_cour());
+            pst.setString(2, cour.getNom_discipline());
+            pst.setDate(3, cour.getDate());
+            pst.setString(4, cour.getHeure_debut());
+            pst.setString(5, cour.getHeure_fin());
+            pst.setString(6, cour.getNom_salle());
+            pst.setString(7, cour.getNb_max());
+            pst.setInt(8, cour.getId_cour());
             pst.executeUpdate();
-            System.out.println("Cour updated!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } finally {
+            if (pst != null) {
+                pst.close();
+            }
         }
     }
+
 
     @Override
     public List<Cour> readAll() {
@@ -133,4 +136,6 @@ public CourService() {
         }
         return c;
     }
+
+
 }

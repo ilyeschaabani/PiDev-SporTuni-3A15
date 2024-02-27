@@ -55,23 +55,23 @@ public class DisciplineService implements IService<Discipline> {
          }
 
      }*/
-    public void updato(Discipline s){
-
-
-        String requete = "UPDATE discipline SET nom_discipline=?, description = ? WHERE id = ?";
-            try {
-                PreparedStatement ps = connexion.prepareStatement(requete);
-                ps.setString(1, s.getNom_discipline());
-                ps.setString(2, s.getDescription());
-                ps.setInt(3,s.getId_discipline());
-                ps.executeUpdate();
-                System.out.println("discipline updated!");
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-
-
+public void updato(Discipline s){
+    String requete = "UPDATE discipline SET nom_discipline=?, description = ? WHERE id_discipline = ?";
+    try {
+        PreparedStatement ps = connexion.prepareStatement(requete);
+        ps.setString(1, s.getNom_discipline());
+        ps.setString(2, s.getDescription());
+        ps.setInt(3, s.getId_discipline());
+        int result = ps.executeUpdate();
+        if (result > 0) {
+            System.out.println("discipline updated!");
+        } else {
+            System.out.println("No discipline updated!");
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
+}
 
     public List<Discipline> readAll() {
         String requete="SELECT * FROM discipline";

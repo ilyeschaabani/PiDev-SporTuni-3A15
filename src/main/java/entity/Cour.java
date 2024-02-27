@@ -39,6 +39,10 @@ public class Cour {
         this.nom_discipline = nom_discipline;
     }
 
+    public Cour() {
+
+    }
+
     public int getId_cour() {
         return id_cour;
     }
@@ -120,7 +124,7 @@ public class Cour {
                 ", heure_debut='" + heure_debut + '\'' +
                 ", heure_fin='" + heure_fin + '\'' +
                 ", nom_salle='" + nom_salle + '\'' +
-                ", nb_max='" + nb_max + '\'' +
+                ", nombre participants max='" + nb_max + '\'' +
                 ", nom_discipline='" + nom_discipline + '\'' +
                 ", id_u=" + id_u +
                 '}';

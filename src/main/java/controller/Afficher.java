@@ -106,9 +106,11 @@ public class Afficher {
         try {
             if (discipline != null) {
                 DisciplineService ss = new DisciplineService();
-                discipline = new Discipline(discipline.getId_discipline(), tfnom1.getText(), tfdesc1.getText());
+                // Mettre à jour les informations de la discipline
+                discipline.setNom_discipline(tfnom1.getText());
+                discipline.setDescription(tfdesc1.getText());
                 ss.updato(discipline);
-                initialize();
+                initialize(); // Rafraîchir la TableView
                 showAlert("Information", "discipline modifiée", Alert.AlertType.INFORMATION);
             } else {
                 showAlert("Error", "Veuillez sélectionner une discipline à modifier", Alert.AlertType.ERROR);
@@ -117,6 +119,7 @@ public class Afficher {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
 
     public void add(ActionEvent actionEvent) {
         try {

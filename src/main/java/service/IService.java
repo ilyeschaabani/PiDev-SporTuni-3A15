@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IService <T>{
@@ -7,7 +8,7 @@ public interface IService <T>{
     //void delete(T t);
     void delete(int id);
     void update(T t,int id );
-    void updato(T t);
+    void updato(T t) throws SQLException;
 
     List<T> readAll();
     T readById(int id);
