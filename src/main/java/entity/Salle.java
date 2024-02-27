@@ -8,6 +8,7 @@ private String nom;
 private int surface;
 private int capacite;
 private String discipline;
+    private String dispoInter;
 
     private List<Dispo> dispoList;
 
@@ -69,9 +70,18 @@ private String discipline;
         this.discipline = discipline;
     }
 
+    public String getDispoInter() {
+        return dispoInter;
+    }
+
+    public void setDispoInter(String dispoInter) {
+        this.dispoInter = dispoInter;
+    }
+
     public List<Dispo> getDispoList() {
         return dispoList;
     }
+
 
     public void setDispoList(List<Dispo> dispoList) {
         this.dispoList = dispoList;

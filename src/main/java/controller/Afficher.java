@@ -4,10 +4,14 @@ import java.awt.*;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.List;
 
+import entity.Dispo;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 public class Afficher {
     public Label title;
     SalleService ss=new SalleService();
+    private List<Dispo> dispoList;
     @FXML
     private Button btnadd1;
 
@@ -44,14 +49,15 @@ public class Afficher {
     @FXML
     private TableColumn<Salle, String> cldisc;
 
-    @FXML
-    private TableColumn<Salle, Boolean> cldispo;
+
 
     @FXML
     private TableColumn<Salle, String> clnom;
 
     @FXML
     private TableColumn<Salle, Integer> clsurf;
+    @FXML
+    private TableColumn<Salle, String> cldispo;
     @FXML
     private TextField searchField;
 
@@ -62,8 +68,7 @@ public class Afficher {
     @FXML
     private TextField tfdisc1;
 
-    @FXML
-    private TextField tfdispo1;
+
 
     @FXML
     private TextField tfnom1;
@@ -93,7 +98,9 @@ public class Afficher {
             clsurf.setCellValueFactory(new PropertyValueFactory<>("surface"));
             clcapa.setCellValueFactory(new PropertyValueFactory<>("capacite"));
             cldisc.setCellValueFactory(new PropertyValueFactory<>("discipline"));
-            cldispo.setCellValueFactory(new PropertyValueFactory<>("dispo"));
+            cldispo.setCellValueFactory(cellData -> new SimpleStringProperty(getAvailabilityInterval((Salle)cellData.getValue())));
+            cldispo.setResizable(false);
+            cldispo.setSortable(false);
 
         }catch (Exception e){
         throw new RuntimeException(e);
@@ -149,7 +156,7 @@ public class Afficher {
             showAlert("Information", "Salle modifiée", Alert.AlertType.INFORMATION);
 
         } catch (Exception e) {
-            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);;
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -175,15 +182,14 @@ public class Afficher {
         validateAndShowNumericError(tfsurf1, "Surface");
         validateAndShowNumericError(tfcapa1, "Capacite");
         validateAndShowDisciplineError(tfdisc1, "Discipline");
-        validateAndShowError(tfdispo1, "Dispo");
+
 
         return !tfnom1.getText().isEmpty()
                 && !tfsurf1.getText().isEmpty()
                 && !tfcapa1.getText().isEmpty()
                 && isNumeric(tfsurf1.getText())
                 && isNumeric(tfcapa1.getText())
-                && isValidDiscipline(tfdisc1.getText())
-                && !tfdispo1.getText().isEmpty();
+                && isValidDiscipline(tfdisc1.getText());
     }
     private boolean isNumeric(String str) {
         try {
@@ -307,6 +313,37 @@ public class Afficher {
            }
        }
    }
+    public String getAvailabilityInterval(Salle salle) {
+        if (salle.getDispoList() != null && !salle.getDispoList().isEmpty()) {
+            StringBuilder intervalStringBuilder = new StringBuilder();
+
+            for (Dispo dispo : salle.getDispoList()) {
+                LocalDateTime dateD = dispo.getDateD();
+                LocalDateTime dateF = dispo.getDateF();
+
+                String interval = calculateInterval(dateD, dateF);
+                intervalStringBuilder.append(interval).append(", ");
+            }
+
+            return intervalStringBuilder.toString().replaceAll(", $", "");
+        } else {
+            return "No intervals";
+        }
+    }
+
+    private String calculateInterval(LocalDateTime dateD, LocalDateTime dateF) {
+        long hours = java.time.Duration.between(dateD, dateF).toHours();
+        return hours + " hours";
+    }
+
+    // Placeholder for the getDispoList() method
+    private List<Dispo> getDispoList() {
+        return null;
+    }
+
 
 
 }
+
+
+

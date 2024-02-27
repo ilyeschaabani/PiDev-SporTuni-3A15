@@ -89,7 +89,7 @@ public class DispoService implements IService<Dispo> {
 
     @Override
     public Dispo readById(int id) {
-        String requete="select * from salle where idDispo="+id;
+        String requete="select * from dispo where idDispo="+id;
         Dispo dispo = null;
         try {
             ste= connexion.createStatement();

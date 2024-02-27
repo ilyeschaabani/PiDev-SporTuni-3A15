@@ -58,7 +58,7 @@ public class Stat {
                 assert btnstat != null : "fx:id=\"btnstat\" was not injected: check your FXML file 'Stat.fxml'.";
                 int totalSalles = ss.NbrDeSalleTotale();
                 lbltotale.setText(String.valueOf(ss.NbrDeSalleTotale()));
-                lbldispo.setText(String.valueOf(ss.NbrDeSalleDispo()));
+               // lbldispo.setText(String.valueOf(ss.NbrDeSalleDispo()));
 
                 statPi();
 
