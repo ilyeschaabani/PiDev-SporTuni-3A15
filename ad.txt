@@ -1,0 +1,7 @@
+ /*  void Ajouter_au_Panier(ActionEvent event) throws SQLException {
+            ServiceProduct.ajouter(new Product(Integer.parseInt(tf_nom.getText()), tf_details.getText(), tf_more.getText()));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("saha");
+            alert.setContentText("merci pour passer la commande ");
+            alert.showAndWait();
+        }*/

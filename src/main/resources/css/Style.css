@@ -1,0 +1,90 @@
+
+/* Set the background color for the AnchorPane */
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Style for TableView */
+#tvProduct {
+    -fx-background-color: #ffffff;
+}
+
+/* Style for TextFields */
+.text-field {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 4px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 4px;
+    -fx-border-radius: 4px;
+    -fx-font-size:13px;
+    -fx-font-family: Arial;
+}
+.AncorPane{
+    -fx-background-color: #ffffff;
+}
+/* Style for Labels */
+
+
+/* Style for Buttons */
+.button {
+    -fx-background-color: #FF5555; /* Red background */
+    -fx-background-radius: 5px;
+    -fx-text-fill: #FFFFFF; /* White text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-cursor: hand;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color:linear-gradient(to bottom, #521818,FF5555FF) ; /* Darker Green on hover */
+}
+
+/* Style for TableView columns */
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+/* Style for TableView columns */
+.table-column {
+    -fx-background-color: #bfbfc5;
+    -fx-background-color: #efefef;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+}
+
+.search:focused{
+    -fx-border-width:2px;
+}
+.table-view {
+    -fx-background-color: #f4f4f4;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #932828;
+}
+
+.table-view .column-header,
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #ecf1ee;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #d5dbdb;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #932828;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header{
+    -fx-background-color: #932828;
+}

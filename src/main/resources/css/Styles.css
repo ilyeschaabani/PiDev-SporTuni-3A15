@@ -1,0 +1,94 @@
+
+/* Set the background color for the AnchorPane */
+.root {
+    -fx-background-color: #e0d1d1;
+}
+
+/* Style for TableView */
+#tvProduct {
+    -fx-background-color: #c3c7d9;
+}
+
+/* Style for TextFields */
+.textfield{
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #420404);
+    -fx-border-width:.8px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:4px;
+}
+.textfield:focused{
+    -fx-border-width:1.8px;
+    -fx-background-color:#fff;
+}
+.AncorPane{
+    -fx-background-color: #ffffff;
+}
+/* Style for Labels */
+
+
+/* Style for Buttons */
+
+
+.button {
+    -fx-background-color: #efc4c4; /* Red background */
+    -fx-background-radius: 5px;
+    -fx-text-fill: #420404; /* White text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-cursor: hand;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color:linear-gradient(to bottom, #01071a,FF5555FF) ; /* Darker Green on hover */
+}
+
+/* Style for TableView columns */
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+/* Style for TableView columns */
+.table-column {
+    -fx-background-color: #bfbfc5;
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+}
+
+/* Style for TableView header */
+.table-view .column-header {
+    -fx-background-color:linear-gradient(to bottom right, #521818, #932828) ;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Style for TableView rows */
+.table-row-cell:even {
+    -fx-background-color: #f9f9f9;
+}
+#title{
+    -fx-text-fill: black;
+}
+.nom{
+    -fx-text-fill: #da0f0f;
+    -fx-font-family:"Britannic Bold";
+}
+.menu-jannoubi{
+    -fx-background-color:linear-gradient(to top, #da5454, #932828) ;
+}
+.menu-foukani{
+    -fx-background-color:linear-gradient(to bottom, #736e6f,white) ;
+}
+.shadow{
+    -fx-effect:dropshadow(three-pass-box , rgba(0,0,0,0.5),6,0,0,0);
+}
+.white-bg{
+    -fx-background-radius: box;
+    -fx-background-color: white;
+}
+.table-view .column-header-background .label {
+    -fx-text-fill: #ffffff; /* Set column header text color to white */
+    -fx-font-family:"Arial Black";
+}
