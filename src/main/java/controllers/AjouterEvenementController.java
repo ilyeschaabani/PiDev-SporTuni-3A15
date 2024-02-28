@@ -90,7 +90,8 @@ public class AjouterEvenementController {
     void initialize() {
        /* try {
             //EvenementService es = new EvenementService();
-            //ObservableList<Evenement> observableList = FXCollections.observableList(es.readAll());
+            System.out.println("EvenementService initialisé !");
+              //ObservableList<Evenement> observableList = FXCollections.observableList(es.readAll());
             colnom_e.setCellValueFactory(new PropertyValueFactory<>("nom_e"));
             colnom_salle.setCellValueFactory(new PropertyValueFactory<>("nom_salle"));
             coldateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
@@ -102,7 +103,8 @@ public class AjouterEvenementController {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-
+}
+}
 
         */
         AffcherEvenement();
