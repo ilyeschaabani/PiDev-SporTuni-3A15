@@ -1,8 +1,6 @@
 package controllers;
 import entities.Evenement;
 
-import entities.ReservationEv;
-
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -12,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import  services.EvenementService;
 
@@ -21,7 +18,10 @@ import java.util.Objects;
 
 
 public class AjouterEvenementController {
-    EvenementService es;
+   private  EvenementService es;
+    public AjouterEvenementController(EvenementService es) {
+        this.es = es;
+    }
 
     @FXML
     private Button btModif;
@@ -78,6 +78,14 @@ public class AjouterEvenementController {
     private String information;
     private Alert.AlertType alertType;
 
+
+
+
+
+
+    public AjouterEvenementController() {
+        // Constructeur par défaut
+    }
     @FXML
     void initialize() {
        /* try {
@@ -121,6 +129,7 @@ public class AjouterEvenementController {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     void AffcherEvenement() {
         try {
@@ -132,17 +141,21 @@ public class AjouterEvenementController {
         }
     }
 
-
     @FXML
     void AjouterEvenement(ActionEvent event) throws SQLException {
-        es.add(new Evenement(dateDebut.getText(), dateFin.getText(), description.getText(), Integer.parseInt(nbr_max.getText()), nom_discipline.getText(), nom_e.getText(), nom_salle.getText()
-        ));
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Success");
-        alert.setContentText("evenement ajoute");
-        alert.showAndWait();
-
+        if (this.es != null) {
+            es.add(new Evenement(dateDebut.getText(), dateFin.getText(), description.getText(), Integer.parseInt(nbr_max.getText()), nom_discipline.getText(), nom_e.getText(), nom_salle.getText()
+            ));
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setContentText("evenement ajoute");
+            alert.showAndWait();
+        } else {
+            // Gérer le cas où this.es est null
+            System.err.println("EvenementService non initialisé !");
+        }
     }
+
 
 
     @FXML
@@ -195,10 +208,6 @@ public class AjouterEvenementController {
     }
 
 
-    @FXML
-    void SupprimerEvenement(ActionEvent event) {
-
-    }
 
     @FXML
     void validerReservation(ActionEvent event) {
