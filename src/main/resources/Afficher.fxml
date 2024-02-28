@@ -46,13 +46,14 @@
                <children>
                   <AnchorPane layoutX="12.0" layoutY="16.0" prefHeight="733.0" prefWidth="1091.0">
                      <children>
-                        <TableView fx:id="tvsalle" layoutX="399.0" layoutY="179.0" onMouseClicked="#mouseClicked1" prefHeight="299.0" prefWidth="550.0" stylesheets="@CSS/afficher.css">
+                        <TableView fx:id="tvsalle" layoutX="399.0" layoutY="179.0" onMouseClicked="#mouseClicked1" prefHeight="299.0" prefWidth="663.0" stylesheets="@CSS/afficher.css">
                           <columns>
                             <TableColumn fx:id="clnom" prefWidth="98.39999389648438" text="Nom" />
                             <TableColumn fx:id="clsurf" prefWidth="94.4000244140625" text="Surface" />
                               <TableColumn fx:id="clcapa" prefWidth="107.199951171875" text="Capacité" />
                               <TableColumn fx:id="cldisc" prefWidth="116.00006103515625" text="Discipline" />
-                              <TableColumn fx:id="cldispo" prefWidth="129.5999755859375" text="Disponibilé" />
+                              <TableColumn fx:id="cldated" prefWidth="129.5999755859375" text="Date Debut" />
+                              <TableColumn fx:id="cldatef" prefWidth="115.20000000000005" text="Date Fin" />
                           </columns>
                         </TableView>
                         <Button fx:id="btnsupp" layoutX="595.0" layoutY="507.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Supprimer" textFill="#ff5555" />

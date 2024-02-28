@@ -12,9 +12,11 @@ import java.util.List;
 
 import entity.Dispo;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import service.DispoService;
 import util.DataSource;
 import entity.Salle;
 import javafx.collections.FXCollections;
@@ -49,15 +51,17 @@ public class Afficher {
     @FXML
     private TableColumn<Salle, String> cldisc;
 
+    @FXML
+    private TableColumn<?, ?> cldated;
 
+    @FXML
+    private TableColumn<?, ?> cldatef;
 
     @FXML
     private TableColumn<Salle, String> clnom;
 
     @FXML
     private TableColumn<Salle, Integer> clsurf;
-    @FXML
-    private TableColumn<Salle, String> cldispo;
     @FXML
     private TextField searchField;
 
@@ -92,21 +96,45 @@ public class Afficher {
     @FXML
     void initialize() {
         try {
-            ObservableList<Salle> observableList = FXCollections.observableList(ss.readAll());
-            tvsalle.setItems(observableList);
+            List<Salle> salleList = ss.readAllWithJoin();
+
+            // Convert List<Salle> to ObservableList<Salle>
+            ObservableList<Salle> observableList = FXCollections.observableList(salleList);
+
+            // Set cell value factories for each column
             clnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
             clsurf.setCellValueFactory(new PropertyValueFactory<>("surface"));
             clcapa.setCellValueFactory(new PropertyValueFactory<>("capacite"));
             cldisc.setCellValueFactory(new PropertyValueFactory<>("discipline"));
-            cldispo.setCellValueFactory(cellData -> new SimpleStringProperty(getAvailabilityInterval((Salle)cellData.getValue())));
-            cldispo.setResizable(false);
-            cldispo.setSortable(false);
+            cldated.setCellValueFactory(new PropertyValueFactory<>("dateD"));
+            cldatef.setCellValueFactory(new PropertyValueFactory<>("dateF"));
 
-        }catch (Exception e){
-        throw new RuntimeException(e);
+            // Set the items in the TableView
+            tvsalle.setItems(observableList);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
     }
+    private LocalDateTime getDispoListDateD(Salle salle) {
+        if (salle != null) {
+            List<Dispo> dispoList = salle.getDispoList();
+            if (dispoList != null && !dispoList.isEmpty()) {
+                return dispoList.get(0).getDateD();
+            }
+        }
+        return null;
+    }
+
+    private LocalDateTime getDispoListDateF(Salle salle) {
+        if (salle != null) {
+            List<Dispo> dispoList = salle.getDispoList();
+            if (dispoList != null && !dispoList.isEmpty()) {
+                return dispoList.get(0).getDateF();
+            }
+        }
+        return null;
+    }
+
 
     public void mouseClicked1(MouseEvent mouseEvent) {
         try{

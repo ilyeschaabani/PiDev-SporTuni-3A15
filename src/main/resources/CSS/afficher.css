@@ -80,10 +80,7 @@
 .shadow{
     -fx-effect:dropshadow(three-pass-box , rgba(0,0,0,0.5),6,0,0,0);
 }
-.white-bg{
-    -fx-background-radius: box;
-    -fx-background-color: white;
-}
+
 .table-view .column-header-background .label {
     -fx-text-fill: white; /* Set column header text color to white */
 }

@@ -22,7 +22,7 @@ public class DispoService implements IService<Dispo> {
         String requete = "INSERT INTO dispo (id_salle, dateD, dateF) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connexion.prepareStatement(requete);
-            preparedStatement.setInt(1, dispo.getId_salle());
+            preparedStatement.setObject(1, dispo.getSalle().getId());
             preparedStatement.setTimestamp(2, Timestamp.valueOf(dispo.getDateD()));
             preparedStatement.setTimestamp(3, Timestamp.valueOf(dispo.getDateF()));
              preparedStatement.executeUpdate();
@@ -54,7 +54,7 @@ public class DispoService implements IService<Dispo> {
         String requete = "UPDATE dispo SET idSalle=?, dateD = ?, dateF = ? WHERE idDispo = ?";
         try {
             PreparedStatement ps = connexion.prepareStatement(requete);
-            ps.setInt(1, dispo.getId_salle());
+            ps.setObject(1, dispo.getSalle());
             ps.setTimestamp(2, Timestamp.valueOf(dispo.getDateD()));
             ps.setTimestamp(3, Timestamp.valueOf(dispo.getDateF()));
             ps.setInt(4,dispo.getId_Dispo());
@@ -76,7 +76,7 @@ public class DispoService implements IService<Dispo> {
             while (rs.next()) {
                 list.add(new Dispo(
                         rs.getInt("id_dispo"),
-                        rs.getInt("id_salle"),
+                        (Salle) rs.getObject("salle"),
                         rs.getTimestamp("date_debut").toLocalDateTime(),
                         rs.getTimestamp("date_fin").toLocalDateTime()
                 ));
@@ -97,7 +97,7 @@ public class DispoService implements IService<Dispo> {
             while(rs.next()){
                 dispo = new Dispo(
                         rs.getInt("id dispo"),
-                        rs.getInt("id salle"),
+                        (Salle) rs.getObject("salle"),
                         rs.getTimestamp("date_debut").toLocalDateTime(),
                         rs.getTimestamp("date_fin").toLocalDateTime());
             }

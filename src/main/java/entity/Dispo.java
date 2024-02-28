@@ -4,22 +4,22 @@ import java.time.LocalDateTime;
 
 public class Dispo {
     private int id_Dispo;
-    private int id_salle;
+    private Salle salle;
     private LocalDateTime dateD;
     private LocalDateTime dateF;
 
 
     public Dispo() {}
 
-    public Dispo(int id_Dispo, int id_salle, LocalDateTime dateD, LocalDateTime dateF) {
+    public Dispo(int id_Dispo, Salle salle, LocalDateTime dateD, LocalDateTime dateF) {
         this.id_Dispo = id_Dispo;
-        this.id_salle = id_salle;
+        this.salle = salle;
         this.dateD = dateD;
         this.dateF = dateF;
     }
 
-    public Dispo(int id_salle, LocalDateTime dateD, LocalDateTime dateF) {
-        this.id_salle = id_salle;
+    public Dispo(Salle salle, LocalDateTime dateD, LocalDateTime dateF) {
+        this.salle = salle;
         this.dateD = dateD;
         this.dateF = dateF;
 
@@ -30,6 +30,7 @@ public class Dispo {
         this.dateF = dateF;
     }
 
+
     public int getId_Dispo() {
         return id_Dispo;
     }
@@ -38,16 +39,18 @@ public class Dispo {
         this.id_Dispo = id_Dispo;
     }
 
-    public int getId_salle() {
-        return id_salle;
-    }
 
-    public void setId_salle(int id_salle) {
-        this.id_salle = id_salle;
-    }
 
     public LocalDateTime getDateD() {
         return dateD;
+    }
+
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
     }
 
     public void setDateD(LocalDateTime dateD) {
@@ -62,15 +65,13 @@ public class Dispo {
         this.dateF = dateF;
     }
 
-
-
     @Override
     public String toString() {
         return "Dispo{" +
                 "id_Dispo=" + id_Dispo +
-                ", id_salle=" + id_salle +
-                ", dateDebut=" + dateD +
-                ", dateFin=" + dateF +
+                ", salle=" + salle +
+                ", dateD=" + dateD +
+                ", dateF=" + dateF +
                 '}';
     }
 }

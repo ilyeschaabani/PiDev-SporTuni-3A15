@@ -5,8 +5,9 @@ import util.DataSource;
 import entity.Salle;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class SalleService implements IService<Salle> {
     private Connection connexion;
@@ -79,6 +80,8 @@ public class SalleService implements IService<Salle> {
                         rs.getInt("surface"),
                         rs.getInt("capacite"),
                         rs.getString("discipline")));
+
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -100,6 +103,8 @@ public class SalleService implements IService<Salle> {
                         rs.getInt("surface"),
                         rs.getInt("capacite"),
                         rs.getString("discipline"));
+
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -119,6 +124,55 @@ public class SalleService implements IService<Salle> {
         }
         return 0; // Return 0 if there's an error or no salles
     }
+
+
+
+
+    public List<Salle> readAllWithJoin() {
+        List<Salle> salleList = new ArrayList<>();
+        String query = "SELECT salle.*, Dispo.dateD, Dispo.dateF " +
+                "FROM salle " +
+                "LEFT JOIN Dispo ON salle.id = Dispo.idSalle";
+
+        try (PreparedStatement preparedStatement = connexion.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                // Populate Salle object with data from the result set
+                Salle salle = new Salle();
+                salle.setId(resultSet.getInt("id"));
+                salle.setNom(resultSet.getString("nom"));
+                salle.setSurface(resultSet.getInt("surface"));
+                salle.setCapacite(resultSet.getInt("capacite"));
+                salle.setDiscipline(resultSet.getString("discipline"));
+
+                // Check if Dispo data is present
+                Timestamp dateDTimestamp = resultSet.getTimestamp("dateD");
+                Timestamp dateFTimestamp = resultSet.getTimestamp("dateF");
+
+                if (dateDTimestamp != null && dateFTimestamp != null) {
+                    Dispo dispo = new Dispo();
+                    dispo.setDateD(dateDTimestamp.toLocalDateTime());
+                    dispo.setDateF(dateFTimestamp.toLocalDateTime());
+                    salle.setDispoList(Collections.singletonList(dispo)); // You may want to handle multiple dispo records for a salle
+                }
+
+                salleList.add(salle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
+        return salleList;
+    }
+
+
+
+
+
+
+
+
 //    public int NbrDeSalleDispo() {
 //        String req = "SELECT COUNT(id) AS total FROM salle WHERE dispo = true";
 //        try {
