@@ -1,172 +1,94 @@
-/*package controller;
+package controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
-
-import entity.Salle;
-import javafx.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+import org.controlsfx.control.Rating;
+import service.SalleService;
+import entity.Salle;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Consulter {
-    private Salle evnt;
-
-    public Salle getEvnt() {
-        return evnt;
-    }
-
-    public void setEvnt(Salle evnt) {
-        this.evnt = evnt;
-    }
-
-    @FXML
-    public AnchorPane events_pane;
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button btnpart;
-
-    @FXML
-    public Label event_date;
-
-    @FXML
-    private Label event_goal;
 
     @FXML
     private Label event_name;
 
     @FXML
-    private Label event_id;
-
-    @FXML
-    private Label event_per;
+    private Label event_date;
 
     @FXML
     private Label event_place;
 
-    public ResourceBundle getResources() {
-        return resources;
-    }
+    @FXML
+    private Label event_goal;
 
-    public void setResources(ResourceBundle resources) {
-        this.resources = resources;
-    }
+    @FXML
+    private Label event_aa;
 
-    public URL getLocation() {
-        return location;
-    }
-
-    public void setLocation(URL location) {
-        this.location = location;
-    }
-
-    public Button getBtnpart() {
-        return btnpart;
-    }
-
-    public void setBtnpart(Button btnpart) {
-        this.btnpart = btnpart;
-    }
-
-    public Label getEvent_date() {
-        return event_date;
-    }
-
-    public void setEvent_date(Label event_date) {
-        this.event_date = event_date;
-    }
-
-    public Label getEvent_goal() {
-        return event_goal;
-    }
-
-    public void setEvent_goal(Label event_goal) {
-        this.event_goal = event_goal;
-    }
-
-    public Label getEvent_name() {
-        return event_name;
-    }
-
-    public void setEvent_name(Label event_name) {
-        this.event_name = event_name;
-    }
-
-    public Label getEvent_per() {
-        return event_per;
-    }
-
-    public void setEvent_per(Label event_per) {
-        this.event_per = event_per;
-    }
-
-    public Label getEvent_place() {
-        return event_place;
-    }
-
-    public void setEvent_place(Label event_place) {
-        this.event_place = event_place;
-    }
-
-
-    public Label getEvent_id() {
-        return event_id;
-    }
-
-    public void setEvent_id(Label event_id) {
-        this.event_id = event_id;
-    }
-
-
-    private Salle eventData;
+    @FXML
+    private Label event_id;
+    @FXML
+    private TextField ratingID;
+    @FXML
+    private Rating rating;
 
 
     @FXML
-    void initialize() {
-        btnpart.setOnAction(e -> participer_event());
-
-    }
-
-    @FXML
-    void participer_event() {
+    private void initialize() {
         try {
-            // Load the FXML file for AjouterDon interface
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/finfolio/User/Evennement/faire-un-don.fxml"));
-            Parent root = loader.load();
-            Ajouter adc = loader.getController();
-            String id = event_id.getText();
-            adc.(id);
+            // Call your service to get data
+            SalleService salleService = new SalleService();
+            List<Salle> salles = salleService.readAll();
 
-            // Create a new stage for the AjouterDon interface
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Faire un don");
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Assuming you want to display the first salle's data
+            if (!salles.isEmpty()) {
+                Salle firstSalle = salles.get(0);
+                setEventData(firstSalle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle the exception according to your application's needs
+        }
+        rating.ratingProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                ratingID.setText("Rate us " + t1 + "/5");
+            }
+        });
+
+    }
+
+    public void setEventData(Salle event) {
+        if (event != null) {
+            event_name.setText(event.getNom());
+
+            // Assuming getDateD() returns LocalDateTime
+            LocalDateTime localDateTime = event.getDateD();
+            event_date.setText(formatLocalDateTime(localDateTime));
+
+            event_place.setText(String.valueOf(event.getSurface()));
+            event_goal.setText(event.getDiscipline());
+            event_aa.setText(event.getDiscipline());
+            event_id.setText(String.valueOf(event.getId()));
         }
     }
 
-
-    public void setEventData(Salle event) {
-        event_name.setText(event.getNom());
-        event_id.setText(String.valueOf(event.getId()));
-
+    private String formatLocalDateTime(LocalDateTime localDateTime) {
+        try {
+            if (localDateTime != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                return localDateTime.format(formatter);
+            } else {
+                return ""; // or some default value
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
     }
 
-
-}
-*/

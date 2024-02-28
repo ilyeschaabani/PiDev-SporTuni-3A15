@@ -46,23 +46,23 @@
                <children>
                   <AnchorPane layoutX="12.0" layoutY="16.0" prefHeight="733.0" prefWidth="1091.0">
                      <children>
-                        <TableView fx:id="tvsalle" layoutX="399.0" layoutY="179.0" onMouseClicked="#mouseClicked1" prefHeight="299.0" prefWidth="663.0" stylesheets="@CSS/afficher.css">
+                        <TableView fx:id="tvsalle" layoutX="306.0" layoutY="177.0" onMouseClicked="#mouseClicked1" prefHeight="299.0" prefWidth="742.0" stylesheets="@CSS/afficher.css">
                           <columns>
                             <TableColumn fx:id="clnom" prefWidth="98.39999389648438" text="Nom" />
                             <TableColumn fx:id="clsurf" prefWidth="94.4000244140625" text="Surface" />
                               <TableColumn fx:id="clcapa" prefWidth="107.199951171875" text="Capacité" />
                               <TableColumn fx:id="cldisc" prefWidth="116.00006103515625" text="Discipline" />
-                              <TableColumn fx:id="cldated" prefWidth="129.5999755859375" text="Date Debut" />
-                              <TableColumn fx:id="cldatef" prefWidth="115.20000000000005" text="Date Fin" />
+                              <TableColumn fx:id="cldated" prefWidth="159.20001220703125" text="Date Debut" />
+                              <TableColumn fx:id="cldatef" prefWidth="165.60009765625" text="Date Fin" />
                           </columns>
                         </TableView>
                         <Button fx:id="btnsupp" layoutX="595.0" layoutY="507.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Supprimer" textFill="#ff5555" />
                         <Button fx:id="btnmodif" layoutX="750.0" layoutY="507.0" mnemonicParsing="false" onAction="#update" prefHeight="47.0" prefWidth="111.0" text="Modifier" />
-                        <TextField fx:id="tfsurf1" layoutX="175.0" layoutY="271.0" promptText="Surface" stylesheets="@CSS/afficher.css" />
-                        <TextField fx:id="tfnom1" layoutX="175.0" layoutY="220.0" promptText="Nom" stylesheets="@CSS/afficher.css" />
-                        <TextField fx:id="tfcapa1" layoutX="175.0" layoutY="329.0" promptText="Capacité" stylesheets="@CSS/afficher.css" />
-                        <TextField fx:id="tfdispo1" layoutX="175.0" layoutY="430.0" promptText="Disponibilité" />
-                        <TextField fx:id="tfdisc1" layoutX="175.0" layoutY="377.0" promptText="Discipline" />
+                        <TextField fx:id="tfsurf1" layoutX="102.0" layoutY="269.0" promptText="Surface" stylesheets="@CSS/afficher.css" />
+                        <TextField fx:id="tfnom1" layoutX="102.0" layoutY="218.0" promptText="Nom" stylesheets="@CSS/afficher.css" />
+                        <TextField fx:id="tfcapa1" layoutX="102.0" layoutY="327.0" promptText="Capacité" stylesheets="@CSS/afficher.css" />
+                        <TextField fx:id="tfdispo1" layoutX="102.0" layoutY="428.0" promptText="Disponibilité" />
+                        <TextField fx:id="tfdisc1" layoutX="102.0" layoutY="375.0" promptText="Discipline" />
                         <Button fx:id="btnadd1" layoutX="447.0" layoutY="507.0" mnemonicParsing="false" onAction="#add" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Add New" textFill="#ff5555" />
                         <TextField fx:id="searchField" layoutX="395.0" layoutY="115.0" onAction="#recherche" prefHeight="32.0" prefWidth="550.0" promptText="Search" styleClass="search" stylesheets="@CSS/afficher.css" />
                      </children>

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -248,9 +249,10 @@ public class Afficher {
         }
     }
 
-    public void recherche(ActionEvent actionEvent) {
+    @FXML
+    void recherche(ActionEvent actionEvent) {
         try {
-            ObservableList<Salle> observableList = FXCollections.observableList(ss.readAll());
+            ObservableList<Salle> observableList = FXCollections.observableList(ss.readAllWithJoin());
             FilteredList<Salle> filteredList = new FilteredList<>(observableList, p -> true);
 
             // Bind the search field text to the filter predicate
@@ -266,7 +268,9 @@ public class Afficher {
                     return salle.getNom().toLowerCase().contains(lowerCaseFilter)
                             || String.valueOf(salle.getSurface()).contains(lowerCaseFilter)
                             || String.valueOf(salle.getCapacite()).contains(lowerCaseFilter)
-                            || salle.getDiscipline().toLowerCase().contains(lowerCaseFilter);
+                            || salle.getDiscipline().toLowerCase().contains(lowerCaseFilter)
+                            || (salle.getDateD() != null && salle.getDateD().toString().toLowerCase().contains(lowerCaseFilter))
+                            || (salle.getDateF() != null && salle.getDateF().toString().toLowerCase().contains(lowerCaseFilter));
                 });
             });
 
@@ -279,6 +283,8 @@ public class Afficher {
             throw new RuntimeException(e);
         }
     }
+
+
 
     @FXML
     void stat(ActionEvent event) {
