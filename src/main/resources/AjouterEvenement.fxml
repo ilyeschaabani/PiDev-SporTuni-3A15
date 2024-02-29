@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterEvenementController">
+   <children>
+      <TextField fx:id="nom_e" layoutX="465.0" layoutY="435.0" prefHeight="35.0" prefWidth="166.0" promptText="Nom de l'événement" stylesheets="@/CSS/CodeCss.css" />
+      <ComboBox fx:id="nom_salle" layoutX="465.0" layoutY="478.0" prefHeight="35.0" prefWidth="166.0" promptText="Sélectionner une salle" />
+      <DatePicker fx:id="dateDebut" layoutX="465.0" layoutY="527.0" prefHeight="35.0" prefWidth="166.0" promptText="Date de début" />
+      <TextField fx:id="nom_discipline" layoutX="465.0" layoutY="572.0" prefHeight="35.0" prefWidth="166.0" promptText="Nom de la discipline" />
+      <DatePicker fx:id="dateFin" layoutX="465.0" layoutY="721.0" prefHeight="35.0" prefWidth="166.0" promptText="Date de fin" />
+      <TextField fx:id="nbr_max" layoutX="465.0" layoutY="672.0" prefHeight="35.0" prefWidth="166.0" promptText="Nombre maximum de participants" />
+      <TextField fx:id="description" layoutX="465.0" layoutY="620.0" prefHeight="35.0" prefWidth="166.0" promptText="Description" />
+      <TableView fx:id="tv_evenements" layoutX="262.0" layoutY="87.0" prefHeight="250.0" prefWidth="650.0" stylesheets="@CSS/CodeCss.css">
+         <columns>
+            <TableColumn fx:id="clnom_e" prefWidth="75.0" text="nom_e" />
+            <TableColumn fx:id="clnom_salle" prefWidth="100.00006103515625" text="nom_salle" />
+            <TableColumn fx:id="cldateDebut" prefWidth="124.0" text="dateDebut" />
+            <TableColumn fx:id="clnom_discipline" prefWidth="92.0" text="nom_discipline" />
+            <TableColumn fx:id="cldescription" prefWidth="100.800048828125" text="description" />
+            <TableColumn fx:id="clnbr_max" prefWidth="93.5999755859375" text="nbr_max" />
+            <TableColumn fx:id="cldateFin" prefWidth="89.60000000000002" text="dateFin" />
+         </columns>
+      </TableView>
+      <AnchorPane prefHeight="826.0" prefWidth="219.0">
+         <children>
+            <Button fx:id="btvalider" layoutY="723.0" mnemonicParsing="false" onAction="#validerReservation" prefHeight="46.0" prefWidth="276.0" stylesheets="@CSS/CodeCss.css" text="Valider reservation " />
+            <Button layoutX="-22.0" layoutY="393.0" mnemonicParsing="false" onAction="#AjouterEvenement" prefHeight="49.0" prefWidth="295.0" stylesheets="@CSS/CodeCss.css" text="Ajouter" />
+            <Button fx:id="btModif" layoutX="-22.0" layoutY="507.0" mnemonicParsing="false" onAction="#modifierEvenement" prefHeight="45.0" prefWidth="295.0" stylesheets="@CSS/CodeCss.css" text="Modifier" />
+
+            <Button fx:id="btsupp" layoutX="-22.0" layoutY="570.0" mnemonicParsing="false" onAction="#supprimerEvenement" prefHeight="45.0" prefWidth="295.0" stylesheets="@CSS/CodeCss.css" text="Supprimer" />
+            <Button layoutX="5.0" layoutY="254.0" mnemonicParsing="false" onAction="#AfficherEvenement" prefHeight="46.0" prefWidth="241.0" stylesheets="@CSS/CodeCss.css" text="rafraîchir" />
+            <Text layoutX="62.0" layoutY="171.0" scaleX="1.5" scaleY="1.25" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des evenements" wrappingWidth="190.53332519531244" />
+            <ImageView fitHeight="122.0" fitWidth="198.0" layoutX="14.0" layoutY="14.0">
+
+
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="22.0" layoutY="408.0">
+
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="21.0" layoutY="515.0">
+
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="21.0" layoutY="578.0">
+
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="21.0" layoutY="731.0">
+               <image>
+
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="16.0" layoutY="732.0">
+               <image>
+                  <Image url="@Images/valider.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="160.0" fitWidth="200.0" layoutX="-15.0" layoutY="-21.0">
+               <image>
+                  <Image url="@Images/logo.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="44.0" layoutX="16.0" layoutY="512.0">
+               <image>
+                  <Image url="@Images/modif.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="21.0" layoutY="405.0">
+               <image>
+                  <Image url="@Images/ajout.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="44.0" layoutX="16.0" layoutY="580.0">
+               <image>
+                  <Image url="@Images/supp.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <Blend />
+         </effect>
+      </AnchorPane>
+      <Button fx:id="hiddenButton" layoutX="665.0" layoutY="717.0" mnemonicParsing="false" onAction="#sauvegarder" prefHeight="45.0" prefWidth="295.0" stylesheets="@CSS/CodeCss.css" text="Sauvegarder" visible="false" />
+   </children>
+</AnchorPane>
