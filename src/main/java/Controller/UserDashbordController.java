@@ -3,6 +3,8 @@ package Controller;
 import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +20,11 @@ import java.sql.SQLException;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import service.UserService;
+import Service.UserService;
 import utils.DataSource;
 
 public class UserDashbordController {
-    service.UserService us = new service.UserService();
+    UserService us = new UserService();
 
     @FXML
     private ComboBox<String> cmbRole_ajout;
@@ -63,6 +65,8 @@ public class UserDashbordController {
 
     @FXML
     private TableColumn<User, String> col_irole;
+    @FXML
+    private TextField recherche_user;
 
     private Connection cnx;
     User user = null ;
@@ -71,6 +75,7 @@ public class UserDashbordController {
     @FXML
     void add(ActionEvent event) {
         try {
+            validateFields();
             User u = new User(tfnom_ajout.getText(), tfprenom_ajout.getText(), tfemail_ajout.getText(), tfpwd_ajout.getText(), getSelectedValue(), Integer.parseInt(tfnumero_ajout.getText()), tfadress_ajout.getText());
             us.add(u);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -98,6 +103,7 @@ public class UserDashbordController {
         cmbRole_ajout.getItems().addAll("Coach", "adherant","eli tohkem");
         cmbRole_ajout.setValue("Role");
         showRec();
+        searchRec();
     }
 
 
@@ -163,6 +169,7 @@ public class UserDashbordController {
 
     }
 
+
     @FXML
     void modifer(ActionEvent event) {
         user = tableviewUser.getSelectionModel().getSelectedItem();
@@ -184,5 +191,60 @@ public class UserDashbordController {
         showRec();
 
     }
+    private boolean validateFields() {
+        if (tfadress_ajout.getText().isEmpty()) {
+            showAlert("Error", "Description field is required.");
+            return false;
+        }
+        if (tfpwd_ajout.getText().isEmpty()) {
+            showAlert("Error", "Titre field is required.");
+            return false;
+        }
+        if (tfnumero_ajout.getText().isEmpty()) {
+            showAlert("Error", "Numero field is required.");
+            return false;
+        } else if (!tfnumero_ajout.getText().matches("\\d+(\\.\\d+)?")) {
+            showAlert("Error", "Numero must be a number.");
+            return false;
+        }
 
+        return true;
+    }
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+        private void searchRec() {
+        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        ObservableList<User> list = getUserList();
+        tableviewUser.setItems(list);
+        FilteredList<User> filteredData = new FilteredList<>(list, b->true);
+            recherche_user.textProperty().addListener((observable,oldValue,newValue)-> {
+            filteredData.setPredicate(rec-> {
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (rec.getEmail().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }else if (rec.getNom().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }
+                else
+                    return false ;
+
+            });
+        });
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableviewUser.comparatorProperty());
+        tableviewUser.setItems(sortedData);
+    }
 }

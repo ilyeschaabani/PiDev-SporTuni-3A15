@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import service.UserService;
+import Service.UserService;
 import Entity.User;
 
 import java.net.URL;
@@ -16,7 +16,7 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class InscriptionController {
-    service.UserService us = new service.UserService();
+    UserService us = new UserService();
     @FXML
     private Button btn_isncri;
 

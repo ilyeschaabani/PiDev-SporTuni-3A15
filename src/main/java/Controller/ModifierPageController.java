@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import service.UserService;
+import Service.UserService;
 public class ModifierPageController  {
 
     @FXML
@@ -30,6 +30,8 @@ public class ModifierPageController  {
 
     @FXML
     private TextField tfprenom_modif;
+
+
     @FXML
     public void initialize() {
         cmbRole_modif.getItems().addAll("Coach", "adherant","eli tohkem");
@@ -77,5 +79,7 @@ public class ModifierPageController  {
         tfemail_modif.setText(R.getEmail());
         tfprenom_modif.setText(R.getPrenom());
     }
+
+
 
 }
