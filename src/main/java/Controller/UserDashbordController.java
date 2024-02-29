@@ -110,6 +110,7 @@ public class UserDashbordController {
         cmbRole_ajout.setValue("Role");
         showRec();
         searchRec();
+        refresh();
     }
 
 

@@ -54,9 +54,6 @@ public class ModifierPageController  {
         String prenom= tfprenom_modif.getText();
         String role= cmbRole_modif.getValue();
 
-
-
-
         User R;
         R = new User(id,nom,prenom,email,role,numero,adresse);
         rec.update(R);
@@ -65,6 +62,7 @@ public class ModifierPageController  {
         alert.setHeaderText(null);
         alert.setContentText("Utilsateur modifié");
         alert.showAndWait();
+
 
     }
     public String getSelectedValue() {
