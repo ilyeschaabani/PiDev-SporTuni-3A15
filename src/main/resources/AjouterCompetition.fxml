@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="589.0" prefWidth="704.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCompetitionController">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="642.0" prefWidth="739.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCompetitionController">
     <children>
         <TextField fx:id="nom_comp" layoutX="158.0" layoutY="66.0" prefHeight="25.0" prefWidth="179.0" promptText="nom" stylesheets="@codeCss.css" />
         <TextField fx:id="lieu" layoutX="158.0" layoutY="95.0" prefHeight="25.0" prefWidth="179.0" promptText="lieu" stylesheets="@codeCss.css" />
@@ -41,5 +41,6 @@
                 <TreeTableColumn fx:id="IDsalle" prefWidth="75.0" text="id_salle" />
             </columns>
         </TreeTableView>
+      <Button layoutX="225.0" layoutY="576.0" mnemonicParsing="false" onAction="#AddCompetitors" text="Add Competitors to a Competition" />
     </children>
 </AnchorPane>

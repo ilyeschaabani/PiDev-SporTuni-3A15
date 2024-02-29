@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -15,6 +17,7 @@ import javafx.util.converter.IntegerStringConverter;
 import service.CompetitionService;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -22,7 +25,7 @@ public class AjouterCompetitionController {
 
 
     CompetitionService cs = new CompetitionService();
-    AfficherController see = new AfficherController();
+
     @FXML
     private AnchorPane mainAnchorPane;
     @FXML
@@ -78,28 +81,38 @@ public class AjouterCompetitionController {
             return;
         }
 
-        // Obtenez l'ID de salle sélectionné
         int idSalle = id_salle.getValue();
+        //initialisation des id des salles dispo
+        loadSalleIds();
 
         // Date
         Date currentDate = Date.valueOf(date.getValue());
 
         // Créez une nouvelle instance de la compétition avec les données fournies
         Competition competition = new Competition(nom_comp.getText(), lieu.getText(), currentDate, discipline.getText(), idSalle);
+        if (setupValidationtype() == 0) {
+            // Ajoutez la compétition à la base de données
+            cs.add(competition);
 
-        // Ajoutez la compétition à la base de données
-        cs.add(competition);
+            // Affichez une alerte de succès
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Compétition ajoutée.");
+            alert.showAndWait();
+            clearFields();
+            afficherCompetitions();
 
-        // Affichez une alerte de succès
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setContentText("Compétition ajoutée.");
-        alert.showAndWait();
-
-        afficherCompetitions();
-
+        }
     }
 
+    // Méthode pour effacer les champs de saisie après avoir ajouté une compétition
+    public void clearFields() {
+        nom_comp.clear();
+        lieu.clear();
+        discipline.clear();
+        id_salle.setValue(null); // Effacer la sélection de la ComboBox id_salle
+        date.setValue(null);
+    }
 
     private void showErrorAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -114,7 +127,7 @@ public class AjouterCompetitionController {
         assert lieu != null : "fx:id=\"lieu\" was not injected: check your FXML file 'Ajouter.fxml'.";
         assert date != null : "fx:id=\"datePicker\" was not injected: check your FXML file 'Ajouter.fxml'.";
         assert discipline != null : "fx:id=\"discipline\" was not injected: check your FXML file 'Ajouter.fxml'.";
-
+        //initialisation des id des salles dispo
         loadSalleIds();
 
         // Appeler la méthode pour afficher les compétitions
@@ -175,7 +188,7 @@ public class AjouterCompetitionController {
         List<Integer> salleIds = cs.getAvailableSalleIdsFromDatabase();
 
         // Effacez le ComboBox avant d'ajouter de nouvelles valeurs
-        id_salle.getItems().clear();
+        //id_salle.getItems().clear();
 
         // Ajoutez les ID de salle au ComboBox
         id_salle.getItems().addAll(salleIds);
@@ -236,6 +249,76 @@ public class AjouterCompetitionController {
             idSalleErrorLabel.setText("Validé !");
             idSalleErrorLabel.setTextFill(Color.GREEN);
         }
+    }
+
+
+    public int setupValidationtype() {
+        int error = 0;
+        // Validation pour le nom de la compétition
+        if (!isValidString(nom_comp.getText())) {
+            displayError(nom_comp, nomCompErrorLabel, "Le nom de la compétition doit être une chaîne de caractères");
+            error++;
+        } else {
+            displaySuccess(nom_comp, nomCompErrorLabel);
+
+        }
+
+        // Validation pour le lieu de la compétition
+        if (!isValidString(lieu.getText())) {
+            displayError(lieu, lieuErrorLabel, "Le lieu de la compétition doit être une chaîne de caractères");
+            error++;
+        } else {
+            displaySuccess(lieu, lieuErrorLabel);
+        }
+
+        // Validation pour la date de la compétition
+        if (!isValidDate(date.getValue())) {
+            displayError(date, dateErrorLabel, "Veuillez sélectionner une date valide");
+            error++;
+        } else {
+            displaySuccess(date, dateErrorLabel);
+        }
+
+        // Validation pour la discipline de la compétition
+        if (!isValidString(discipline.getText())) {
+            displayError(discipline, disciplineErrorLabel, "La discipline doit être une chaîne de caractères");
+            error++;
+        } else {
+            displaySuccess(discipline, disciplineErrorLabel);
+        }
+
+        return error;
+    }
+
+    private boolean isValidString(String input) {
+        // Vérifiez si la chaîne n'est pas vide et ne contient que des lettres ou des espaces
+        return input.matches("[a-zA-Z\\s]+");
+    }
+
+    // Méthode pour vérifier si une date est valide
+    private boolean isValidDate(LocalDate date) {
+        // Vérifiez si la date n'est pas dans le futur
+        return !date.isAfter(LocalDate.now());
+    }
+
+    // Méthode pour vérifier si un entier est valide
+    private boolean isValidInt(Integer value) {
+        // Vérifiez si la valeur est positive
+        return value > 0;
+    }
+
+    // Méthode pour afficher un message d'erreur
+    private void displayError(javafx.scene.control.Control control, javafx.scene.control.Label errorLabel, String errorMessage) {
+        control.getStyleClass().add("error-field");
+        errorLabel.setText(errorMessage);
+        errorLabel.setTextFill(Color.RED);
+    }
+
+    // Méthode pour afficher un message de succès
+    private void displaySuccess(javafx.scene.control.Control control, javafx.scene.control.Label errorLabel) {
+        control.getStyleClass().remove("error-field");
+        errorLabel.setText("Validé !");
+        errorLabel.setTextFill(Color.GREEN);
     }
 
 
@@ -331,4 +414,19 @@ public class AjouterCompetitionController {
 
 
     }
+
+
+    public void AddCompetitors(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/inscription.fxml"));
+            nom_comp.getScene().setRoot(root);
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
 }
