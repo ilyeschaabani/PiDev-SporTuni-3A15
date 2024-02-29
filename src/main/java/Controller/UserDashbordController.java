@@ -75,14 +75,15 @@ public class UserDashbordController {
     @FXML
     void add(ActionEvent event) {
         try {
-            validateFields();
-            User u = new User(tfnom_ajout.getText(), tfprenom_ajout.getText(), tfemail_ajout.getText(), tfpwd_ajout.getText(), getSelectedValue(), Integer.parseInt(tfnumero_ajout.getText()), tfadress_ajout.getText());
-            us.add(u);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("User added successfully");
-            alert.showAndWait();
-            refresh();
+            if (!validateFields()) {
+                User u = new User(tfnom_ajout.getText(), tfprenom_ajout.getText(), tfemail_ajout.getText(), tfpwd_ajout.getText(), getSelectedValue(), Integer.parseInt(tfnumero_ajout.getText()), tfadress_ajout.getText());
+                us.add(u);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setContentText("User added successfully");
+                alert.showAndWait();
+                refresh();
+            }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -121,14 +122,12 @@ public class UserDashbordController {
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                 user=new User(
-                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
                         rs.getString(6),
                         rs.getInt(8),
-                        rs.getString(7)
+                        rs.getString(9)
                 );
 
                 UserList.add(user);
@@ -188,16 +187,14 @@ public class UserDashbordController {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
-        showRec();
-
     }
     private boolean validateFields() {
         if (tfadress_ajout.getText().isEmpty()) {
-            showAlert("Error", "Description field is required.");
+            showAlert("Error", "ADDRESS field is required.");
             return false;
         }
         if (tfpwd_ajout.getText().isEmpty()) {
-            showAlert("Error", "Titre field is required.");
+            showAlert("Error", "PASS WORD   field is required.");
             return false;
         }
         if (tfnumero_ajout.getText().isEmpty()) {
@@ -207,7 +204,27 @@ public class UserDashbordController {
             showAlert("Error", "Numero must be a number.");
             return false;
         }
-
+        if (tfemail_ajout.getText().isEmpty()) {
+            showAlert("Error", "Email field is required.");
+            return false;
+        }else if (!tfemail_ajout.getText().matches("^(.+)@(.+)$")) {
+            showAlert("Error", "Email is not valid.");
+            return false;
+        }
+        if (tfprenom_ajout.getText().isEmpty()) {
+            showAlert("Error", "Prenom field is required.");
+            return false;
+        }else if (!tfprenom_ajout.getText().matches("^[a-zA-Z]*$")) {
+            showAlert("Error", "Prenom must contain only letters.");
+            return false;
+        }
+        if (tfnom_ajout.getText().isEmpty()) {
+            showAlert("Error", "Nom field is required.");
+            return false;
+        }else if (!tfnom_ajout.getText().matches("^[a-zA-Z]*$")) {
+            showAlert("Error", "Nom must contain only letters.");
+            return false;
+        }
         return true;
     }
     private void showAlert(String title, String content) {
@@ -246,5 +263,37 @@ public class UserDashbordController {
         SortedList<User> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableviewUser.comparatorProperty());
         tableviewUser.setItems(sortedData);
+    }
+    @FXML
+    void Trie(ActionEvent event) {
+        ObservableList<User> list = getUserList();
+        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        tableviewUser.setItems(list);
+        FilteredList<User> filteredData = new FilteredList<>(list, b->true);
+        recherche_user.textProperty().addListener((observable,oldValue,newValue)-> {
+            filteredData.setPredicate(rec-> {
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (rec.getEmail().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }else if (rec.getNom().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }
+                else
+                    return false ;
+
+            });
+        });
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableviewUser.comparatorProperty());
+        tableviewUser.setItems(sortedData);
+
     }
 }

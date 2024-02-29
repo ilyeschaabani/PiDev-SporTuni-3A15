@@ -75,20 +75,21 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user ) {
+            String requete = "UPDATE user SET nom=?,prenom=?,email=?,role=?,numero =?,adress =?  where id=?";
         try {
-            String requete = "update user set nom=?,prenom=?,email=?,role=?,numero =?,adress =?  where id=?";
             PreparedStatement pst = connexion.prepareStatement(requete);
             pst.setString(1, user.getNom());
             pst.setString(2, user.getPrenom());
             pst.setString(3, user.getEmail());
             pst.setString(4, user.getRole());
             pst.setInt(5, user.getNumero());
-            pst.setString(6, user.getAdresse());
+            pst.setString(6,user.getAdresse());
             pst.setInt(7, user.getId_user());
             pst.executeUpdate();
             System.out.println("Mise a jour avec succes");
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             System.out.println(ex.getMessage());
         }
 
