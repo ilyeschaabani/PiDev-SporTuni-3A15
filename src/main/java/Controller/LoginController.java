@@ -144,8 +144,6 @@ public class LoginController {
         // Set the scene on the stage
         window.setScene(signInScene);
         window.show();
-
-
     }
     @FXML
     void PasswordFieldKeyTaped(KeyEvent event) {

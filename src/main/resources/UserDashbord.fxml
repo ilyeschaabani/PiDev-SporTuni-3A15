@@ -42,5 +42,6 @@
         <Button fx:id="btn_ajout1" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#modifer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="MODIFIER" textFill="WHITE" />
         <Button fx:id="btn_ajout2" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="SUPPRIMER" textFill="WHITE" />
       <TextField fx:id="recherche_user" layoutX="474.0" layoutY="11.0" prefHeight="25.0" prefWidth="276.0" promptText="RECHERCHER" />
+      <Button fx:id="btn_Trie" layoutX="244.0" layoutY="10.0" mnemonicParsing="false" onAction="#Trie" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Trie Par Nom" textFill="WHITE" />
     </AnchorPane>
 </AnchorPane>

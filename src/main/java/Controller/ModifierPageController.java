@@ -45,6 +45,8 @@ public class ModifierPageController  {
         UserService rec= new UserService();
         User user ;
 
+        validateFields();
+
 
         Integer id = Integer.parseInt(tfid_modif.getText());
         Integer numero=Integer.parseInt(tfnumero_modif.getText());
@@ -90,6 +92,47 @@ public class ModifierPageController  {
         tfadress_modif.setText(R.getAdresse());
         tfemail_modif.setText(R.getEmail());
         tfprenom_modif.setText(R.getPrenom());
+    }
+    private boolean validateFields() {
+        if (tfadress_modif.getText().isEmpty()) {
+            showAlert("Error", "ADDRESS field is required.");
+            return false;
+        }
+        if (tfnumero_modif.getText().isEmpty()) {
+            showAlert("Error", "Numero field is required.");
+            return false;
+        } else if (!tfnumero_modif.getText().matches("\\d+(\\.\\d+)?")) {
+            showAlert("Error", "Numero must be a number.");
+            return false;
+        }
+        if (tfemail_modif.getText().isEmpty()) {
+            showAlert("Error", "Email field is required.");
+            return false;
+        }else if (!tfemail_modif.getText().matches("^(.+)@(.+)$")) {
+            showAlert("Error", "Email is not valid.");
+            return false;
+        }
+        if (tfprenom_modif.getText().isEmpty()) {
+            showAlert("Error", "Prenom field is required.");
+            return false;
+        }else if (!tfprenom_modif.getText().matches("^[a-zA-Z]*$")) {
+            showAlert("Error", "Prenom must contain only letters.");
+            return false;
+        }
+        if (tfnom_modif.getText().isEmpty()) {
+            showAlert("Error", "Nom field is required.");
+            return false;
+        }else if (!tfnom_modif.getText().matches("^[a-zA-Z]*$")) {
+            showAlert("Error", "Nom must contain only letters.");
+            return false;
+        }
+        return true;
+    }
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 

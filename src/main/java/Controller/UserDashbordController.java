@@ -72,6 +72,8 @@ public class UserDashbordController {
     private TableColumn<User, String> col_role;
     @FXML
     private TextField recherche_user;
+    @FXML
+    private Button btn_Trie;
 
     private Connection cnx;
     User user = null ;
@@ -106,11 +108,10 @@ public class UserDashbordController {
     }
     @FXML
     public void initialize() {
-        cmbRole_ajout.getItems().addAll("Coach", "adherant","eli tohkem");
+        cmbRole_ajout.getItems().addAll("Coach", "adherant");
         cmbRole_ajout.setValue("Role");
         showRec();
         searchRec();
-        refresh();
     }
 
 
@@ -143,9 +144,7 @@ public class UserDashbordController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return UserList;
-
     }
     public void showRec(){
 
@@ -277,36 +276,11 @@ public class UserDashbordController {
     }
     @FXML
     void Trie(ActionEvent event) {
-        ObservableList<User> list = getUserList();
-
-        col_iD.setCellValueFactory(new PropertyValueFactory<>("id_user"));
-        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
-        col_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        tableviewUser.setItems(list);
-        FilteredList<User> filteredData = new FilteredList<>(list, b->true);
-        recherche_user.textProperty().addListener((observable,oldValue,newValue)-> {
-            filteredData.setPredicate(rec-> {
-                if (newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (rec.getEmail().toLowerCase().indexOf(lowerCaseFilter)!= -1){
-                    return true;
-                }else if (rec.getNom().toLowerCase().indexOf(lowerCaseFilter)!= -1){
-                    return true;
-                }
-                else
-                    return false ;
-
-            });
-        });
-        SortedList<User> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tableviewUser.comparatorProperty());
-        tableviewUser.setItems(sortedData);
+        col_nom.setSortType(TableColumn.SortType.ASCENDING);
+        tableviewUser.getSortOrder().add(col_nom);
+        tableviewUser.sort();
 
     }
+
+
 }
