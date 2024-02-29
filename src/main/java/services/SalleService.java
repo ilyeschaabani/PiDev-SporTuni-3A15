@@ -1,12 +1,8 @@
 package services;
 
-import entities.Dispo;
 import utils.DataSource;
-import entities.Salle;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class SalleService implements Gservice<Salle> {

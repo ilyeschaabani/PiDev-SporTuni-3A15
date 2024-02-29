@@ -1,15 +1,12 @@
 package controllers;
 
 import entities.Evenement;
-import entities.Salle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import services.EvenementService;
 import services.SalleService;
 
