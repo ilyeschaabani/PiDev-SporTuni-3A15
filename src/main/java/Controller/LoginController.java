@@ -57,8 +57,8 @@ public class LoginController {
     }
 
     @FXML
-    void login(ActionEvent event) {
-        if(tfemail.getText().equals("mohamedaziz.benismail@esprit.tn") && tfmdp.getText().equals("adminadmin") )
+    void login(ActionEvent event) throws IOException {
+        if(tfemail.getText().equals("admin") && tfmdp.getText().equals("admin") )
         {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Travel Me :: Success Message");
@@ -66,15 +66,18 @@ public class LoginController {
             alert.setContentText("Bienvenu Admin");
             alert.showAndWait();
 
-//            Parent root = FXMLLoader.load(getClass().getResource("/Gui/Back.fxml"));
-//            Scene scene;
+            Parent signInParent = null;
 
-//            scene = new Scene(root);
-//            Stage stage = new Stage();
-//            stage.initStyle(StageStyle.TRANSPARENT);
-//            stage.setScene(scene);
-//
-//            stage.show();
+            signInParent = FXMLLoader.load(getClass().getResource("/UserDashbord.fxml"));
+
+            Scene signInScene = new Scene(signInParent);
+
+            // Get the stage from the event that triggered the method call
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the scene on the stage
+            window.setScene(signInScene);
+            window.show();
         }else {
 
             String query2="select * from user where email=?  and password=?";

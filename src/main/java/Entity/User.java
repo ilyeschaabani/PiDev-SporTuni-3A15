@@ -30,6 +30,23 @@ public class User {
         this.Numero = Numero;
         this.Adresse = Adresse;
     }
+    public User( String nom, String prenom, String email, String role , int Numero, String Adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.role = role;
+        this.Numero = Numero;
+        this.Adresse = Adresse;
+    }
+    public User(int id_user, String nom, String prenom, String email, String role , int Numero, String Adresse) {
+        this.id_user = id_user;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.role = role;
+        this.Numero = Numero;
+        this.Adresse = Adresse;
+    }
     public int getId_user() {
         return id_user;
     }

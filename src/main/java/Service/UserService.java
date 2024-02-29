@@ -16,7 +16,7 @@ public class UserService implements IService<User> {
     }
     @Override
     public void add(User user) {
-        String requete="insert into user (nom,prenom,email,mdp,role) values ('"+user.getNom()+"','"+user.getPrenom()+"','"+user.getEmail()+"','"+user.getPassword()+"','"+user.getRole()+"')";
+        String requete="insert into user (nom,prenom,email,mdp,role,numero,adress) values ('"+user.getNom()+"','"+user.getPrenom()+"','"+user.getEmail()+"','"+user.getPassword()+"','"+user.getRole()+"','"+user.getNumero()+"','"+user.getAdresse()+"')";
         try {
             ste=connexion.createStatement();
             ste.executeUpdate(requete);
@@ -77,16 +77,15 @@ public class UserService implements IService<User> {
     @Override
     public void update(User user) {
         try {
-            String requete = "update user set nom=?,prenom=?,email=?,password=?,role=?,numero =?,adress =?  where id=?";
+            String requete = "update user set nom=?,prenom=?,email=?,role=?,numero =?,adress =?  where id=?";
             PreparedStatement pst = connexion.prepareStatement(requete);
             pst.setString(1, user.getNom());
             pst.setString(2, user.getPrenom());
             pst.setString(3, user.getEmail());
-            pst.setString(4, user.getPassword());
-            pst.setString(5, user.getRole());
-            pst.setInt(6, user.getNumero());
-            pst.setString(7, user.getAdresse());
-            pst.setInt(6, user.getId_user());
+            pst.setString(4, user.getRole());
+            pst.setInt(5, user.getNumero());
+            pst.setString(6, user.getAdresse());
+            pst.setInt(7, user.getId_user());
             pst.executeUpdate();
             System.out.println("Mise a jour avec succes");
         } catch (SQLException ex) {
