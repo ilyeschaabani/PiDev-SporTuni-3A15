@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.DataSource;
@@ -34,6 +35,11 @@ public class LoginController {
     private Connection connexion;
     private Statement ste;
     private PreparedStatement pst;
+
+    public void initialize() {
+
+
+    }
 
 
 
@@ -139,6 +145,10 @@ public class LoginController {
         window.setScene(signInScene);
         window.show();
 
+
+    }
+    @FXML
+    void PasswordFieldKeyTaped(KeyEvent event) {
 
     }
 
