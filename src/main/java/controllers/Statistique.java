@@ -2,11 +2,16 @@ package controllers;
 import enities.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
 import services.ServiceProduct;
+
+import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -52,7 +57,15 @@ public class Statistique {
 
         pi_chart.setData(pieChartData);
     }
-
+    @FXML
+    void navigateToProducts(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Products.fxml"));
+            pi_chart.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void afficherNombreTotalProduct() {
         int totalProducts = productService.getNombreTotalProduct();
         lblTotalProductValue.setText(Integer.toString(totalProducts));
