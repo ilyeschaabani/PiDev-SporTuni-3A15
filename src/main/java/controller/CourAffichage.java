@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +17,7 @@ import service.DisciplineService;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class CourAffichage {
     private CourService cs = new CourService();
@@ -22,7 +25,8 @@ public class CourAffichage {
 
     @FXML
     private Button btnadd2;
-
+    @FXML
+    private Button dash;
     @FXML
     private Button btnmodif2;
 
@@ -106,22 +110,69 @@ public class CourAffichage {
             String nomSalle = tfns.getText().trim();
             String nb_max = tfnbm.getText().trim();
 
-            // Vérifier si tous les champs sont remplis
+            if (!Character.isUpperCase(nomCours.charAt(0))) {
+                showAlert("Error", "Le nom du cours doit commencer par une majuscule", Alert.AlertType.ERROR);
+                return;
+            }
+
             if (nomCours.isEmpty() || nomDiscipline.isEmpty() || heureDebut.isEmpty() || heureFin.isEmpty() || nomSalle.isEmpty() || nb_max.isEmpty()) {
                 showAlert("Error", "Veuillez remplir tous les champs", Alert.AlertType.ERROR);
                 return;
             }
 
-            // Récupérer la date depuis le DatePicker
+            // Vérifier la validité de la date
             LocalDate localDate = tfdate.getValue();
             if (localDate == null) {
                 showAlert("Error", "Veuillez sélectionner une date", Alert.AlertType.ERROR);
                 return;
             }
-            Date date = Date.valueOf(localDate);
+            LocalDate today = LocalDate.now();
+            if (localDate.isBefore(today)) {
+                showAlert("Error", "La date doit être dans le futur", Alert.AlertType.ERROR);
+                return;
+            }
 
+            LocalTime heureDebutTime = LocalTime.parse(heureDebut);
+            LocalTime heureFinTime = LocalTime.parse(heureFin);
+
+// Vérifier si l'heure de début est avant l'heure de fin
+            // Vérifier le format de l'heure de début
+            if (!heureDebut.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+                showAlert("Error", "Le format de l'heure de début est incorrect (HH:mm)", Alert.AlertType.ERROR);
+                return;
+            }
+
+            // Vérifier le format de l'heure de fin
+            if (!heureFin.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+                showAlert("Error", "Le format de l'heure de fin est incorrect (HH:mm)", Alert.AlertType.ERROR);
+                return;
+            }
+
+
+            // Vérifier si l'heure de début est avant l'heure de fin
+            if (heureDebutTime.isAfter(heureFinTime)) {
+                showAlert("Error", "L'heure de début doit être avant l'heure de fin", Alert.AlertType.ERROR);
+                return;
+            }
+
+            // Vérifier si l'heure de début est après l'heure actuelle (ou une autre condition si nécessaire)
+          /*  LocalTime currentTime = LocalTime.now();
+            if (heureDebutTime.isBefore(currentTime)) {
+                showAlert("Error", "L'heure de début doit être dans le futur", Alert.AlertType.ERROR);
+                return;
+            }*/
+            int nbParticipants = Integer.parseInt(nb_max);
+            if (nbParticipants <= 0) {
+                showAlert("Error", "Le nombre maximal de participants doit être supérieur à zéro", Alert.AlertType.ERROR);
+                return;
+            }
+
+         /*   if (!isSalleDisponible(nomSalle, localDate, heureDebut, heureFin)) {
+                showAlert("Error", "La salle n'est pas disponible à cette heure", Alert.AlertType.ERROR);
+                return;
+            }*/
             // Créer un nouvel objet Cour avec les données saisies
-            Cour nouveauCour = new Cour(nomCours, date, heureDebut, heureFin, nomSalle, nb_max, nomDiscipline);
+            Cour nouveauCour = new Cour(nomCours, Date.valueOf(localDate), heureDebut, heureFin, nomSalle, nb_max, nomDiscipline);
 
             // Utiliser le service CourService pour ajouter le nouveau cours à la base de données
             cs.add(nouveauCour);
@@ -201,7 +252,6 @@ public class CourAffichage {
 
 
     @FXML
-
     void update2(ActionEvent event) {
         try {
             if (cour != null) {
@@ -213,24 +263,67 @@ public class CourAffichage {
                 String nomSalle = tfns.getText().trim();
                 String nb_max = tfnbm.getText().trim();
 
+                // Vérifier si le nom commence par une majuscule
+                if (!Character.isUpperCase(nomCours.charAt(0))) {
+                    showAlert("Error", "Le nom du cours doit commencer par une majuscule", Alert.AlertType.ERROR);
+                    return;
+                }
+
                 // Vérifier si tous les champs sont remplis
                 if (nomCours.isEmpty() || nomDiscipline.isEmpty() || heureDebut.isEmpty() || heureFin.isEmpty() || nomSalle.isEmpty() || nb_max.isEmpty()) {
                     showAlert("Error", "Veuillez remplir tous les champs", Alert.AlertType.ERROR);
                     return;
                 }
 
-                // Récupérer la date depuis le DatePicker
+                // Vérifier la validité de la date
                 LocalDate localDate = tfdate.getValue();
                 if (localDate == null) {
                     showAlert("Error", "Veuillez sélectionner une date", Alert.AlertType.ERROR);
                     return;
                 }
-                Date date = Date.valueOf(localDate);
+                LocalDate today = LocalDate.now();
+                if (localDate.isBefore(today)) {
+                    showAlert("Error", "La date doit être dans le futur", Alert.AlertType.ERROR);
+                    return;
+                }
+
+                // Vérifier le format de l'heure de début
+                if (!heureDebut.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+                    showAlert("Error", "Le format de l'heure de début est incorrect (HH:mm)", Alert.AlertType.ERROR);
+                    return;
+                }
+
+                // Vérifier le format de l'heure de fin
+                if (!heureFin.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+                    showAlert("Error", "Le format de l'heure de fin est incorrect (HH:mm)", Alert.AlertType.ERROR);
+                    return;
+                }
+
+               /* LocalTime heureDebutTime = LocalTime.parse(heureDebut);
+                LocalTime heureFinTime = LocalTime.parse(heureFin);
+
+                // Vérifier si l'heure de début est avant l'heure de fin
+                if (heureDebutTime.isAfter(heureFinTime)) {
+                    showAlert("Error", "L'heure de début doit être avant l'heure de fin", Alert.AlertType.ERROR);
+                    return;
+                }
+
+                // Vérifier si l'heure de début est après l'heure actuelle (ou une autre condition si nécessaire)
+                LocalTime currentTime = LocalTime.now();
+                if (heureDebutTime.isBefore(currentTime)) {
+                    showAlert("Error", "L'heure de début doit être dans le futur", Alert.AlertType.ERROR);
+                    return;
+                }*/
+                int nbParticipants = Integer.parseInt(nb_max);
+                if (nbParticipants <= 0) {
+                    showAlert("Error", "Le nombre maximal de participants doit être supérieur à zéro", Alert.AlertType.ERROR);
+                    return;
+                }
 
                 // Mettre à jour les informations du cours
                 cour.setNom_cour(nomCours);
                 cour.setNom_discipline(nomDiscipline);
-                cour.setDate(date);
+                cour.setDate(Date.valueOf(localDate));
                 cour.setHeure_debut(heureDebut);
                 cour.setHeure_fin(heureFin);
                 cour.setNom_salle(nomSalle);
@@ -254,6 +347,7 @@ public class CourAffichage {
     }
 
 
+
     private void showAlert(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -261,4 +355,12 @@ public class CourAffichage {
         alert.showAndWait();
     }
 
+    public void dashboard(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Statistique.fxml"));
+            dash.getScene().setRoot(root);
+        } catch (Exception e) {
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 }

@@ -109,5 +109,19 @@ public void updato(Discipline s){
         }
         return discipline ;
     }
+    public int getNombreTotalDisciplines() {
+        String requete = "SELECT COUNT(*) FROM discipline";
+        try {
+            Statement statement = connexion.createStatement();
+            ResultSet resultSet = statement.executeQuery(requete);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
 
 }

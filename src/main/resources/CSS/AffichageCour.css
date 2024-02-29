@@ -80,10 +80,10 @@
     -fx-text-fill: #da0f0f;
     -fx-font-family:"Britannic Bold";
 }
-.menu-jannoubi{
+.menu-gauche{
     -fx-background-color:linear-gradient(to top, #521818, #932828) ;
 }
-.menu-foukani{
+.navbar{
     -fx-background-color:linear-gradient(to bottom, #b06d7b, #c3c7d9) ;
 }
 .shadow{

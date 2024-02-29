@@ -75,10 +75,10 @@
     -fx-text-fill: #da0f0f;
     -fx-font-family:"Britannic Bold";
 }
-.menu-jannoubi{
+.menu-gauche{
     -fx-background-color:linear-gradient(to top, #da5454, #932828) ;
 }
-.menu-foukani{
+.navbar{
     -fx-background-color:linear-gradient(to bottom, #736e6f,white) ;
 }
 .shadow{

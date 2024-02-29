@@ -10,6 +10,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.DisciplineService;
@@ -20,14 +22,13 @@ public class Afficher {
     DisciplineService ss=new DisciplineService();
     @FXML
     private Button btnadd1;
-
+    @FXML
+    private Button dashb;
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-
-
 
     @FXML
     private Button btnmodif;
@@ -123,12 +124,35 @@ public class Afficher {
 
     public void add(ActionEvent actionEvent) {
         try {
-            ss.add(new Discipline(tfnom1.getText(), tfdesc1.getText()));
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String nom = tfnom1.getText().trim();
+            String desc = tfdesc1.getText().trim();
+
+            // Validation de la saisie
+            if (nom.isEmpty() || desc.isEmpty()) {
+                showAlert("Error", "Veuillez remplir tous les champs.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (nom.length() < 3 || nom.length() > 50) {
+                showAlert("Error", "Le nom doit contenir entre 3 et 50 caractères.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (!nom.matches("^[A-Z][a-zA-Z]*$")) {
+                showAlert("Error", "Le nom doit commencer par une majuscule et ne doit contenir que des lettres.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (desc.length() < 3 || desc.length() > 200) {
+                showAlert("Error", "La description doit contenir entre 10 et 200 caractères.", Alert.AlertType.ERROR);
+                return;
+            }
+            ss.add(new Discipline(nom, desc));
             initialize();
             showAlert("Information", "Discipline ajoutée", Alert.AlertType.INFORMATION);
         } catch(Exception e){
-            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);}
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     public void recherche(ActionEvent actionEvent) {
@@ -176,4 +200,14 @@ public class Afficher {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    public void dash2(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Statistique.fxml"));
+            dashb.getScene().setRoot(root);
+        } catch (Exception e) {
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
 }

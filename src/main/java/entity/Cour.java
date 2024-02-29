@@ -129,5 +129,7 @@ public class Cour {
                 ", id_u=" + id_u +
                 '}';
     }
+
+
 }
 

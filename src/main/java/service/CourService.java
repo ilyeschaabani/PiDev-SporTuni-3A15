@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class CourService implements IService<Cour>{
+
 private Connection conn;
 private Statement ste;
 
@@ -15,6 +16,8 @@ private PreparedStatement pst;
 public CourService() {
         conn = DataSource.getInstance().getCnx();
         }
+
+
 
     @Override
     public void add(Cour c) {
@@ -47,24 +50,7 @@ public CourService() {
         }
     }
     public void update(Cour c, int id) {}
-    /*@Override
-    public void update(Cour c, int id) {
-        String requete = "UPDATE cour SET nom_cour=?, date=?, heure_debut=?, heure_fin=?, nom_salle=?, nb_max=? WHERE id_cour=?";
-        try {
-            pst = conn.prepareStatement(requete);
-            pst.setString(1, c.getNom_cour());
-            pst.setDate(2, c.getDate());
-            pst.setString(3, c.getHeure_debut());
-            pst.setString(4, c.getHeure_fin());
-            pst.setString(5, c.getNom_salle());
-            pst.setString(6, c.getNb_max());
-            pst.setInt(7, c.getId_cour());
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-*/
+
     public void updato(Cour cour) throws SQLException {
         String query = "UPDATE cour SET nom_cour=?, nom_discipline=?, date=?, heure_debut=?, heure_fin=?, nom_salle=?, nb_max=? WHERE id_cour=?";
         PreparedStatement pst = null;
@@ -137,5 +123,23 @@ public CourService() {
         return c;
     }
 
+
+    public int getNombreTotalCours() {
+        int totalCours = 0;
+        String query = "SELECT COUNT(*) AS total_cours FROM cour"; // Il faut utiliser le nom de la table en minuscules, car les noms de table sont généralement sensibles à la casse dans les bases de données.
+
+        try {
+            pst = conn.prepareStatement(query);
+            ResultSet resultSet = pst.executeQuery();
+
+            if (resultSet.next()) {
+                totalCours = resultSet.getInt("total_cours");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return totalCours;
+    }
 
 }

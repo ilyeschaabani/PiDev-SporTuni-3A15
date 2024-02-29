@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,51 +13,56 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" styleClass="AncorPane" stylesheets="@CSS/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficher">
+<AnchorPane prefHeight="786.0" prefWidth="1500.0" styleClass="AncorPane" stylesheets="@CSS/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficher">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="800.0">
          <top>
-            <AnchorPane prefHeight="42.0" prefWidth="400.0" styleClass="menu-foukani" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="66.0" prefWidth="1002.0" styleClass="navbar" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="14.0" layoutY="6.0" text="Gestion des disciplines">
+                  <Label layoutX="14.0" layoutY="21.0" text="Gestion des disciplines">
                      <font>
                         <Font name="Bodoni MT Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
+               <stylesheets>
+                  <URL value="@CSS/afficher.css" />
+                  <URL value="@CSS/Stat.css" />
+               </stylesheets>
             </AnchorPane>
          </top>
          <left>
-            <AnchorPane prefHeight="737.0" prefWidth="200.0" styleClass="menu-jannoubi" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="737.0" prefWidth="200.0" styleClass="menu-gauche" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="95.0" fitWidth="200.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="168.0" fitWidth="178.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/image2.jpg" />
                      </image>
                   </ImageView>
+                  <Button fx:id="dashb" layoutY="236.0" mnemonicParsing="false" onAction="#dash2" prefHeight="50.0" prefWidth="198.0" styleClass="text-field" stylesheets="@CSS/Stat.css" text="Dashboard" />
                </children>
+               <stylesheets>
+                  <URL value="@CSS/afficher.css" />
+                  <URL value="@CSS/Stat.css" />
+               </stylesheets>
             </AnchorPane>
          </left>
          <center>
             <AnchorPane prefHeight="758.0" prefWidth="700.0" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="1.0" prefHeight="750.0" prefWidth="800.0" stylesheets="@CSS/afficher.css">
+                  <AnchorPane layoutX="1.0" prefHeight="750.0" prefWidth="1294.0" stylesheets="@CSS/afficher.css">
                      <children>
-                        <TableView fx:id="tvdiscipline" layoutX="218.0" layoutY="113.0" onMouseClicked="#mouseClicked1" prefHeight="246.0" prefWidth="506.0" stylesheets="@CSS/afficher.css">
-                          <columns>
-                            <TableColumn fx:id="clnom" prefWidth="154.39993286132812" text="Nom" />
-                              <TableColumn fx:id="cldesc" prefWidth="349.60003662109375" text="Description" />
-                          </columns>
-                           <styleClass>
-                              <String fx:value="column-header-background" />
-                              <String fx:value="column-header-background" />
-                           </styleClass>
-                        </TableView>
-                        <Button fx:id="btnsupp" layoutX="196.0" layoutY="554.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="126.0" styleClass="btnadd1" stylesheets="@CSS/afficher.css" text="Supprimer" textFill="#ff5555" />
-                        <Button fx:id="btnmodif" layoutX="339.0" layoutY="554.0" mnemonicParsing="false" onAction="#update" prefHeight="47.0" prefWidth="134.0" stylesheets="@CSS/afficher.css" text="Modifier" />
-                        <TextField fx:id="tfnom1" layoutX="138.0" layoutY="397.0" promptText="Nom" styleClass="textfield" stylesheets="@CSS/afficher.css" />
-                        <TextField fx:id="tfdesc1" layoutX="138.0" layoutY="448.0" promptText="Description" styleClass="textfield" stylesheets="@CSS/afficher.css" />
-                        <Button fx:id="btnadd1" layoutX="82.0" layoutY="554.0" mnemonicParsing="false" onAction="#add" prefHeight="47.0" prefWidth="111.0" stylesheets="@CSS/afficher.css" text="Ajout" textFill="#246e25">
+                        <Button fx:id="btnsupp" layoutX="378.0" layoutY="348.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="131.0" styleClass="btnadd1" text="Supprimer" textFill="#ff5555">
+                           <stylesheets>
+                              <URL value="@CSS/afficher.css" />
+                              <URL value="@CSS/Stat.css" />
+                           </stylesheets></Button>
+                        <Button fx:id="btnmodif" layoutX="212.0" layoutY="347.0" mnemonicParsing="false" onAction="#update" prefHeight="47.0" prefWidth="134.0" text="Modifier">
+                           <stylesheets>
+                              <URL value="@CSS/afficher.css" />
+                              <URL value="@CSS/Stat.css" />
+                           </stylesheets></Button>
+                        <Button fx:id="btnadd1" layoutX="59.0" layoutY="347.0" mnemonicParsing="false" onAction="#add" prefHeight="47.0" prefWidth="124.0" stylesheets="@CSS/Stat.css" text="Ajout" textFill="#246e25">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
@@ -65,32 +71,48 @@
                               <String fx:value="btnadd1" />
                            </styleClass></Button>
                         <TextField fx:id="searchField" layoutX="30.0" layoutY="42.0" onAction="#recherche" prefHeight="32.0" prefWidth="170.0" promptText="Search" />
-                        <Label layoutX="37.0" layoutY="401.0" text="Nom discipline:" />
-                        <Label layoutX="50.0" layoutY="452.0" text="Description">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                         <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="169.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/img.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="83.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="63.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/ajout.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="194.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="376.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/supp.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="28.0" fitWidth="37.0" layoutX="342.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="28.0" fitWidth="37.0" layoutX="218.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/modif.png" />
                            </image>
                         </ImageView>
+                        <AnchorPane layoutX="592.0" layoutY="108.0" prefHeight="295.0" prefWidth="585.0" styleClass="menu-gauche" stylesheets="@CSS/AffichageCour.css">
+                           <children>
+                              <TableView fx:id="tvdiscipline" layoutX="55.0" layoutY="17.0" onMouseClicked="#mouseClicked1" prefHeight="258.0" prefWidth="491.0" stylesheets="@CSS/AffichageCour.css">
+                                <columns>
+                                  <TableColumn fx:id="clnom" prefWidth="154.39993286132812" text="Nom" />
+                                    <TableColumn fx:id="cldesc" prefWidth="349.60003662109375" text="Description" />
+                                </columns>
+                                 <styleClass>
+                                    <String fx:value="column-header-background" />
+                                    <String fx:value="column-header-background" />
+                                 </styleClass>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="115.0" layoutY="111.0" prefHeight="200.0" prefWidth="367.0" styleClass="menu-gauche" stylesheets="@CSS/Stat.css">
+                           <children>
+                              <TextField fx:id="tfnom1" layoutX="128.0" layoutY="36.0" promptText="Nom" styleClass="textfield" stylesheets="@CSS/afficher.css" />
+                              <TextField fx:id="tfdesc1" layoutX="128.0" layoutY="91.0" prefHeight="94.0" prefWidth="172.0" promptText="Description" styleClass="textfield" stylesheets="@CSS/afficher.css" />
+                              <Label layoutX="6.0" layoutY="44.0" text="Nom discipline:" textFill="#faf8f8" />
+                              <Label layoutX="6.0" layoutY="92.0" text="Description:" textFill="#fcfafa" />
+                           </children>
+                        </AnchorPane>
                      </children>
                      <styleClass>
                         <String fx:value="white-bg" />
