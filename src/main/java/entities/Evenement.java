@@ -1,4 +1,6 @@
 package entities;
+import javafx.scene.control.TextField;
+
 import java.sql.Date;
 
 public class Evenement {
@@ -48,6 +50,9 @@ public class Evenement {
     }
 
     public Evenement(int idE, String nomE, String nomSalle, Date dateDebut, String nomDiscipline, String description, int nbrMax, Date dateFin) {
+    }
+
+    public Evenement(String text, String text1, String text2, TextField nbrMax, String text3, String text4, String text5) {
     }
 
 

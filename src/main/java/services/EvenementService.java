@@ -21,6 +21,7 @@ public class EvenementService implements Gservice<Evenement> {
 
     private static Statement ste;
     private PreparedStatement pst;
+    private String nomSalle;
 
 
     public EvenementService() {
@@ -30,14 +31,16 @@ public class EvenementService implements Gservice<Evenement> {
     public void add(Evenement evenement) {
 
 
-            String requete ="insert into evenement (dateDebut,dateFin,description,nbr_max,nom_discipline,nom_e,nom_salle) values ('"+ evenement.getDateDebut() + "','"+ evenement.getDateFin() + "','" + evenement.getDescription() + "','" + evenement.getNbr_max()+ "','" + evenement.getNom_discipline() +  "', '" + evenement.getNom_e()+ "', '" + evenement.getNom_salle() + "')";
-            try {
-                ste = connexion.createStatement();
-                ste.executeUpdate(requete);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+
+
+        String requete ="insert into evenement (dateDebut,dateFin,description,nbr_max,nom_discipline,nom_e,nom_salle) values ('"+ evenement.getDateDebut() + "','"+ evenement.getDateFin() + "','" + evenement.getDescription() + "','" + evenement.getNbr_max()+ "','" + evenement.getNom_discipline() +  "', '" + evenement.getNom_e()+ "', '" + evenement.getNom_salle() + "')";
+        try {
+            ste = connexion.createStatement();
+            ste.executeUpdate(requete);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
 
 
     @Override

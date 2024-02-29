@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DataSource {
     private Connection cnx;
-    private  String url = "jdbc:mysql://localhost:3306/sportuniPi";
+    private  String url = "jdbc:mysql://localhost:3306/sportuniPii";
  private  String login = "root";
     private String pwd ="";
 private static DataSource instance;
