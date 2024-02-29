@@ -47,24 +47,29 @@ public class UserDashbordController {
     @FXML
     private TextField tfpwd_ajout;
     @FXML
+    private TextField tfid_modif;
+
+    @FXML
     private TableView<User> tableviewUser;
     @FXML
-    private TableColumn<User, String> col_iadress;
+    private TableColumn<User,Integer> col_iD;
+    @FXML
+    private TableColumn<User, String> col_adress;
 
     @FXML
-    private TableColumn<User, String> col_iemail;
+    private TableColumn<User, String> col_email;
 
     @FXML
-    private TableColumn<User, String> col_inom;
+    private TableColumn<User, String> col_nom;
 
     @FXML
-    private TableColumn<User, Integer> col_inumero;
+    private TableColumn<User, Integer> col_numero;
 
     @FXML
-    private TableColumn<User, String> col_iprenom;
+    private TableColumn<User, String> col_prenom;
 
     @FXML
-    private TableColumn<User, String> col_irole;
+    private TableColumn<User, String> col_role;
     @FXML
     private TextField recherche_user;
 
@@ -122,6 +127,7 @@ public class UserDashbordController {
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                 user=new User(
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -144,12 +150,13 @@ public class UserDashbordController {
 
         ObservableList<User> list = getUserList();
 
-        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        col_iD.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+        col_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
         tableviewUser.setItems(list);
 
@@ -157,13 +164,14 @@ public class UserDashbordController {
     private void refresh(){
         ObservableList<User> list = getUserList();
 
-        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
+        col_iD.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+        col_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         tableviewUser.setItems(list);
 
     }
@@ -235,12 +243,14 @@ public class UserDashbordController {
     }
 
         private void searchRec() {
-        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+
+            col_iD.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+            col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+            col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+            col_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+            col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         ObservableList<User> list = getUserList();
         tableviewUser.setItems(list);
         FilteredList<User> filteredData = new FilteredList<>(list, b->true);
@@ -267,12 +277,14 @@ public class UserDashbordController {
     @FXML
     void Trie(ActionEvent event) {
         ObservableList<User> list = getUserList();
-        col_inom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_iprenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_iemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_irole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        col_inumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        col_iadress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+
+        col_iD.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+        col_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         tableviewUser.setItems(list);
         FilteredList<User> filteredData = new FilteredList<>(list, b->true);
         recherche_user.textProperty().addListener((observable,oldValue,newValue)-> {

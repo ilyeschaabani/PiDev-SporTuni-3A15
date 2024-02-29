@@ -15,7 +15,7 @@
             <TextField fx:id="tfemail_modif" layoutX="39.0" layoutY="285.0" prefHeight="40.0" prefWidth="250.0" promptText="email" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
             <ComboBox fx:id="cmbRole_modif" layoutX="38.0" layoutY="343.0" prefHeight="40.0" prefWidth="250.0" promptText="Role" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
             <Button fx:id="btn_modif" layoutX="125.0" layoutY="403.0" mnemonicParsing="false" onAction="#modifier" prefHeight="40.0" prefWidth="77.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Modifier" textFill="WHITE" />
-            <TextField fx:id="tfid_modif1" layoutX="38.0" layoutY="23.0" prefHeight="40.0" prefWidth="250.0" promptText="ID" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <TextField fx:id="tfid_modif" layoutX="38.0" layoutY="23.0" prefHeight="40.0" prefWidth="250.0" promptText="ID" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

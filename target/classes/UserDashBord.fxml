@@ -26,14 +26,15 @@
         <Button fx:id="btn_ajout" layoutX="218.0" layoutY="345.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="AJOUTER" textFill="WHITE" />
     </AnchorPane>
     <AnchorPane layoutX="437.0" layoutY="87.0" prefHeight="371.0" prefWidth="775.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
-        <TableView fx:id="tableviewUser" layoutX="91.0" layoutY="14.0" prefHeight="318.0" prefWidth="558.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+        <TableView fx:id="tableviewUser" layoutX="60.0" layoutY="14.0" prefHeight="318.0" prefWidth="634.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
             <columns>
-                <TableColumn fx:id="col_inom" prefWidth="75.0" text="NOM" />
-                <TableColumn fx:id="col_iprenom" prefWidth="88.0" text="PRENOM" />
-                <TableColumn fx:id="col_iemail" prefWidth="84.0" text="EMAIL" />
-                <TableColumn fx:id="col_inumero" prefWidth="111.0" text="NUMERO" />
-                <TableColumn fx:id="col_irole" prefWidth="88.0" text="ROLE" />
-                <TableColumn fx:id="col_iadress" prefWidth="111.0" text="ADRESS" />
+                <TableColumn fx:id="col_iD" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="col_nom" prefWidth="88.0" text="NOM" />
+                <TableColumn fx:id="col_prenom" prefWidth="84.0" text="PRENOM" />
+                <TableColumn fx:id="col_email" prefWidth="111.0" text="EMAIL" />
+                <TableColumn fx:id="col_numero" prefWidth="88.0" text="NUMERO" />
+                <TableColumn fx:id="col_role" prefWidth="111.0" text="ROLE" />
+            <TableColumn fx:id="col_adress" prefWidth="75.0" text="ADRESS" />
             </columns>
         </TableView>
     </AnchorPane>

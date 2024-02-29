@@ -31,7 +31,7 @@ public class ModifierPageController  {
     @FXML
     private TextField tfprenom_modif;
     @FXML
-    private TextField tfid_modif1;
+    private TextField tfid_modif;
 
 
     @FXML
@@ -46,7 +46,7 @@ public class ModifierPageController  {
         User user ;
 
 
-        Integer id = Integer.parseInt(tfid_modif1.getText());
+        Integer id = Integer.parseInt(tfid_modif.getText());
         Integer numero=Integer.parseInt(tfnumero_modif.getText());
         String nom= tfnom_modif.getText();
         String adresse= tfadress_modif.getText();
@@ -85,7 +85,7 @@ public class ModifierPageController  {
     }
     public void setTextFields(User R){
         String id =String.valueOf(R.getId_user());
-        tfid_modif1.setText(id);
+        tfid_modif.setText(id);
         String numero =String.valueOf(R.getNumero());
         tfnumero_modif.setText(numero);
         tfnom_modif.setText(R.getNom());
