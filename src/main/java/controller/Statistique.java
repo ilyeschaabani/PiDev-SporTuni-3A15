@@ -1,21 +1,25 @@
 package controller;
+
 import entity.Cour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert;
-import service.CourService; // Assurez-vous d'importer le service approprié pour gérer les cours
+import javafx.stage.FileChooser;
+import service.CourService;
 import service.DisciplineService;
 
-import java.awt.datatransfer.Clipboard;
-import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -25,7 +29,8 @@ public class Statistique {
     private PieChart pi_chart;
     @FXML
     private Button btnCour;
-
+    @FXML
+    private Button btnpdf;
     @FXML
     private Label lblTotalCoursValue;
     @FXML
@@ -43,7 +48,7 @@ public class Statistique {
             assert btnCour != null : "fx:id=\"btnCour\" was not injected: check your FXML file 'Statistique.fxml'.";
             statPi();
             statArea();
-           afficherNombreTotalCours();
+            afficherNombreTotalCours();
             afficherNombreTotalDisciplines(); // Appel de la méthode pour afficher le total des disciplines
 
         } catch (Exception e) {
@@ -89,12 +94,12 @@ public class Statistique {
         // Utilisez les données collectées pour créer des séries pour votre AreaChart
         // Exemple:
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-         disciplineCounts.forEach((discipline, count) -> {
-          series.getData().add(new XYChart.Data<>(discipline, count));
-         });
+        disciplineCounts.forEach((discipline, count) -> {
+            series.getData().add(new XYChart.Data<>(discipline, count));
+        });
 
         // Ajouter la série à votre AreaChart
-         area_chart.getData().add(series);
+        area_chart.getData().add(series);
     }
 
     public void afficherNombreTotalCours() {

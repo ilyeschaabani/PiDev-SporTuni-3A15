@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,4 +76,4 @@ public class Ajouter {
         assert tfnom != null : "fx:id=\"tfnom\" was not injected: check your FXML file 'Ajouter.fxml'.";
         }
 
-}
+}*/

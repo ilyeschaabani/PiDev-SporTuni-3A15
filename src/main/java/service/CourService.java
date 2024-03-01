@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 public class CourService implements IService<Cour>{
 
-private Connection conn;
-private Statement ste;
+    private Connection conn;
+    private Statement ste;
 
-private PreparedStatement pst;
+    private PreparedStatement pst;
 
-public CourService() {
+    public CourService() {
         conn = DataSource.getInstance().getCnx();
-        }
+    }
 
 
 

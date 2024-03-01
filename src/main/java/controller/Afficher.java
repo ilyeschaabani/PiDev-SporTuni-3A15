@@ -66,7 +66,7 @@ public class Afficher {
             cldesc.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         }catch (Exception e){
-        throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
 
     }

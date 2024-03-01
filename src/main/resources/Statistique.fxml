@@ -118,10 +118,13 @@
                                         <NumberAxis side="LEFT" />
                                     </yAxis>
                                 </AreaChart>
+
                             </children>
 
 
                         </AnchorPane>
+                       
+
                     </children>
                 </AnchorPane>
             </center>

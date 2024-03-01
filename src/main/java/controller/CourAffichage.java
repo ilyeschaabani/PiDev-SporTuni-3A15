@@ -18,6 +18,7 @@ import service.DisciplineService;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
 
 public class CourAffichage {
     private CourService cs = new CourService();
@@ -226,8 +227,7 @@ public class CourAffichage {
     @FXML
     void recherche2(ActionEvent event) {
         try {
-            ObservableList<Cour> observableList = FXCollections.observableList(cs.readAll());
-            FilteredList<Cour> filteredList = new FilteredList<>(observableList, p -> true);
+            FilteredList<Cour> filteredList = new FilteredList<>(tvCour.getItems(), p -> true);
 
             searchField.textProperty().addListener((observable, oldValue, newValue) -> {
                 filteredList.setPredicate(cour -> {
@@ -245,6 +245,25 @@ public class CourAffichage {
             SortedList<Cour> sortedList = new SortedList<>(filteredList);
             sortedList.comparatorProperty().bind(tvCour.comparatorProperty());
             tvCour.setItems(sortedList);
+        } catch (Exception e) {
+            showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+
+    @FXML
+    void Trie(ActionEvent event) {
+        try {
+            ObservableList<Cour> observableList = FXCollections.observableList(cs.readAll());
+
+            // Définir le comparateur pour trier par nom de cours
+            Comparator<Cour> comparator = Comparator.comparing(Cour::getNom_cour);
+
+            // Trier la liste observable
+            observableList.sort(comparator);
+
+            // Mettre à jour TableView avec la liste triée
+            tvCour.setItems(observableList);
         } catch (Exception e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }

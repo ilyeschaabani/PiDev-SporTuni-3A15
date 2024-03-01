@@ -1,25 +1,62 @@
 package entity;
 
+import javafx.scene.image.Image;
+
 public class Discipline {
 private int id_discipline;
 private String nom_discipline;
 
 private String description;
 
-
+    private String imageUrl; // Chemin de l'image
+    private Image image; // Image
     public Discipline() {
     }
 
-    public Discipline(int id_discipline, String nom_discipline,  String description) {
+    public Discipline(int id_discipline, String nom_discipline, String description, String imageUrl) {
         this.id_discipline = id_discipline;
-        this.nom_discipline=nom_discipline;
-        this.description = description;
-
-    }
-    public Discipline(String nom_discipline,String description) {
         this.nom_discipline = nom_discipline;
         this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
+    public Discipline(String nom_discipline, String description, String imageUrl) {
+        this.nom_discipline = nom_discipline;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.image = new Image(imageUrl);
+
+    }
+
+    public Discipline(String nom_discipline, String description) {
+        this.nom_discipline = nom_discipline;
+        this.description = description;
+    }
+
+    public Discipline(int id_discipline, String nom_discipline, String description) {
+        this.id_discipline = id_discipline;
+        this.nom_discipline = nom_discipline;
+        this.description = description;
+    }
+
+    public Discipline(int id_discipline) {
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        this.image = new Image(imageUrl);
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public int getId_discipline() {
