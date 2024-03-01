@@ -8,20 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37b1952a-8139-456c-a16a-fb56ef2330f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/user-interface.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/utilisateur (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/verrouiller.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ModifierPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/ModifierPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UserDashbordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UserDashbordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserDashbord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserDashbord.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/UserDashbordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/UserDashbordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/UserDashBord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserDashBord.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/ModifierPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ModifierPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +141,7 @@
       <workItem from="1708899490367" duration="232000" />
       <workItem from="1708941066435" duration="3419000" />
       <workItem from="1709155020097" duration="34722000" />
+      <workItem from="1709288788666" duration="596000" />
     </task>
     <servers />
   </component>
