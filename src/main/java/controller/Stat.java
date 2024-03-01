@@ -2,6 +2,7 @@ package controller;
 
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -57,8 +58,24 @@ public class Stat {
                 assert btnhome != null : "fx:id=\"btnhome\" was not injected: check your FXML file 'Stat.fxml'.";
                 assert btnstat != null : "fx:id=\"btnstat\" was not injected: check your FXML file 'Stat.fxml'.";
                 int totalSalles = ss.NbrDeSalleTotale();
-                lbltotale.setText(String.valueOf(ss.NbrDeSalleTotale()));
-               // lbldispo.setText(String.valueOf(ss.NbrDeSalleDispo()));
+
+
+                // Get the number of unavailable salles
+
+
+                // Calculate the number of available salles
+
+
+                // Make sure the number of available salles is not negative
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+
+                List<Salle> salleList = ss.readAllWithJoin().stream().filter(s->s.getDateF()!=null && s.getDateD()!=null).filter(s->s.getDateF().isBefore(currentDateTime)).toList();
+                List<Salle> salleList2 = new java.util.ArrayList<>(ss.readAllWithJoin().stream().filter(s -> s.getDateF() == null && s.getDateD() == null).toList());
+                salleList2.addAll(salleList);
+                List<String> salleList3=salleList2.stream().map(s->s.getNom()).distinct().toList();
+                lbltotale.setText(String.valueOf(totalSalles));
+                lbldispo.setText(String.valueOf(salleList3.size()));
 
                 statPi();
 

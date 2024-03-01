@@ -36,6 +36,7 @@ import javafx.scene.input.MouseEvent;
 public class Afficher {
     public Label title;
     SalleService ss=new SalleService();
+    DispoService ds=new DispoService();
     private List<Dispo> dispoList;
     @FXML
     private Button btnadd1;
@@ -97,10 +98,14 @@ public class Afficher {
     @FXML
     void initialize() {
         try {
-            List<Salle> salleList = ss.readAllWithJoin();
+//            LocalDateTime currentDateTime = LocalDateTime.now();
+//
+//            List<Salle> salleList = ss.readAllWithJoin().stream().filter(s->s.getDateF()!=null && s.getDateD()!=null).filter(s->s.getDateF().isBefore(currentDateTime)).toList();
+//            List<Salle> salleList2 = new java.util.ArrayList<>(ss.readAllWithJoin().stream().filter(s -> s.getDateF() == null && s.getDateD() == null).toList());
+//            salleList2.addAll(salleList);
 
             // Convert List<Salle> to ObservableList<Salle>
-            ObservableList<Salle> observableList = FXCollections.observableList(salleList);
+            ObservableList<Salle> observableList = FXCollections.observableList(ss.readAllWithJoin());
 
             // Set cell value factories for each column
             clnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -109,6 +114,8 @@ public class Afficher {
             cldisc.setCellValueFactory(new PropertyValueFactory<>("discipline"));
             cldated.setCellValueFactory(new PropertyValueFactory<>("dateD"));
             cldatef.setCellValueFactory(new PropertyValueFactory<>("dateF"));
+
+           ds.deleteExpiredDispos();
 
             // Set the items in the TableView
             tvsalle.setItems(observableList);
@@ -164,6 +171,7 @@ public class Afficher {
                 // Show confirmation dialog
                 if (showDeleteConfirmationDialog()) {
                     ss.delete(salle.getId());
+                    DispoService ds=new DispoService();
                     initialize();
                     showAlert("Information", "Salle supprimée", Alert.AlertType.INFORMATION);
                 }
@@ -176,14 +184,17 @@ public class Afficher {
 
     public void update(ActionEvent actionEvent) {
         try {
-
-             SalleService ss = new SalleService();
-            salle = new Salle(salle.getId(), tfnom1.getText(), Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText());
-            ss.updato(salle);
-            initialize();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            showAlert("Information", "Salle modifiée", Alert.AlertType.INFORMATION);
-
+            if(validateInput()) {
+                SalleService ss = new SalleService();
+                salle = new Salle(salle.getId(), tfnom1.getText(), Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText());
+                ss.updato(salle);
+                initialize();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                showAlert("Information", "Salle modifiée", Alert.AlertType.INFORMATION);
+            }else {
+//                showAlert("Error", "Veuillez remplir tous les champs correctement.", Alert.AlertType.ERROR);
+                showNotification("Error", "Veuillez remplir tous les champs correctement.");
+            }
         } catch (Exception e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }

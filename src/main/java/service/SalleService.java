@@ -173,18 +173,25 @@ public class SalleService implements IService<Salle> {
 
 
 
-//    public int NbrDeSalleDispo() {
-//        String req = "SELECT COUNT(id) AS total FROM salle WHERE dispo = true";
-//        try {
-//            PreparedStatement ste = connexion.prepareStatement(req);
-//            ResultSet rs = ste.executeQuery();
-//            if (rs.next()) {
-//                return rs.getInt("total");
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return 0; // Return 0 if there's an error or no salle with dispo=true
-//    }
+  /*  public int NbrDeSalleDispo() {
+        String req = "SELECT COUNT(salle.id) AS total FROM salle " +
+                "LEFT JOIN Dispo ON salle.id = Dispo.idSalle " +
+                "WHERE (Dispo.dateD IS NULL OR Dispo.dateD <= ?) " +
+                "   AND (Dispo.dateF IS NULL OR Dispo.dateF >= ?)";
+        LocalDateTime currentDateAndTime = LocalDateTime.now();
+        try {
+            PreparedStatement ste = connexion.prepareStatement(req);
+            ste.setTimestamp(1, Timestamp.valueOf(currentDateAndTime));
+            ste.setTimestamp(2, Timestamp.valueOf(currentDateAndTime));
+            ResultSet rs = ste.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0; // Return 0 if there's an error
+    }*/
 
 }

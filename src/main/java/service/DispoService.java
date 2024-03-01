@@ -106,4 +106,17 @@ public class DispoService implements IService<Dispo> {
         }
         return dispo;
     }
+    public void deleteExpiredDispos() {
+        String deleteQuery = "DELETE FROM dispo WHERE dateF < ?";
+
+        try {
+            PreparedStatement preparedStatement = connexion.prepareStatement(deleteQuery);
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println(rowsAffected + " expired dispos deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

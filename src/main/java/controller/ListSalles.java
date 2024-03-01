@@ -32,7 +32,7 @@ public class ListSalles {
 
         for (Salle salle : salles) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Consulter.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Consulter.fxml"));
                 AnchorPane eventCell = fxmlLoader.load();
 
                 // Set Salle data to the cell's controllers here.
