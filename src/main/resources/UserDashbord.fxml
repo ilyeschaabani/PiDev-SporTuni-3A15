@@ -11,9 +11,7 @@
 
 <AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserDashbordController">
     <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
-        <image>
-          <Image url="@DashbordBackGround.png" />
-        </image>
+        <Image url="@DashbordBackGround.png" />
     </ImageView>
     <AnchorPane layoutX="92.0" layoutY="28.0" prefHeight="418.0" prefWidth="297.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
         <TextField fx:id="tfnom_ajout" layoutX="33.0" layoutY="14.0" prefHeight="34.0" prefWidth="230.0" promptText="nom" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
@@ -39,9 +37,9 @@
         </TableView>
     </AnchorPane>
     <AnchorPane layoutX="437.0" layoutY="28.0" prefHeight="48.0" prefWidth="775.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
-        <Button fx:id="btn_ajout1" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#modifer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="MODIFIER" textFill="WHITE" />
-        <Button fx:id="btn_ajout2" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="SUPPRIMER" textFill="WHITE" />
+        <Button fx:id="btn_modif" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#modifer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="MODIFIER" textFill="WHITE" />
+        <Button fx:id="btn_Supp" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="SUPPRIMER" textFill="WHITE" />
       <TextField fx:id="recherche_user" layoutX="474.0" layoutY="11.0" prefHeight="25.0" prefWidth="276.0" promptText="RECHERCHER" />
-      <Button fx:id="btn_Trie" layoutX="244.0" layoutY="10.0" mnemonicParsing="false" onAction="#Trie" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Trie Par Nom" textFill="WHITE" />
+      <Button fx:id="btn_Trie" layoutX="251.0" layoutY="10.0" mnemonicParsing="false" onAction="#Trie" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Trie Par Nom" textFill="WHITE" />
     </AnchorPane>
 </AnchorPane>

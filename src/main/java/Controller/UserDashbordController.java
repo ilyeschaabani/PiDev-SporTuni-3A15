@@ -27,6 +27,13 @@ public class UserDashbordController {
     UserService us = new UserService();
 
     @FXML
+    public Button btn_ajout;
+    @FXML
+    public Button btn_modif;
+    @FXML
+    public Button btn_Supp;
+
+    @FXML
     private ComboBox<String> cmbRole_ajout;
 
     @FXML
