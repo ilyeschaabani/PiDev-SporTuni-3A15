@@ -17,7 +17,7 @@ public class MainFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/Afficher.fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/ListSalles.fxml"));
         Screen screen = Screen.getPrimary();
         double screenWidth = screen.getBounds().getWidth();
         double screenHeight = screen.getBounds().getHeight();

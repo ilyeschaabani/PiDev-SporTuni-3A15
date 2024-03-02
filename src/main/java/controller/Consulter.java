@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Rating;
 import service.SalleService;
 import entity.Salle;
@@ -14,7 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Consulter {
-
+    @FXML
+    public AnchorPane events_pane;
     @FXML
     private Label event_name;
 
@@ -40,7 +42,7 @@ public class Consulter {
 
     @FXML
     private void initialize() {
-        try {
+  /*      try {
             // Call your service to get data
             SalleService salleService = new SalleService();
             List<Salle> salles = salleService.readAll();
@@ -58,7 +60,7 @@ public class Consulter {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 ratingID.setText("Rate us " + t1 + "/5");
             }
-        });
+        });*/
 
     }
 
@@ -72,7 +74,7 @@ public class Consulter {
 
             event_place.setText(String.valueOf(event.getSurface()));
             event_goal.setText(event.getDiscipline());
-            event_aa.setText(event.getDiscipline());
+
             event_id.setText(String.valueOf(event.getId()));
         }
     }
@@ -90,5 +92,5 @@ public class Consulter {
             return "";
         }
     }
-    }
+}
 

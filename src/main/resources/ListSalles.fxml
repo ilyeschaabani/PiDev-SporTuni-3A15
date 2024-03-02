@@ -4,13 +4,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListSalles">
-    <ScrollPane layoutX="17.0" layoutY="32.0" prefHeight="717.0" prefWidth="470.0">
-        <content>
-            <VBox fx:id="event_container" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="838.0">
-            </VBox>
-        </content>
-    </ScrollPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 
 
+<AnchorPane fx:id="admindash" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListSalles">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <AnchorPane fx:id="bg_container" prefHeight="650.0" prefWidth="666.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Line endX="182.0" layoutX="307.0" layoutY="181.0" startX="-264.0" stroke="#b2afaf" />
+                        <ScrollPane layoutX="17.0" layoutY="190.0" prefHeight="559.0" prefWidth="470.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <content>
+                                <VBox fx:id="event_container" minHeight="-Infinity" minWidth="-Infinity" prefWidth="745.0">
+                                    <!-- Your content here -->
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>
+
+
+
+

@@ -15,6 +15,7 @@ public class SalleService implements IService<Salle> {
         connexion= DataSource.getInstance().getCnx();
     }
     private Statement ste ;//yebath lel sql heya interface
+    private static SalleService instance;
     public void add(Salle s) {
         String requete = "INSERT INTO salle (nom,surface, capacite, discipline) VALUES (?, ?, ?, ?)";
         try {
@@ -167,7 +168,12 @@ public class SalleService implements IService<Salle> {
     }
 
 
-
+    public static SalleService getInstance() {
+        if (instance == null) {
+            instance = new SalleService();
+        }
+        return instance;
+    }
 
 
 
