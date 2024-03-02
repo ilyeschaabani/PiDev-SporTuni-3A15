@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ListView?>
+<VBox prefHeight="400.0" prefWidth="600.0" styleClass="gray-bg" stylesheets="@CSS/Stat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Notification">
+    <!-- Labels pour afficher les informations sur le cours -->
+    <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" styleClass="nom" stylesheets="@CSS/AffichageCour.css" text="Informations sur le cours" textFill="#f4f2f2">
+      <font>
+         <Font name="Bodoni MT Bold" size="12.0" />
+      </font></Label>
+    <Label fx:id="clNom" />
+    <Label fx:id="clDiscipline" />
+    <Label fx:id="clDate" />
+    <Label fx:id="clHeureDebut" />
+    <Label fx:id="clNomSalle" />
+    <Label fx:id="courseStatusLabel" style="-fx-font-weight: bold; -fx-font-size: 16px;" />
+
+    <ListView fx:id="notificationsListView" prefHeight="400.0" prefWidth="600.0" />
+
+</VBox>

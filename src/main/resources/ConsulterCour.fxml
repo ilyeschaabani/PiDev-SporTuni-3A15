@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="786.0" prefWidth="1315.0" styleClass="AncorPane" stylesheets="@CSS/afficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConsulterCour">
+    <children>
+        <BorderPane prefHeight="786.0" prefWidth="1400.0">
+            <top>
+                <AnchorPane prefHeight="62.0" prefWidth="800.0" styleClass="navbar" stylesheets="@CSS/Stat.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="14.0" layoutY="16.0" stylesheets="@CSS/Stat.css" text="Gestion des cours">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane prefHeight="737.0" prefWidth="200.0" styleClass="menu-gauche" stylesheets="@CSS/Stat.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="165.0" fitWidth="180.0" layoutX="8.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/image2.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane prefHeight="758.0" prefWidth="700.0" stylesheets="@CSS/afficher.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane prefHeight="750.0" prefWidth="1263.0" stylesheets="@CSS/afficher.css">
+                            <children>
+                                <TableView fx:id="tvCour" layoutX="22.0" layoutY="66.0" onMouseClicked="#mouseClicked2" prefHeight="300.0" prefWidth="807.0" stylesheets="@CSS/afficher.css">
+                                    <columns>
+                                        <TableColumn fx:id="clNom" prefWidth="76.80000305175781" text="Nom" />
+                                        <TableColumn fx:id="clDiscipline" prefWidth="92.800048828125" text="Discipline" />
+                                        <TableColumn fx:id="clDate" prefWidth="92.800048828125" text="Date" />
+                                        <TableColumn fx:id="clHeureDebut" prefWidth="92.800048828125" text="Heure début" />
+                                        <TableColumn fx:id="clHeureFin" prefWidth="92.800048828125" text="Heure fin" />
+                                        <TableColumn fx:id="clNomSalle" prefWidth="92.800048828125" text="Nom salle" />
+                                        <TableColumn fx:id="clNbParticipants" prefWidth="159.99997558593748" text="Nombre participants" />
+                                        <!-- Nouvelle colonne pour le bouton S'inscrire -->
+                                        <TableColumn fx:id="clAction" prefWidth="100.0" text="S'inscrire">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="inscrireButton" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                                <TextField fx:id="searchField" layoutX="546.0" layoutY="18.0" prefHeight="32.0" prefWidth="170.0" promptText="Search" />
+                                <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="688.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Images/img.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
