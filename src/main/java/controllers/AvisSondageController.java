@@ -3,26 +3,22 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-
-
-
-import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
 public class AvisSondageController {
 
     @FXML
-    private RadioButton ouiButton;
+    private RadioButton satisfaitButton;
 
     @FXML
-    private RadioButton non;
-
+    private RadioButton decuButton;
 
     @FXML
     private ToggleGroup reponseGroup;
+
     @FXML
     private TextField nomField;
+
     public void submitSurvey() {
         RadioButton selectedRadioButton = (RadioButton) reponseGroup.getSelectedToggle();
         if (selectedRadioButton != null) {

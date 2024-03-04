@@ -16,7 +16,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage Stage) throws Exception {
 
-        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/ReserverEvenement.fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/Reservation.fxml"));
         Parent root= fxmlLoader.load();
         Scene scene=new Scene(root);
         Stage.setScene(scene);

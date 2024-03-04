@@ -27,6 +27,31 @@ public class EvenementService implements Gservice<Evenement> {
         connexion = DataSource.getInstance().getCnx();
     }
 
+    public Evenement getLastInsertedEvenement() {
+        String query = "SELECT * FROM evenement ORDER BY id_e DESC LIMIT 1";
+        try (
+                PreparedStatement preparedStatement = connexion.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery()
+        ) {
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id_e");
+                String nomE = resultSet.getString("nom_e");
+                String nomSalle = resultSet.getString("nom_salle");
+                Date dateDebut = resultSet.getDate("dateDebut");
+                String nomDiscipline = resultSet.getString("nom_discipline");
+                String description = resultSet.getString("description");
+                int nbrMax = resultSet.getInt("nbr_max");
+                Date dateFin = resultSet.getDate("dateFin");
+
+                Evenement evenement = new Evenement(id, nomE, nomSalle, dateDebut, nomDiscipline, description, nbrMax, dateFin);
+                return evenement;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void add(Evenement evenement) {
 
 
@@ -145,10 +170,25 @@ public class EvenementService implements Gservice<Evenement> {
             return evenement;
         }
 
+    public List <Evenement> getAllEvenements() {
+        List<Evenement> evenements;
 
+        evenements = new ArrayList<>();
+    return evenements;}
 
-
-
-
-
+    public int GetNombreDePlaces(int idE) {
+        int nombreDePlaces = 0;
+        try {
+            String query = "SELECT COUNT(*) AS count FROM reservation WHERE id_e = ?";
+            PreparedStatement pst = connexion.prepareStatement(query);
+            pst.setInt(1, idE);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                nombreDePlaces = rs.getInt("count");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nombreDePlaces;
+    }
 }

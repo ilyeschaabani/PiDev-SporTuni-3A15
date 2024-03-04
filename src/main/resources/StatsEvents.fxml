@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="826.0" prefWidth="1184.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.statsPage">
+        <children>
+            <AnchorPane prefHeight="826.0" prefWidth="226.0" style="-fx-background-color: white;" stylesheets="@CSS/CodeCss.css">
+                <children>
+                    <ImageView fitHeight="122.0" fitWidth="256.0" layoutX="-1.0">
+                        <image>
+                            <Image url="@Images/logo.jpg" />
+                        </image>
+                    </ImageView>
+                    <ImageView fitHeight="140.0" fitWidth="166.0" layoutX="30.0" layoutY="281.0">
+                        <image>
+                            <Image url="@Images/admin-icon-png-28.jpg" />
+                        </image>
+                    </ImageView>
+                    <Label alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="30.0" layoutY="447.0" prefHeight="18.0" prefWidth="166.0" text="ADMIN" textAlignment="CENTER" wrapText="true">
+                        <font>
+                            <Font name="Arial Black" size="16.0" />
+                        </font>
+                    </Label>
+                    <Button layoutX="46.0" layoutY="514.0" mnemonicParsing="false" onAction="#goToStats" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #932828;" stylesheets="@CSS/CodeCss.css" text="Voir rapport" textFill="WHITE">
+                        <font>
+                            <Font name="Andalus" size="12.0" />
+                        </font>
+                    </Button>
+                    <Button layoutX="46.0" layoutY="573.0" mnemonicParsing="false" onAction="#goToPdf" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #932828;" stylesheets="@CSS/CodeCss.css" text="Télecharger rapport" textFill="WHITE">
+                        <font>
+                            <Font name="Andalus" size="12.0" />
+                        </font>
+                    </Button>
+                    <Button layoutX="46.0" layoutY="471.0" mnemonicParsing="false" onAction="#goToEvents" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #932828;" stylesheets="@CSS/CodeCss.css" text="Gérer evénements" textFill="WHITE">
+                        <font>
+                            <Font name="Andalus" size="12.0" />
+                        </font>
+                    </Button>
+
+                </children>
+                <effect>
+                    <Blend />
+                </effect>
+            </AnchorPane>
+            <Text layoutX="335.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des evenements" textAlignment="CENTER" wrappingWidth="303.19995117187494">
+                <font>
+                    <Font name="Arial Black" size="22.0" />
+                </font>
+            </Text>
+      <HBox fx:id="stats" layoutX="259.0" layoutY="109.0" prefHeight="574.0" prefWidth="662.0" >
+            <fx:include source="statistics.fxml"/>
+      </HBox>
+        </children>
+
+
+</AnchorPane>
