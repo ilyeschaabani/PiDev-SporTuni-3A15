@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="admindash" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListSalles">
+<AnchorPane fx:id="admindash" prefHeight="800.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListSalles">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                 <AnchorPane fx:id="bg_container" prefHeight="650.0" prefWidth="666.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Line endX="182.0" layoutX="307.0" layoutY="181.0" startX="-264.0" stroke="#b2afaf" />
-                        <ScrollPane layoutX="17.0" layoutY="190.0" prefHeight="559.0" prefWidth="470.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane layoutX="295.0" layoutY="44.0" prefHeight="622.0" prefWidth="585.0" stylesheets="@CSS/apii.css" AnchorPane.bottomAnchor="133.60000000000002" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="435.39999999999986" AnchorPane.topAnchor="44.0">
                             <content>
                                 <VBox fx:id="event_container" minHeight="-Infinity" minWidth="-Infinity" prefWidth="745.0">
                                     <!-- Your content here -->
                                 </VBox>
                             </content>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
                         </ScrollPane>
                     </children>
                 </AnchorPane>
             </center>
+         <top>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="142.0" layoutY="8.0" prefHeight="183.0" prefWidth="1031.0" stylesheets="@CSS/apii.css">
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <Label layoutX="256.0" layoutY="54.0" text="LES SALLES DE SPORTS">
+                           <font>
+                              <Font size="51.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </top>
         </BorderPane>
     </children>
 </AnchorPane>
-
-
-
-

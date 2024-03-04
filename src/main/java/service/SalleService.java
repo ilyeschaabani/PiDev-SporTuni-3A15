@@ -150,6 +150,8 @@ public class SalleService implements IService<Salle> {
                 // Check if Dispo data is present
                 Timestamp dateDTimestamp = resultSet.getTimestamp("dateD");
                 Timestamp dateFTimestamp = resultSet.getTimestamp("dateF");
+                double averageRating = getAverageRating(resultSet.getInt("id"));
+                salle.setRate(averageRating);
 
                 if (dateDTimestamp != null && dateFTimestamp != null) {
                     Dispo dispo = new Dispo();
@@ -174,30 +176,31 @@ public class SalleService implements IService<Salle> {
         }
         return instance;
     }
-
-
-
-
-
-  /*  public int NbrDeSalleDispo() {
-        String req = "SELECT COUNT(salle.id) AS total FROM salle " +
-                "LEFT JOIN Dispo ON salle.id = Dispo.idSalle " +
-                "WHERE (Dispo.dateD IS NULL OR Dispo.dateD <= ?) " +
-                "   AND (Dispo.dateF IS NULL OR Dispo.dateF >= ?)";
-        LocalDateTime currentDateAndTime = LocalDateTime.now();
-        try {
-            PreparedStatement ste = connexion.prepareStatement(req);
-            ste.setTimestamp(1, Timestamp.valueOf(currentDateAndTime));
-            ste.setTimestamp(2, Timestamp.valueOf(currentDateAndTime));
-            ResultSet rs = ste.executeQuery();
+    public void updateRating(int salleId, double newRating) {
+        String query = "UPDATE salle SET rate = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
+            preparedStatement.setDouble(1, newRating);
+            preparedStatement.setInt(2, salleId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public double getAverageRating(int salleId) {
+        String query = "SELECT rate FROM salle WHERE id = ?";
+        try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, salleId);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-                return rs.getInt("total");
+                return rs.getDouble("rate");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return 0;
+    }
 
-        return 0; // Return 0 if there's an error
-    }*/
+
+
 
 }

@@ -65,6 +65,8 @@ public class Afficher {
     @FXML
     private TableColumn<Salle, Integer> clsurf;
     @FXML
+    private TableColumn<?, ?> clrating;
+    @FXML
     private TextField searchField;
 
 
@@ -114,9 +116,9 @@ public class Afficher {
             cldisc.setCellValueFactory(new PropertyValueFactory<>("discipline"));
             cldated.setCellValueFactory(new PropertyValueFactory<>("dateD"));
             cldatef.setCellValueFactory(new PropertyValueFactory<>("dateF"));
+            clrating.setCellValueFactory(new PropertyValueFactory<>("rate"));
 
-           ds.deleteExpiredDispos();
-
+            ds.deleteExpiredDispos();
             // Set the items in the TableView
             tvsalle.setItems(observableList);
         } catch (Exception e) {

@@ -13,6 +13,7 @@ private int surface;
 private int capacite;
 private String discipline;
     private Dispo dispoInter;
+    private double rate;
 
     private LocalDate dateD;
     private LocalDate dateF;
@@ -110,6 +111,14 @@ private String discipline;
 
     public void setDispoList(List<Dispo> dispoList) {
         this.dispoList = dispoList;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 
     @Override
