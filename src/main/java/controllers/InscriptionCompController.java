@@ -74,6 +74,9 @@ public class InscriptionCompController {
     @FXML
     private TreeTableColumn<Competition, DocFlavor.BYTE_ARRAY> IMAGE;
 
+    @FXML
+    private TextField id_comp_chercher; // Le champ de texte pour saisir l'ID de la compétition
+
 
     @FXML
     void initialize() {
@@ -419,6 +422,61 @@ public class InscriptionCompController {
             System.err.println("Aucune ligne sélectionnée.");
         }
         return null;
+    }
+
+// -------------partie SMS-----------------
+
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void envoyerSMSAuxAdherents() {
+
+        try {
+            int id_comp1 = Integer.parseInt(id_comp_chercher.getText()); // Récupérer l'ID de compétition
+            List<InscriptionComp> adherents = ics.readByCompId(id_comp1); // Récupérer les adhérents pour cet ID de compétition
+
+
+            // Parcourir la liste des adhérents et afficher les informations de chaque adhérent
+            for (InscriptionComp adherent : adherents) {
+                System.out.println("ID: " + adherent.getNum_inscri()); // Afficher l'ID de l'adhérent
+                System.out.println("Prénom: " + adherent.getPrenom()); // Afficher le prénom de l'adhérent
+                System.out.println("Numéro de téléphone: " + adherent.getNum_tel()); // Afficher le numéro de téléphone de l'adhérent
+                // Ajoutez d'autres informations à afficher si nécessaire
+                System.out.println("-----------------------------------------");
+            }
+            // Parcourir la liste des adhérents et envoyer un SMS à chacun
+            for (InscriptionComp adherent : adherents) {
+                String prenom = adherent.getPrenom();
+                int numeroTelInt = adherent.getNum_tel();
+                System.out.println(numeroTelInt);
+                // Convertir le numéro de téléphone int en String
+                String numeroTel = String.valueOf(numeroTelInt);
+
+                // Vérifier si le numéro de téléphone est non nul et non vide
+                if (numeroTel != null && !numeroTel.isEmpty()) {
+                    // Formatter le numéro de téléphone tunisien au format international
+                    String numeroTunisienFormatte = "+216" + numeroTel;
+                    System.out.println(numeroTel);
+                    // Construire le message
+                    String message = "Bonjour " + prenom + ", ceci est un message pour la compétition " + id_comp1 + ".";
+
+                    // Envoyer le SMS
+                    TwilioSMS.sendSMS(numeroTunisienFormatte, message);
+                }
+            }
+
+            // Afficher une confirmation
+            showAlert("Information", "Les SMS ont été envoyés avec succès aux adhérents.", Alert.AlertType.INFORMATION);
+            id_comp_chercher.clear();
+        } catch (NumberFormatException e) {
+            // Gérer une exception si l'ID saisi n'est pas un nombre
+            showAlert("Erreur", "Veuillez saisir un ID de compétition valide.", Alert.AlertType.ERROR);
+        }
     }
 
 

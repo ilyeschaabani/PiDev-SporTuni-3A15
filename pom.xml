@@ -34,9 +34,26 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.24.0</version>
+        </dependency>
 
-
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version> <!-- ou une version plus récente -->
+        </dependency>
+        <!-- Exemple d'implémentation de journalisation (Logback) -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.6</version> <!-- ou une version plus récente -->
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

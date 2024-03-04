@@ -80,6 +80,24 @@ public class CompetitionService implements IService<Competition> {
         return list;
     }
 
+
+    public List<Competition> readAllSortedByDate() {
+        String requete = "SELECT * FROM competition ORDER BY date";
+        List<Competition> list = new ArrayList<>();
+        try {
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(requete);
+            while (rs.next()) {
+                list.add(new Competition(rs.getInt("id_comp"), rs.getString("nom_comp"), rs.getString("lieu"), rs.getDate("date"), rs.getString("discipline"), rs.getInt("id_salle")));
+            }
+            //pst.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
     @Override
     public Competition readById(int id) {
         String requete = "select * from competition where id_comp=" + id;

@@ -429,4 +429,31 @@ public class AjouterCompetitionController {
     }
 
 
+    public void sort(ActionEvent actionEvent) {
+
+        try {
+            ObservableList<Competition> observableList = FXCollections.observableList(cs.readAllSortedByDate());
+
+            TreeItem<Competition> root = new TreeItem<>(null);
+            root.setExpanded(true);
+
+            for (Competition competition : observableList) {
+                TreeItem<Competition> item = new TreeItem<>(competition);
+                root.getChildren().add(item);
+            }
+
+            tvc.setRoot(root);
+            tvc.setShowRoot(false);
+
+            id_comp.setCellValueFactory(new TreeItemPropertyValueFactory<>("id_comp"));
+            NomCompetition.setCellValueFactory(new TreeItemPropertyValueFactory<>("nom_comp"));
+            Lieu.setCellValueFactory(new TreeItemPropertyValueFactory<>("lieu_comp"));
+            Datetvc.setCellValueFactory(new TreeItemPropertyValueFactory<>("date"));
+            Discipline.setCellValueFactory(new TreeItemPropertyValueFactory<>("discipline"));
+            IDsalle.setCellValueFactory(new TreeItemPropertyValueFactory<>("id_salle"));
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

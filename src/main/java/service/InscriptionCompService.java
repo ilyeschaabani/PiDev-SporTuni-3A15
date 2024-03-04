@@ -106,6 +106,32 @@ public class InscriptionCompService implements IService<InscriptionComp> {
     }
 
 
+    public List<InscriptionComp> readByCompId(int id_comp) {
+        String requete = "SELECT * FROM inscriptioncomp WHERE id_comp = ?";
+        List<InscriptionComp> result = new ArrayList<>();
+        try {
+            PreparedStatement pst = conn.prepareStatement(requete);
+            pst.setInt(1, id_comp);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                InscriptionComp c = new InscriptionComp();
+                c.setNum_inscri(rs.getInt("num_inscri"));
+                c.setNom(rs.getString("nom"));
+                c.setPrenom(rs.getString("prenom"));
+                c.setAge(rs.getInt("age"));
+                c.setPoids(rs.getFloat("poids"));
+                c.setId_comp(rs.getInt("id_comp"));
+                c.setNum_tel(rs.getInt("num_tel")); // Ajout de la récupération du numéro de téléphone
+                result.add(c);
+            }
+            pst.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+
     // Méthode pour récupérer les ID de salle disponibles depuis la base de données
     public List<Integer> getAvailableCOMPETITIONIdsFromDatabase() {
         List<Integer> availableIds = new ArrayList<>();
