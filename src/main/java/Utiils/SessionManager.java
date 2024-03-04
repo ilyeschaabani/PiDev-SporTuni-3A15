@@ -20,9 +20,9 @@ public class SessionManager {
         SessionManager.Adresse=address;
         SessionManager.role=role;
     }
-    public static SessionManager getInstace(int id_user , String nom , String prenom , int numero , String email ,String address,String role) {
+    public static SessionManager getInstace(int id_user , String nom , String prenom , int numero , String email ,String adress, String role) {
         if(instance == null) {
-            instance = new SessionManager( id_user, nom ,  prenom ,  numero ,  email ,address, role);
+            instance = new SessionManager( id_user, nom ,  prenom ,  numero ,  email ,adress, role);
         }
         return instance;
     }

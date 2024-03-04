@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuUserController">
+   <children>
+      <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@MenuCoach.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_profil" layoutX="499.0" layoutY="256.0" mnemonicParsing="false" onAction="#Monprofil" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Mon Profil" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_Competition" layoutX="499.0" layoutY="418.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Competitions" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_evenement" layoutX="499.0" layoutY="363.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Evenements" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_cour" layoutX="499.0" layoutY="310.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Cours" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_salle" layoutX="499.0" layoutY="471.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Salles" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_shop" layoutX="499.0" layoutY="524.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Shop" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btn_back" layoutX="499.0" layoutY="580.0" mnemonicParsing="false" onAction="#Back" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: #423f3f; -fx-background-radius: 12;" text="Back" textFill="#f8f8f8">
+         <font>
+            <Font name="Montserrat SemiBold" size="17.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

@@ -166,7 +166,6 @@ public class UserDashbordController {
         col_adress.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
         tableviewUser.setItems(list);
-
     }
     private void refresh(){
         ObservableList<User> list = getUserList();

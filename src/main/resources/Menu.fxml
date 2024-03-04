@@ -4,19 +4,44 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
-   <children>
-      <ImageView fx:id="imageP" fitHeight="768.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Image/Backgound.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="432.0" layoutY="204.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="476.0" style="-fx-background-color: #0000; -fx-background-radius: 15; -fx-border-color: #cecece; -fx-border-width: 3;" text="Button" />
-      <Button layoutX="422.0" layoutY="271.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="496.0" style="-fx-background-radius: 12; -fx-background-color: ;" text="Button" />
-      <Button layoutX="422.0" layoutY="346.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="496.0" style="-fx-background-radius: 12; -fx-background-color: ;" text="Button" />
-      <Button layoutX="422.0" layoutY="425.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="496.0" style="-fx-background-radius: 12; -fx-background-color: ;" text="Button" />
-      <Button layoutX="422.0" layoutY="497.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="496.0" style="-fx-background-radius: 12; -fx-background-color: ;" text="Button" />
-      <Button layoutX="422.0" layoutY="577.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="496.0" style="-fx-background-radius: 12; -fx-background-color: ;" text="Button" />
-   </children>
+   <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@MenuBG.png" />
+   </ImageView>
+   <Button fx:id="btn_gUser" layoutX="499.0" layoutY="260.0" mnemonicParsing="false" onAction="#GUSER" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion User" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font></Button>
+   <Button fx:id="btn_gShop" layoutX="499.0" layoutY="371.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Shop" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
+   <Button fx:id="btn_gevenement" layoutX="499.0" layoutY="428.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Evénement" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
+   <Button fx:id="btn_gSalle" layoutX="499.0" layoutY="485.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Salle" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
+   <Button fx:id="btn_gCour" layoutX="499.0" layoutY="315.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Cour" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
+   <Button fx:id="btn_gCompetetion" layoutX="499.0" layoutY="542.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Compétition " textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
+   <Button fx:id="btn_Back" layoutX="499.0" layoutY="598.0" mnemonicParsing="false" onAction="#Return" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: #423f3f; -fx-background-radius: 12;" text="Back" textFill="#f8f8f8">
+      <font>
+         <Font name="Montserrat SemiBold" size="15.0" />
+      </font>
+   </Button>
 </AnchorPane>
