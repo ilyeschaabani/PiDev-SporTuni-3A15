@@ -16,6 +16,7 @@ import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import service.CompetitionService;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -455,5 +456,21 @@ public class AjouterCompetitionController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void pdf(ActionEvent actionEvent) throws IOException {
+        // Récupérer les compétitions triées par date
+        List<Competition> competitions = cs.readAllSortedByDate();
+        System.out.println("dinaaaa");
+        // Vérifier si la liste de compétitions est nulle ou vide
+        if (competitions == null || competitions.isEmpty()) {
+            System.out.println("La liste des compétitions est vide ou nulle.");
+            return; // Sortir de la méthode si la liste est invalide
+        }
+
+        // Générer le PDF
+        PDFGenerator pdfGenerator = new PDFGenerator();
+        pdfGenerator.generatePDF("competitions.pdf", competitions);
+        //System.out.println("dinaaaa");
     }
 }

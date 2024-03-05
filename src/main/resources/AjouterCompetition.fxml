@@ -43,5 +43,6 @@
         </TreeTableView>
       <Button layoutX="225.0" layoutY="576.0" mnemonicParsing="false" onAction="#AddCompetitors" text="Add Competitors to a Competition" />
       <Button layoutX="563.0" layoutY="223.0" mnemonicParsing="false" onAction="#sort" text="Sort by date" />
+      <Button layoutX="563.0" layoutY="188.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="101.0" text="PDF" />
     </children>
 </AnchorPane>
