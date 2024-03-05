@@ -14,8 +14,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import service.CourService;
 import service.DisciplineService;
+import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +28,15 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import java.io.File;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 public class Statistique {
 
     @FXML
@@ -56,6 +70,7 @@ public class Statistique {
         }
     }
 
+
     private void showAlert(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -81,6 +96,8 @@ public class Statistique {
 
         pi_chart.setData(pieChartData);
     }
+
+
 
     public void statArea() {
         ObservableList<Cour> courList = FXCollections.observableList(courService.readAll());

@@ -14,7 +14,22 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.VBox;
+import util.DataSource;
 
+import java.net.URL;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ResourceBundle;
 public class Notification {
 
     @FXML
@@ -92,6 +107,18 @@ public class Notification {
             }
 
             // Mise à jour de la liste des notifications dans la ListView
+            notificationsListView.setCellFactory(lv -> new ListCell<String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(item);
+                        setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0;"); // Ajoute un bord en bas pour simuler un séparateur
+                    }
+                }
+            });
             notificationsListView.setItems(notifications);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,5 +140,4 @@ public class Notification {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 }

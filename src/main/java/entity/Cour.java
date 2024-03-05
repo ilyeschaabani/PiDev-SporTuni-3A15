@@ -13,7 +13,7 @@ public class Cour {
     private String nb_max;
     private String nom_discipline;
     private int id_u;
-
+    private Double avis;
     public Cour(int id_cour,String nom_cour, Date date, String heure_debut, String heure_fin, String nom_salle, String nb_max, String nom_discipline ) {
     }
 
@@ -115,6 +115,14 @@ public class Cour {
         this.id_u = id_u;
     }
 
+
+    public Double getAvis() {
+        return avis;
+    }
+
+    public void setAvis(Double avis) {
+        this.avis = avis;
+    }
     @Override
     public String toString() {
         return "Cour{" +

@@ -9,6 +9,13 @@
     -fx-background-color: #ffffff;
 }
 
+
+.list-view {
+    -fx-background-color: lightblue; /* exemple de style */
+    -fx-font-size: 14px;
+    /* Ajoutez d'autres styles selon vos besoins */
+}
+
 /* Style for TextFields */
 
 .text-field {

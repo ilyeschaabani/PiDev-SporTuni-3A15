@@ -12,9 +12,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.CourService;
 import service.DisciplineService;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.sql.Date;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -43,6 +54,8 @@ public class CourAffichage {
     @FXML
     private TableColumn<Cour, Date> clDate;
 
+    @FXML
+    private Button btnpdf;
     @FXML
     private TableColumn<Cour, String> clHeureDebut;
 
@@ -96,6 +109,47 @@ public class CourAffichage {
             clNomSalle.setCellValueFactory(new PropertyValueFactory<>("nom_salle"));
         } catch (Exception e) {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    @FXML
+    void handleGeneratePDF(ActionEvent actionEvent) {
+        try {
+            ObservableList<Cour> cours = tvCour.getItems();
+            Workbook wb = new XSSFWorkbook();
+            Sheet sheet = wb.createSheet("Cours");
+
+            // Créer l'en-tête du tableau Excel
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Nom du cours");
+            headerRow.createCell(1).setCellValue("Discipline");
+            headerRow.createCell(2).setCellValue("Date");
+            headerRow.createCell(3).setCellValue("Heure début");
+            headerRow.createCell(4).setCellValue("Heure fin");
+            headerRow.createCell(5).setCellValue("Nom de la salle");
+            headerRow.createCell(6).setCellValue("Nombre maximal de participants");
+
+            // Remplir les données
+            int rowNum = 1;
+            for (Cour cour : cours) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(cour.getNom_cour());
+                row.createCell(1).setCellValue(cour.getNom_discipline());
+                row.createCell(2).setCellValue(cour.getDate().toString());
+                row.createCell(3).setCellValue(cour.getHeure_debut());
+                row.createCell(4).setCellValue(cour.getHeure_fin());
+                row.createCell(5).setCellValue(cour.getNom_salle());
+                row.createCell(6).setCellValue(cour.getNb_max());
+            }
+
+            // Écrire le classeur dans le fichier
+            try (OutputStream fileOut = new FileOutputStream(new File("cours_data.xlsx"))) {
+                wb.write(fileOut);
+            }
+
+            showAlert("Information", "Fichier Excel généré avec succès.", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            showAlert("Erreur", "Une erreur s'est produite lors de la génération du fichier Excel.", Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
     }
 

@@ -2,18 +2,28 @@ package controller;
 import entity.Cour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import service.CourService;
 import util.DataSource;
+import org.controlsfx.control.Notifications;
 
+import javafx.event.ActionEvent;
+
+import java.awt.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -29,6 +39,7 @@ public class ConsulterCour {
     private Cour selectedCour;
     private ObservableList<String> notificationsList = FXCollections.observableArrayList();
     private ObservableList<VBox> courBoxes = FXCollections.observableArrayList();
+    Mailing mailing = new Mailing("rawene.labaoui@gmail.com", "rawene000");
 
     @FXML
     private TableView<Cour> tvCour;
@@ -60,6 +71,7 @@ public class ConsulterCour {
     private List<Cour> coursInscrits = new ArrayList<>();
 
     private Connection conn;
+
     @FXML
     void initialize() {
         try {
@@ -107,7 +119,6 @@ public class ConsulterCour {
         }
     }
 
-
     @FXML
     void mouseClicked2(MouseEvent mouseEvent) {
         selectedCour = tvCour.getSelectionModel().getSelectedItem();
@@ -132,15 +143,47 @@ public class ConsulterCour {
             // Ajouter le cours à la liste des cours inscrits
             coursInscrits.add(cour);
 
-            // Ajouter la notification formatée à la liste des notifications
-            notificationsList.add(formatCourseDetails(cour));
-            showNotifications(); // Assurez-vous d'appeler cette méthode ici
+            // Vérifier si le cours est déjà dans la liste des notifications
+            if (!notificationsList.contains(formatCourseDetails(cour))) {
+                // Ajouter la notification formatée à la liste des notifications
+                notificationsList.add(formatCourseDetails(cour));
+                showNotifications(); // Afficher la notification dans l'interface Notification
+            }
 
             // Enregistrer la notification dans la base de données
             saveNotification(cour);
+
+            // Afficher la notification pour l'inscription réussie
+            handleButtonAction(null);
+
+            String subject = "Inscription au cours : " + cour.getNom_cour();
+            String message = formatCourseDetails(cour); // Utilisez votre méthode existante pour formater les détails du cours
+            // Envoyer l'e-mail à l'adresse spécifiée (ici, à vous-même pour tester)
+            mailing.sendMail(subject, message, "rawene.labaoui@gmail.com", "rawene.labaoui@gmail.com");
         }
     }
 
+    // Méthode pour afficher une notification lors de l'inscription réussie
+    public void handleButtonAction(ActionEvent event) {
+        Image img = new javafx.scene.image.Image("C:\\Users\\rawen\\Documents\\GitHub\\PiDev-SporTuni-3A15\\src\\main\\resources\\Images\\small_tick.png");
+        ImageView imageView = new ImageView(img);
+        imageView.setFitWidth(40); // Spécifiez la largeur souhaitée
+        imageView.setFitHeight(40);
+
+        Notifications notificationBuilder = Notifications.create()
+                .title("Inscription avec succès")
+                .text("Vous avez été inscrit à ce cours.")
+                .graphic(imageView)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent >() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        System.out.println("Cliqué sur la notification");
+                    }
+                });
+        notificationBuilder.show();
+    }
 
 
     private void saveNotification(Cour cour) {

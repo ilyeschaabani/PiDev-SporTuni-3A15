@@ -9,7 +9,9 @@ import java.util.List;
 public class CourService implements IService<Cour>{
 
     private Connection conn;
+
     private Statement ste;
+    private static CourService instance;
 
     private PreparedStatement pst;
 
@@ -140,6 +142,36 @@ public class CourService implements IService<Cour>{
         }
 
         return totalCours;
+    }
+    public static CourService getInstance() {
+        if (instance == null) {
+            instance = new CourService();
+        }
+        return instance;}
+
+
+    public void updateRating(int courId, double newRating) {
+        String query = "UPDATE Cour SET avis = ? WHERE id_cour = ?";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setDouble(1, newRating);
+            preparedStatement.setInt(2, courId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public double getAvis(int courId) {
+        String query = "SELECT avis FROM cour WHERE id_cour = ?";
+        try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setInt(1, courId);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("avis");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
     }
 
 }

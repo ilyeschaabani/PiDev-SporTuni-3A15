@@ -88,6 +88,9 @@
                                         <Image url="@Images/supp.png" />
                                     </image>
                                 </ImageView>
+
+                                <Button fx:id="btnpdf" layoutX="900.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleGeneratePDF" text="Generate excel" />
+
                                 <AnchorPane layoutX="464.0" layoutY="85.0" prefHeight="342.0" prefWidth="558.0" styleClass="menu-gauche" stylesheets="@CSS/Stat.css">
 
                                     <children>
@@ -109,6 +112,7 @@
                                             </styleClass>
                                         </TableView>
                                     </children>
+
                                 </AnchorPane>
                                 <AnchorPane layoutX="60.0" layoutY="92.0" prefHeight="334.0" prefWidth="329.0" styleClass="menu-gauche" stylesheets="@CSS/Stat.css">
                                     <children>
@@ -143,4 +147,5 @@
             </center>
         </BorderPane>
     </children>
+
 </AnchorPane>
