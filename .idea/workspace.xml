@@ -7,26 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37b1952a-8139-456c-a16a-fb56ef2330f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controller/MenuUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/MenuUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/UserDashbordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/UserDashbordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utiils/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utiils/SessionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/MenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Utiils/SessionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Utiils/SessionManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/MainFX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-    </list>
+    <list default="true" id="37b1952a-8139-456c-a16a-fb56ef2330f0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

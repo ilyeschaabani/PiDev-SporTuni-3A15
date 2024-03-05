@@ -41,6 +41,7 @@
       </image>
    </ImageView>
    <PasswordField fx:id="tf_pwd" layoutX="541.0" layoutY="360.0" prefHeight="32.0" prefWidth="233.0" promptText="MOT DE PASSE * " style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+   <Hyperlink fx:id="changepwd" layoutX="593.0" layoutY="514.0" onAction="#changePassword" text="Forget PassWord ?" />
 
 
 </AnchorPane>

@@ -142,4 +142,32 @@ public class UserService implements IService<User> {
         }
         return user;
     }
+    public boolean checkUserExists(String email) {
+        String req = "SELECT * FROM `user` WHERE `email`=?";
+        boolean exists = false;
+        try {
+            PreparedStatement ps = connexion.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                exists = res.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking if user exists: " + e.getMessage());
+        }
+        return exists;
+    }
+    public boolean updatePassword(String email, String newPassword) {
+        String req = "UPDATE `user` SET `mdp` = ? WHERE `email` = ?";
+        try {
+            PreparedStatement ps = connexion.prepareStatement(req);
+            ps.setString(1, newPassword); // You should hash the password
+            ps.setString(2, email);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

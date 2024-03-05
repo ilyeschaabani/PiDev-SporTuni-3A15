@@ -9,16 +9,16 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +27,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.DataSource;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import Service.UserService;
 
 
 public class LoginController {
@@ -38,12 +42,21 @@ public class LoginController {
     @FXML
     private Button loginbtn;
     private Connection connexion;
+
+    @FXML
+    private Hyperlink changepwd;
     private Statement ste;
     private PreparedStatement pst;
 
     public void initialize() {
 
 
+    }
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
     public void textfieldDesign(){
         if (tfemail.isFocused()){
@@ -79,6 +92,44 @@ public class LoginController {
             alert.showAndWait();
 
             return false;
+        }
+    }
+    private String generateOTP() {
+        int length = 6;
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(characters.charAt(rnd.nextInt(characters.length())));
+        }
+        return sb.toString();
+    }
+
+    private void sendEmailWithOTP(String toEmail, String otp) {
+        final String username = "waves.esprit@gmail.com";
+        final String password = "tgao tbqg wudl aluo";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        Session session = Session.getInstance(props,
+                new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("waves.esprit@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject("2FA Authentication");
+            message.setText("Dear user,\n\nYour 2FA code is: " + otp);
+            Transport.send(message);
+            System.out.println("OTP email sent successfully!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 
@@ -151,7 +202,47 @@ public class LoginController {
         window.show();
     }
     @FXML
-    void PasswordFieldKeyTaped(KeyEvent event) {
+    void changePassword(ActionEvent event) {
+        TextInputDialog emailDialog = new TextInputDialog();
+        emailDialog.setTitle("réinitialiser le mot de passe");
+        emailDialog.setHeaderText("vérifier votre email");
+        emailDialog.setContentText("Veuillez entrer votre Email:");
+        Optional<String> emailResult = emailDialog.showAndWait();
+        emailResult.ifPresent(email -> {
+            UserService UserS = new UserService();
+            if (UserS.checkUserExists(email)) {
+                String otp = generateOTP();
+                sendEmailWithOTP(email, otp);
+                TextInputDialog otpDialog = new TextInputDialog();
+                otpDialog.setTitle("OTP Verification");
+                otpDialog.setHeaderText("OTP for Password Reset");
+                otpDialog.setContentText("Veuillez entrer le mot de passe à usage unique envoyé à votre Email:");
+                Optional<String> otpResult = otpDialog.showAndWait();
+                if (otpResult.isPresent() && otpResult.get().equals(otp)) {
+                    TextInputDialog newPasswordDialog = new TextInputDialog();
+                    newPasswordDialog.setTitle("Change Password");
+                    newPasswordDialog.setHeaderText("Enter New Password");
+                    newPasswordDialog.setContentText("New Password:");
+                    Optional<String> newPasswordResult = newPasswordDialog.showAndWait();
+                    newPasswordResult.ifPresent(newPassword -> {
+                        boolean updateSuccess = UserS.updatePassword(email, newPassword);
+                        if (updateSuccess) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Success");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Votre mot de passe a été modifié avec succès");
+                            alert.showAndWait();
+                        } else {
+                            showAlert("Erreur", "Un problème est survenu lors de la modification de votre mot de passe. Veuillez réessayer.");
+                        }
+                    });
+                } else {
+                    showAlert("Incorrect OTP", "Le mot de passe que vous avez entré est incorrect. Veuillez réessayer.");
+                }
+            } else {
+                showAlert("Email Invalide", "L’email que vous avez saisi n’existe pas.");
+            }
+        });
 
     }
 
