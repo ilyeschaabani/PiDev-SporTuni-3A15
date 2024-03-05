@@ -1,8 +1,12 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import entity.Discipline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -153,6 +157,24 @@ public class Afficher {
         } catch(Exception e){
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+
+    public void generatePDF(ActionEvent actionEvent) {
+        // Récupérer toutes les disciplines affichées dans la table view
+        ObservableList<Discipline> disciplines = tvdiscipline.getItems();
+
+        // Vérifier si la liste des disciplines est vide
+        if (disciplines == null || disciplines.isEmpty()) {
+            showAlert("Information", "La liste des disciplines est vide.", Alert.AlertType.INFORMATION);
+            return;
+        }
+
+        // Générer le PDF
+        PDFGenerator pdfGenerator = new PDFGenerator();
+        pdfGenerator.generatePDF("disciplines.pdf", disciplines);
+
+        showAlert("Information", "PDF généré avec succès.", Alert.AlertType.INFORMATION);
     }
 
     public void recherche(ActionEvent actionEvent) {

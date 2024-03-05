@@ -40,6 +40,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="dashb" layoutY="236.0" mnemonicParsing="false" onAction="#dash2" prefHeight="50.0" prefWidth="198.0" styleClass="text-field" stylesheets="@CSS/Stat.css" text="Dashboard" />
+
                </children>
                <stylesheets>
                   <URL value="@CSS/afficher.css" />
@@ -52,6 +53,7 @@
                <children>
                   <AnchorPane layoutX="1.0" prefHeight="750.0" prefWidth="1294.0" stylesheets="@CSS/afficher.css">
                      <children>
+
                         <Button fx:id="btnsupp" layoutX="378.0" layoutY="348.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="131.0" styleClass="btnadd1" text="Supprimer" textFill="#ff5555">
                            <stylesheets>
                               <URL value="@CSS/afficher.css" />
@@ -70,6 +72,7 @@
                               <String fx:value="btnadd1" />
                               <String fx:value="btnadd1" />
                            </styleClass></Button>
+
                         <TextField fx:id="searchField" layoutX="30.0" layoutY="42.0" onAction="#recherche" prefHeight="32.0" prefWidth="170.0" promptText="Search" />
                         <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="169.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -91,7 +94,9 @@
                               <Image url="@Images/modif.png" />
                            </image>
                         </ImageView>
+
                         <AnchorPane layoutX="592.0" layoutY="108.0" prefHeight="295.0" prefWidth="585.0" styleClass="menu-gauche" stylesheets="@CSS/AffichageCour.css">
+
                            <children>
                               <TableView fx:id="tvdiscipline" layoutX="55.0" layoutY="17.0" onMouseClicked="#mouseClicked1" prefHeight="258.0" prefWidth="491.0" stylesheets="@CSS/AffichageCour.css">
                                 <columns>
@@ -113,6 +118,7 @@
                               <Label layoutX="6.0" layoutY="92.0" text="Description:" textFill="#fcfafa" />
                            </children>
                         </AnchorPane>
+                        <Button fx:id="btnGeneratePDF" layoutX="1073.0" layoutY="74.0" onAction="#generatePDF" styleClass="menu-gauche" stylesheets="@CSS/afficher.css" text="Générer PDF" />
                      </children>
                      <styleClass>
                         <String fx:value="white-bg" />
