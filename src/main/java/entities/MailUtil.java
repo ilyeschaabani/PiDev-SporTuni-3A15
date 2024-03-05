@@ -49,7 +49,7 @@ public class MailUtil {
         properties.put("mail.smtp.port", "587");
 
         String myAccountEmail = "Ibtihelab9@gmail.com";
-        String password = "Esprit123452";
+        String password = "Esprit12345";
 
         Session session = Session.getInstance(properties, new Authenticator() {
 
