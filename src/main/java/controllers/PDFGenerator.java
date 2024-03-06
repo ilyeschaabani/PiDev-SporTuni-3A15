@@ -4,6 +4,7 @@ import entities.Competition;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.awt.*;
@@ -12,60 +13,53 @@ import java.util.List;
 
 public class PDFGenerator {
 
+
     public void generatePDF(String filename, List<Competition> competitions) {
         try (PDDocument document = new PDDocument()) {
-            PDPage page = new PDPage();
+            PDPage page = new PDPage(PDRectangle.A4);
             document.addPage(page);
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 24);
-                contentStream.setNonStrokingColor(Color.RED);
-                contentStream.setStrokingColor(Color.RED);
+                contentStream.setNonStrokingColor(Color.RED); // Changer la couleur du texte à Bleu
+                contentStream.setStrokingColor(Color.BLACK); // Couleur des lignes du tableau en Noir
 
-                // Dessiner le titre "Rapport Compétition" en rouge dégradé
+                // Dessiner le titre centré "PDF Competition" en bleu
+                String title = "Rapport Competition";
+                float titleWidth = PDType1Font.HELVETICA_BOLD.getStringWidth(title) / 1000f * 24f;
+                float titleX = (page.getMediaBox().getWidth() - titleWidth) / 2;
                 contentStream.beginText();
-                contentStream.newLineAtOffset(200, 750);
-                contentStream.showText("Rapport Compétition");
+                contentStream.newLineAtOffset(titleX, 750);
+                contentStream.showText(title);
                 contentStream.endText();
 
                 float margin = 50;
                 float y = 700;
                 float tableWidth = 500;
 
-                // Dessiner le fond gris clair du tableau
-                float backgroundWidth = margin + tableWidth; // Largeur du fond gris
-                contentStream.setNonStrokingColor(Color.LIGHT_GRAY);
-                contentStream.addRect(margin, y, backgroundWidth, -200); // Ajustement de la largeur
-                contentStream.fill();
+                // Dessiner le fond blanc du tableau
+                contentStream.setNonStrokingColor(Color.WHITE); // Changer la couleur du fond à Blanc
+                contentStream.fillRect(margin, y, tableWidth, -20 * (competitions.size() + 1)); // Calculer la hauteur en fonction du nombre de lignes
 
-                contentStream.setLineWidth(1f);
-
-// Dessiner le contour rouge du tableau
-                contentStream.setStrokingColor(Color.RED);
-                contentStream.addRect(margin, y, backgroundWidth, -200); // Ajustement de la largeur
-                contentStream.stroke();
-
+                // Dessiner le tableau avec des bordures arrondies
+                drawRoundedRect(contentStream, margin, y, tableWidth, -20 * (competitions.size() + 1), 10);
 
                 // En-tête du tableau
-                String[] headers = {"ID", "Nom", "Lieu", "Date", "Discipline", "ID Salle"};
-                float[] columnWidths = {50, 100, 100, 100, 100, 100};
+                String[] headers = {"ID", "Nom", "Lieu", "Date", "Discipline"};
+                float[] columnWidths = {50, 100, 100, 100, 100, 100}; // Ajuster la largeur des colonnes
                 drawTable(contentStream, y, tableWidth, margin, headers, columnWidths, PDType1Font.HELVETICA_BOLD, 12f);
-                // Dessiner les lignes du tableau
-                //drawTableLines(contentStream, y, tableWidth, margin, competitions.size(), headers.length);
 
                 // Contenu du tableau
-                y -= 20; // Ajuster la hauteur du contenu
                 for (Competition competition : competitions) {
+                    y -= 20; // Ajuster la hauteur de chaque ligne
                     String[] rowData = {
                             String.valueOf(competition.getId_comp()),
                             competition.getNom_comp(),
                             competition.getLieu_comp(),
                             competition.getDate().toString(), // Assurez-vous que la date est au format String
-                            competition.getDiscipline(),
-                            String.valueOf(competition.getId_salle())
+                            competition.getDiscipline()
                     };
                     drawTable(contentStream, y, tableWidth, margin, rowData, columnWidths, PDType1Font.HELVETICA, 12f);
-                    y -= 20; // Ajuster la hauteur de chaque ligne
                 }
             }
 
@@ -75,7 +69,6 @@ public class PDFGenerator {
             e.printStackTrace();
         }
     }
-
 
     private void drawTable(PDPageContentStream contentStream, float y, float tableWidth, float margin,
                            String[] content, float[] columnWidths, PDType1Font font, float fontSize) throws IOException {
@@ -92,7 +85,7 @@ public class PDFGenerator {
         for (int i = 0; i < content.length; i++) {
             float textWidth = font.getStringWidth(content[i]) * fontSize / 1000f;
             float cellWidth = columnWidths[i];
-            float textX = nextX + (cellWidth - textWidth) / 2; // Utilisation de nextX pour positionner le texte
+            float textX = nextX + (cellWidth - textWidth) / 2; // Centrer le texte
             contentStream.beginText();
             contentStream.newLineAtOffset(textX, textY);
             contentStream.showText(content[i]);
@@ -111,4 +104,17 @@ public class PDFGenerator {
         contentStream.stroke();
     }
 
+    private void drawRoundedRect(PDPageContentStream contentStream, float x, float y, float width, float height, float radius) throws IOException {
+        contentStream.moveTo(x + radius, y);
+        contentStream.lineTo(x + width - radius, y);
+        contentStream.curveTo(x + width - radius / 2, y, x + width, y + radius / 2, x + width, y + radius);
+        contentStream.lineTo(x + width, y + height - radius);
+        contentStream.curveTo(x + width, y + height - radius / 2, x + width - radius / 2, y + height, x + width - radius, y + height);
+        contentStream.lineTo(x + radius, y + height);
+        contentStream.curveTo(x + radius / 2, y + height, x, y + height - radius / 2, x, y + height - radius);
+        contentStream.lineTo(x, y + radius);
+        contentStream.curveTo(x, y + radius / 2, x + radius / 2, y, x + radius, y);
+        contentStream.closePath();
+        contentStream.stroke();
+    }
 }

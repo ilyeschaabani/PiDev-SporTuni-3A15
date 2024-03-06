@@ -1,7 +1,7 @@
 package org.example;
 
 
-import controllers.AjouterCompetitionController;
+import controllers.UserinterfaceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,9 +18,9 @@ public class MainFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AjouterCompetition.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/userinterface.fxml"));
         Parent root = fxmlLoader.load();
-        AjouterCompetitionController controller = fxmlLoader.getController();
+        UserinterfaceController controller = fxmlLoader.getController();
 
         Scene scene = new Scene(root, 800, 600); // Taille personnalisée de la scène
         stage.setTitle("competition");
