@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserinterfaceController">
+    <children>
+      <ImageView fitHeight="786.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@DashbordBackGround.png" />
+         </image>
+      </ImageView>
+        <TreeTableView fx:id="tvc1" layoutX="137.0" layoutY="122.0" prefHeight="353.0" prefWidth="746.0">
+            <columns>
+                <TreeTableColumn fx:id="id_comp" prefWidth="75.0" text="id_comp" />
+                <TreeTableColumn fx:id="NomCompetition" prefWidth="75.0" text="Nom_comp" />
+                <TreeTableColumn fx:id="Lieu" prefWidth="75.0" text="lieu" />
+                <TreeTableColumn fx:id="Datetvc" prefWidth="75.0" text="Date" />
+                <TreeTableColumn fx:id="Discipline" prefWidth="75.0" text="Discipline" />
+                <TreeTableColumn fx:id="IDsalle" prefWidth="75.0" text="id_salle" />
+            </columns>
+        </TreeTableView>
+    </children>
+</AnchorPane>

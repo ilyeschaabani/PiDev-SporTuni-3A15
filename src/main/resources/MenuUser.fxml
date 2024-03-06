@@ -17,7 +17,7 @@
          <font>
             <Font name="Montserrat SemiBold" size="15.0" />
          </font></Button>
-      <Button fx:id="btn_Competition" layoutX="499.0" layoutY="418.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Competitions" textFill="#f8f8f8">
+      <Button fx:id="btn_Competition" layoutX="499.0" layoutY="418.0" mnemonicParsing="false" onAction="#Competition" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Competitions" textFill="#f8f8f8">
          <font>
             <Font name="Montserrat SemiBold" size="15.0" />
          </font></Button>

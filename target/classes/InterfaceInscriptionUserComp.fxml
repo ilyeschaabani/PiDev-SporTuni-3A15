@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InscriptionUserConroller">
+    <children>
+        <TextField fx:id="nom" layoutX="221.0" layoutY="111.0"  />
+        <TextField fx:id="prenom" layoutX="221.0" layoutY="153.0"  />
+        <TextField fx:id="age" layoutX="221.0" layoutY="195.0"  />
+        <TextField fx:id="poids" layoutX="221.0" layoutY="237.0"  />
+        <TextField fx:id="num_tel" layoutX="221.0" layoutY="279.0"  />
+        <Button fx:id="ajouterphoto" layoutX="418.0" layoutY="69.0" mnemonicParsing="false" onAction="#addphoto" prefHeight="25.0" prefWidth="109.0"  text="selectphoto" />
+        <ImageView fx:id="image" fitHeight="97.0" fitWidth="127.0" layoutX="409.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="id_compErrorLabel" layoutX="221.0" layoutY="94.0" prefHeight="17.0" prefWidth="149.0"  />
+        <ComboBox fx:id="id_comp" layoutX="221.0" layoutY="69.0" prefWidth="150.0"  />
+        <Label fx:id="nomErrorLabel" layoutX="221.0" layoutY="136.0" prefHeight="17.0" prefWidth="149.0"  />
+        <Label fx:id="prenomErrorLabel" layoutX="221.0" layoutY="178.0" prefHeight="17.0" prefWidth="150.0"  />
+        <Label fx:id="ageErrorLabel" layoutX="221.0" layoutY="220.0" prefHeight="17.0" prefWidth="150.0"  />
+        <Label fx:id="poidsErrorLabel" layoutX="221.0" layoutY="262.0" prefHeight="17.0" prefWidth="150.0"  />
+        <Button fx:id="inscription" layoutX="418.0" layoutY="224.0" mnemonicParsing="false" onAction="#inscription" prefHeight="26.0" prefWidth="109.0"  text="inscription" />
+        <Label layoutX="77.0" layoutY="69.0" prefHeight="25.0" prefWidth="143.0" text="Select a Competition" />
+        <Label layoutX="93.0" layoutY="111.0" prefHeight="25.0" prefWidth="120.0" text="Family-Name  :" />
+        <Label layoutX="96.0" layoutY="195.0" prefHeight="25.0" prefWidth="40.0" text="Age :" />
+        <Label layoutX="97.0" layoutY="279.0" prefHeight="25.0" prefWidth="72.0" text="Num_Tel :" />
+        <Label layoutX="93.0" layoutY="153.0" prefHeight="25.0" prefWidth="150.0" text="Competitor-Name :" />
+        <Label layoutX="96.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" text="weight :" />
+        <Label fx:id="num_telErrorLabel" layoutX="221.0" layoutY="304.0" prefHeight="17.0" prefWidth="150.0" />
+        <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="54.0" text="Back" />
+    </children>
+</AnchorPane>
