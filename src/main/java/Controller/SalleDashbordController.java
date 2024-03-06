@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 import javafx.scene.chart.PieChart;
 
 public class SalleDashbordController {
-    service.SalleService ss=new service.SalleService();
+    SalleService ss=new service.SalleService();
     DispoService ds=new DispoService();
 
     @FXML

@@ -3,12 +3,14 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserDashbordController">
     <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
@@ -43,10 +45,48 @@
       <TextField fx:id="recherche_user" layoutX="474.0" layoutY="11.0" prefHeight="25.0" prefWidth="377.0" promptText="RECHERCHER" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;" />
       <Button fx:id="btn_Trie" layoutX="199.0" layoutY="8.0" mnemonicParsing="false" onAction="#Trie" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Trie Par Nom" textFill="WHITE" />
     </AnchorPane>
-   <Button fx:id="btn_goback" layoutX="27.0" layoutY="731.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
-   <AnchorPane layoutX="50.0" layoutY="403.0" prefHeight="337.0" prefWidth="524.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+   <Button fx:id="btn_goback" layoutX="28.0" layoutY="737.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
+   <AnchorPane layoutX="47.0" layoutY="400.0" prefHeight="337.0" prefWidth="524.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
       <children>
-         <PieChart fx:id="pi_chart_user" layoutX="12.0" layoutY="14.0" prefHeight="304.0" prefWidth="500.0" />
+         <PieChart fx:id="pi_chart_user" layoutX="12.0" layoutY="13.0" prefHeight="304.0" prefWidth="500.0" />
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="605.0" layoutY="403.0" prefHeight="168.0" prefWidth="654.0" style="-fx-background-color: e3061f; -fx-background-radius: 13;">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@sportive.png" />
+            </image>
+         </ImageView>
+         <Label layoutX="262.0" layoutY="29.0" prefHeight="38.0" prefWidth="325.0" text="Nombre Totale Des Adhérant" textFill="#f5f5f5">
+            <font>
+               <Font name="Montserrat ExtraBold" size="20.0" />
+            </font>
+         </Label>
+         <Label fx:id="lbltotale_coach" layoutX="379.0" layoutY="77.0" prefHeight="38.0" prefWidth="28.0" text="0" textFill="#f5f5f5">
+            <font>
+               <Font name="Montserrat ExtraBold" size="41.0" />
+            </font>
+         </Label>
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="605.0" layoutY="576.0" prefHeight="168.0" prefWidth="654.0" style="-fx-background-color: e3061f; -fx-background-radius: 13;">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@entraineur.png" />
+            </image>
+         </ImageView>
+         <Label layoutX="262.0" layoutY="29.0" prefHeight="38.0" prefWidth="290.0" text="Nombre Totale Des Coach " textFill="#f5f5f5">
+            <font>
+               <Font name="Montserrat ExtraBold" size="20.0" />
+            </font>
+         </Label>
+         <Label fx:id="lbltotale_adherant" layoutX="379.0" layoutY="77.0" prefHeight="38.0" prefWidth="28.0" text="0" textFill="#f5f5f5">
+            <font>
+               <Font name="Montserrat ExtraBold" size="41.0" />
+            </font>
+         </Label>
       </children>
    </AnchorPane>
 </AnchorPane>

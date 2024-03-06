@@ -170,4 +170,17 @@ public class UserService implements IService<User> {
             return false;
         }
     }
+    public int NbrDeSalleTotale() {
+        String req = "SELECT COUNT(id) AS total From user ";
+        try {
+            PreparedStatement ste = connexion.prepareStatement(req);
+            ResultSet rs = ste.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0; // Return 0 if there's an error or no salles
+    }
 }

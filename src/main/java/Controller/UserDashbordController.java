@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -89,6 +90,13 @@ public class UserDashbordController {
     private TextField recherche_user;
     @FXML
     private Button btn_Trie;
+    @FXML
+    private PieChart pi_chart_user;
+    @FXML
+    private Label lbltotale_adherant;
+
+    @FXML
+    private Label lbltotale_coach;
 
     private Connection cnx;
     User user = null ;
@@ -123,10 +131,15 @@ public class UserDashbordController {
     }
     @FXML
     public void initialize() {
+        int totalSalles = us.NbrDeSalleTotale();
         cmbRole_ajout.getItems().addAll("Coach", "adherant");
         cmbRole_ajout.setValue("Role");
+        ArrayList UserList2 = new ArrayList<>(us.readAll().stream().filter(s -> s.getRole().equals("Coach")).toList());
+        lbltotale_adherant.setText(String.valueOf(totalSalles));
+        lbltotale_coach.setText(String.valueOf(UserList2.size()));
         showRec();
         searchRec();
+        statPi();
     }
 
 
@@ -310,10 +323,10 @@ public class UserDashbordController {
 
     }
     public void statPi(){
-        ObservableList<Salle> observableList = FXCollections.observableList(ss.readAll());
+        ObservableList<User> observableList = FXCollections.observableList(us.readAll());
 
         List<String> disciplines = observableList.stream()
-                .map(Salle::getDiscipline)
+                .map(User::getRole)
                 .collect(Collectors.toList());
 
         // Count the occurrences of each discipline
@@ -328,7 +341,7 @@ public class UserDashbordController {
         });
 
         // Set PieChart data
-//        pi_chart.setData(pieChartData);
+     pi_chart_user.setData(pieChartData);
     }
 
 

@@ -103,6 +103,9 @@ public class User {
     public static void setCurrent_User(User Current_User) {
         User.Current_User = Current_User;
     }
+    public static User getCurentUser(){
+        return Current_User;
+    }
     @Override
     public String toString() {
         return "User{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", role=" + role + ", Numero=" + Numero + ", Adresse=" + Adresse + '}';
