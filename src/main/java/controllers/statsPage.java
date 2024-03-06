@@ -76,7 +76,7 @@ public class statsPage {
                     table.addCell(cell);
                 }
 
-                // Ajouter les données des visites médicales
+                
                 for (Evenement e : evenements) {
                     table.addCell(String.valueOf(e.getId_e()));
                     table.addCell(String.valueOf(e.getDescription()));
