@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Arrays;
-
 public class InscriptionComp {
 
     private int num_inscri;
@@ -9,14 +7,14 @@ public class InscriptionComp {
     private String prenom;
     private int age;
     private float poids;
-    private byte[] image;
+    private String image;
     private int num_tel;
     private int id_comp;
 
     public InscriptionComp() {
     }
 
-    public InscriptionComp(String nom, String prenom, int age, float poids, byte[] image, int num_tel, int id_comp) {
+    public InscriptionComp(String nom, String prenom, int age, float poids, String image, int num_tel, int id_comp) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
@@ -36,7 +34,7 @@ public class InscriptionComp {
         this.id_comp = id_comp;
     }
 
-    public InscriptionComp(int num_inscri, String nom, String prenom, int age, float poids, byte[] image, int num_tel, int id_comp) {
+    public InscriptionComp(int num_inscri, String nom, String prenom, int age, float poids, String image, int num_tel, int id_comp) {
         this.num_inscri = num_inscri;
         this.nom = nom;
         this.prenom = prenom;
@@ -64,7 +62,7 @@ public class InscriptionComp {
                 ", prenom='" + prenom + '\'' +
                 ", age=" + age +
                 ", poids=" + poids +
-                ", image=" + Arrays.toString(image) +
+                ", image=" + image +
                 ", num_tel=" + num_tel +
                 ", id_comp=" + id_comp +
                 '}';
@@ -110,11 +108,11 @@ public class InscriptionComp {
         this.poids = poids;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

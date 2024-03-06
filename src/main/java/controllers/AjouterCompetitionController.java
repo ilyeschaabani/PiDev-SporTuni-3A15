@@ -7,25 +7,42 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import service.CompetitionService;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class AjouterCompetitionController {
 
 
     CompetitionService cs = new CompetitionService();
+    @FXML
+    private WebView MapView;
+    @FXML
+    private ComboBox<Integer> id_comp_place;
 
     @FXML
     private AnchorPane mainAnchorPane;
@@ -35,6 +52,7 @@ public class AjouterCompetitionController {
     private TextField nom_comp;
     @FXML
     private TextField lieu;
+
     @FXML
     private TextField discipline;
     @FXML
@@ -52,6 +70,12 @@ public class AjouterCompetitionController {
     @FXML
     private Label idSalleErrorLabel;
 
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
 
     @FXML
     private TreeTableView<Competition> tvc;
@@ -130,7 +154,7 @@ public class AjouterCompetitionController {
         assert discipline != null : "fx:id=\"discipline\" was not injected: check your FXML file 'Ajouter.fxml'.";
         //initialisation des id des salles dispo
         loadSalleIds();
-
+        loadCompIds();
         // Appeler la méthode pour afficher les compétitions
         afficherCompetitions();
         //preparation des buttons
@@ -146,6 +170,7 @@ public class AjouterCompetitionController {
                 //onEditButtonClick(selectedCompetition);
             }
         });
+
 
     }
 
@@ -298,6 +323,11 @@ public class AjouterCompetitionController {
 
     // Méthode pour vérifier si une date est valide
     private boolean isValidDate(LocalDate date) {
+        // Vérifiez si la date n'est pas dans le futur
+        return !date.isBefore(LocalDate.now());
+    }
+
+    private boolean isValidDate1(LocalDate date) {
         // Vérifiez si la date n'est pas dans le futur
         return !date.isAfter(LocalDate.now());
     }
@@ -461,7 +491,7 @@ public class AjouterCompetitionController {
     public void pdf(ActionEvent actionEvent) throws IOException {
         // Récupérer les compétitions triées par date
         List<Competition> competitions = cs.readAllSortedByDate();
-        System.out.println("dinaaaa");
+
         // Vérifier si la liste de compétitions est nulle ou vide
         if (competitions == null || competitions.isEmpty()) {
             System.out.println("La liste des compétitions est vide ou nulle.");
@@ -470,7 +500,111 @@ public class AjouterCompetitionController {
 
         // Générer le PDF
         PDFGenerator pdfGenerator = new PDFGenerator();
-        pdfGenerator.generatePDF("competitions.pdf", competitions);
-        //System.out.println("dinaaaa");
+        String pdfFilePath = "competitions.pdf";
+        pdfGenerator.generatePDF(pdfFilePath, competitions);
+
+        // Ouvrir le PDF généré
+        try {
+            Desktop.getDesktop().open(new File(pdfFilePath));
+        } catch (IOException e) {
+            System.out.println("Erreur lors de l'ouverture du fichier PDF: " + e.getMessage());
+        }
+    }
+
+    public List<Competition> getThreeClosestCompetitions(List<Competition> competitions) {
+        LocalDate currentDate = LocalDate.now();
+        List<Competition> closestCompetitions = competitions.stream()
+                .filter(competition -> {
+                    LocalDate competitionDate = toLocalDate(competition.getDate());
+                    return competitionDate.isAfter(currentDate) && competitionDate.isBefore(currentDate.plusDays(30));
+                })
+                .sorted(Comparator.comparing(Competition::getDate))
+                .limit(3)
+                .collect(Collectors.toList());
+
+        return closestCompetitions;
+    }
+
+    public LocalDate toLocalDate(java.sql.Date date) {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(date.getTime()), ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public void displayCompetitions(List<Competition> competitions, int numDays, Label label1, Label label2, Label label3) {
+        List<Competition> closestCompetitions = getThreeClosestCompetitions(competitions);
+        System.out.println(closestCompetitions.size());
+        if (closestCompetitions.isEmpty()) {
+            label1.setText("Aucune compétition dans ce délai.");
+            label2.setText("");
+            label3.setText("");
+        } else if (closestCompetitions.size() == 1) {
+            Competition competition = closestCompetitions.get(0);
+            label1.setText("--->" + competition.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition.getDate())) + " jours dans la salle :" + competition.getId_salle());
+            label2.setText("");
+            label3.setText("");
+        } else if (closestCompetitions.size() == 2) {
+            Competition competition1 = closestCompetitions.get(0);
+            Competition competition2 = closestCompetitions.get(1);
+            label1.setText("--->" + competition1.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition1.getDate())) + " jours dans la salle :" + competition1.getId_salle());
+            label2.setText("--->" + competition2.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition2.getDate())) + " jours dans la salle :" + competition2.getId_salle());
+            label3.setText("");
+        } else {
+            Competition competition1 = closestCompetitions.get(0);
+            Competition competition2 = closestCompetitions.get(1);
+            Competition competition3 = closestCompetitions.get(2);
+            label1.setText("--->" + competition1.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition1.getDate())) + " jours dans la salle :" + competition1.getId_salle());
+            label2.setText("--->" + competition2.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition2.getDate())) + " jours dans la salle :" + competition2.getId_salle());
+            label3.setText("--->" + competition3.getNom_comp() + " - Début dans " + ChronoUnit.DAYS.between(LocalDate.now(), toLocalDate(competition3.getDate())) + " jours dans la salle :" + competition3.getId_salle());
+        }
+    }
+
+    public void cmp(ActionEvent actionEvent) {
+        int numDays = 30; // Nombre de jours
+        List<Competition> competitions = cs.readAllSortedByDate();
+        List<Competition> closestCompetitions = getThreeClosestCompetitions(competitions);
+        System.out.println(closestCompetitions.size());
+        displayCompetitions(closestCompetitions, numDays, label1, label2, label3);
+    }
+
+
+    public void map(ActionEvent actionEvent) {
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Map.fxml"));
+            nom_comp.getScene().setRoot(root);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //--------------------Mappp------------------------------------
+
+    @FXML
+    private void loadCompIds() {
+        // Récupérez les ID de salle depuis la base de données
+        List<Integer> competitionIds = cs.getAvailableCOMPETITIONIdsFromDatabase();
+        // Ajoutez les ID de salle au ComboBox
+        id_comp_place.getItems().addAll(competitionIds);
+    }
+
+    @FXML
+    public void Map(ActionEvent actionEvent) {
+        int id = id_comp_place.getValue();
+        Competition comp = cs.readById(id);
+        openGoogleMaps(comp.getLieu_comp());
+    }
+
+    private void openGoogleMaps(String address) {
+        if (!address.isEmpty()) {
+            try {
+                String addressEncoded = java.net.URLEncoder.encode(address, StandardCharsets.UTF_8);
+                String url = "https://www.google.com/maps/search/?api=1&query=" + addressEncoded;
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("L'adresse de la compétition est vide.");
+        }
     }
 }

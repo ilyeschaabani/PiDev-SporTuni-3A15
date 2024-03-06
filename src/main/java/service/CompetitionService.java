@@ -138,6 +138,21 @@ public class CompetitionService implements IService<Competition> {
         return availableIds;
     }
 
+
+    // Méthode pour récupérer les ID de salle disponibles depuis la base de données
+    public List<Integer> getAvailableCOMPETITIONIdsFromDatabase() {
+        List<Integer> availableIds = new ArrayList<>();
+        String query = "SELECT id_comp FROM competition";
+        try (PreparedStatement pst = conn.prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                availableIds.add(rs.getInt("id_comp"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la récupération des ID de salle depuis la base de données", e);
+        }
+        return availableIds;
+    }
 }
 
 

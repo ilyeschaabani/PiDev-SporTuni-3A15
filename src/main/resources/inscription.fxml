@@ -9,15 +9,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0" prefWidth="797.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InscriptionCompController">
+<AnchorPane prefHeight="650.0" prefWidth="1065.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InscriptionCompController">
     <children>
         <TextField fx:id="nom" layoutX="211.0" layoutY="101.0" stylesheets="@codeCss.css" />
         <TextField fx:id="prenom" layoutX="211.0" layoutY="143.0" stylesheets="@codeCss.css" />
         <TextField fx:id="age" layoutX="211.0" layoutY="185.0" stylesheets="@codeCss.css" />
         <TextField fx:id="poids" layoutX="211.0" layoutY="227.0" stylesheets="@codeCss.css" />
         <TextField fx:id="num_tel" layoutX="211.0" layoutY="269.0" stylesheets="@codeCss.css" />
-      <Button fx:id="ajouterphoto" layoutX="408.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" stylesheets="@codeCss.css" text="selectphoto" />
-      <ImageView fitHeight="97.0" fitWidth="127.0" layoutX="399.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="ajouterphoto" layoutX="408.0" layoutY="59.0" mnemonicParsing="false" onAction="#addphoto" prefHeight="25.0" prefWidth="109.0" stylesheets="@codeCss.css" text="selectphoto" />
+      <ImageView fx:id="image" fitHeight="97.0" fitWidth="127.0" layoutX="399.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="id_compErrorLabel" layoutX="211.0" layoutY="84.0" prefHeight="17.0" prefWidth="149.0" stylesheets="@codeCss.css" />
       <ComboBox fx:id="id_comp" layoutX="211.0" layoutY="59.0" prefWidth="150.0" stylesheets="@codeCss.css" />
       <Label fx:id="nomErrorLabel" layoutX="211.0" layoutY="126.0" prefHeight="17.0" prefWidth="149.0" stylesheets="@codeCss.css" />
@@ -35,7 +35,7 @@
       <Label layoutX="83.0" layoutY="143.0" prefHeight="25.0" prefWidth="150.0" text="Competitor-Name :" />
       <Label layoutX="86.0" layoutY="227.0" prefHeight="25.0" prefWidth="96.0" text="weight :" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="54.0" text="Back" />
-      <TreeTableView fx:id="tvc1" editable="true" layoutX="33.0" layoutY="329.0" prefHeight="233.0" prefWidth="742.0">
+      <TreeTableView fx:id="tvc1" editable="true" layoutX="33.0" layoutY="329.0" prefHeight="233.0" prefWidth="917.0">
         <columns>
           <TreeTableColumn fx:id="ID_inscri" prefWidth="75.0" text="ID_inscri" />
           <TreeTableColumn fx:id="NOM" prefWidth="75.0" text="NOM" />
@@ -47,8 +47,8 @@
             <TreeTableColumn fx:id="ID_COMP" prefWidth="75.0" text="ID_COMP" />
         </columns>
       </TreeTableView>
-      <Label layoutX="236.0" layoutY="589.0" prefHeight="34.0" prefWidth="72.0" text="id_comp:" />
-      <TextField fx:id="id_comp_chercher" layoutX="308.0" layoutY="594.0" />
-      <Button layoutX="474.0" layoutY="594.0" mnemonicParsing="false" onAction="#envoyerSMSAuxAdherents" text="SMS" />
+      <Label layoutX="578.0" layoutY="90.0" prefHeight="34.0" prefWidth="72.0" text="id_comp:" />
+      <TextField fx:id="id_comp_chercher" layoutX="578.0" layoutY="114.0" />
+      <Button layoutX="627.0" layoutY="150.0" mnemonicParsing="false" onAction="#envoyerSMSAuxAdherents" text="SMS" />
     </children>
 </AnchorPane>

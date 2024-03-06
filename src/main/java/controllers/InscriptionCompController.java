@@ -11,19 +11,27 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import service.InscriptionCompService;
 
 import javax.print.DocFlavor;
+import java.io.File;
 import java.util.List;
 
 
 public class InscriptionCompController {
 
-    InscriptionCompService ics = new InscriptionCompService();
 
+    @FXML
+    public ImageView image;
+    InscriptionCompService ics = new InscriptionCompService();
+    private String selectedImagePath; // Ajouter cette variable globale
+    private Image selectedImage;
     @FXML
     private TextField age;
     @FXML
@@ -103,7 +111,6 @@ public class InscriptionCompController {
 
     }
 
-
     public void Back(ActionEvent actionEvent) {
 
         try {
@@ -115,7 +122,6 @@ public class InscriptionCompController {
             System.out.println(e.getMessage());
         }
     }
-
 
     public void inscription(ActionEvent actionEvent) {
 
@@ -130,7 +136,7 @@ public class InscriptionCompController {
 
 
         // Créez une nouvelle instance d'inscription de compétiteur avec les données fournies
-        InscriptionComp inscriptionComp = new InscriptionComp(nom.getText(), prenom.getText(), Integer.parseInt(age.getText()), Float.parseFloat(poids.getText()), Integer.parseInt(num_tel.getText()), idComp);
+        InscriptionComp inscriptionComp = new InscriptionComp(nom.getText(), prenom.getText(), Integer.parseInt(age.getText()), Float.parseFloat(poids.getText()), selectedImagePath, Integer.parseInt(num_tel.getText()), idComp);
         if (setupValidationtype() == 0) {
             // Ajoutez l'inscription de compétiteur à la base de données
             ics.add(inscriptionComp);
@@ -164,7 +170,6 @@ public class InscriptionCompController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
     @FXML
     private void loadCompIds() {
@@ -234,7 +239,6 @@ public class InscriptionCompController {
             num_telErrorLabel.setTextFill(Color.GREEN);
         }
     }
-
 
     public int setupValidationtype() {
         int error = 0;
@@ -321,7 +325,6 @@ public class InscriptionCompController {
         errorLabel.setTextFill(Color.GREEN);
     }
 
-
     public void afficherINSCompetitions() {
         try {
             ObservableList<InscriptionComp> observableList = FXCollections.observableList(ics.readAll());
@@ -351,13 +354,14 @@ public class InscriptionCompController {
         }
     }
 
-
     public Void onDeleteButtonClick(InscriptionComp item) {
         ics.delete(item.getNum_inscri());
         System.out.println("Supprimer: " + item);
         afficherINSCompetitions();
         return null;
     }
+
+// -------------partie SMS-----------------
 
     private void initializetreetableviewbutton() {
 
@@ -369,7 +373,6 @@ public class InscriptionCompController {
 
 
     }
-
 
     public void activation_des_cellules1(InscriptionComp item) {
         // Activer l'édition des cellules dans chaque colonne
@@ -405,7 +408,6 @@ public class InscriptionCompController {
 
     }
 
-
     private Void onEditButtonClick(InscriptionComp inscriptionComp) {
         TreeItem<InscriptionComp> selectedTreeItem = tvc1.getSelectionModel().getSelectedItem();
         if (selectedTreeItem != null) {
@@ -423,8 +425,6 @@ public class InscriptionCompController {
         }
         return null;
     }
-
-// -------------partie SMS-----------------
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -479,5 +479,24 @@ public class InscriptionCompController {
         }
     }
 
+    public void addphoto(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        // Filtres pour n'afficher que les fichiers image
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif");
+        fileChooser.getExtensionFilters().add(extFilter);
 
+        // Afficher la boîte de dialogue de sélection de fichier
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            // Stocker le chemin d'accès à l'image sélectionnée
+            selectedImagePath = selectedFile.getAbsolutePath();
+
+            // Créer une image à partir du fichier sélectionné
+            selectedImage = new Image(selectedFile.toURI().toString());
+
+            // Afficher l'image dans l'ImageView
+            image.setImage(selectedImage);
+        }
+    }
 }

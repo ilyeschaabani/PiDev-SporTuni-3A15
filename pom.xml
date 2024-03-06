@@ -59,6 +59,11 @@
             <version>2.0.24</version> <!-- Mettez la version la plus récente ici -->
         </dependency>
 
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>17.0.6</version>
+        </dependency>
     </dependencies>
 
     <repositories>

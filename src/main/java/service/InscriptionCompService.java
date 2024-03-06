@@ -71,7 +71,7 @@ public class InscriptionCompService implements IService<InscriptionComp> {
             ste = conn.createStatement();
             ResultSet rs = ste.executeQuery(requete);
             while (rs.next()) {
-                list.add(new InscriptionComp(rs.getInt("num_inscri"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"), rs.getFloat("poids"), rs.getInt("num_tel"), rs.getInt("id_comp")));
+                list.add(new InscriptionComp(rs.getInt("num_inscri"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"), rs.getFloat("poids"), rs.getString("image"), rs.getInt("num_tel"), rs.getInt("id_comp")));
             }
             //pst.close();
 

@@ -6,11 +6,11 @@ import com.twilio.type.PhoneNumber;
 
 public class TwilioSMS {
     // Vos identifiants Twilio
-    public static final String ACCOUNT_SID = "AC574392676b63c4d4620286e3be390f0f";
-    public static final String AUTH_TOKEN = "53aac127880b827b415f161e5f2e974f";
+    public static final String ACCOUNT_SID = "AC9e058d7c39ea1735e2a5e869b18e2a19";
+    public static final String AUTH_TOKEN = "d277ba755587490a74bdc265800fd7e9";
 
     // Le numéro de téléphone Twilio
-    public static final String TWILIO_NUMBER = "+12602354019";
+    public static final String TWILIO_NUMBER = "+17178644509";
 
     // Méthode pour envoyer un SMS
     public static void sendSMS(String toPhoneNumber, String message) {

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="642.0" prefWidth="739.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCompetitionController">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="719.0" prefWidth="813.0" stylesheets="@codeCss.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCompetitionController">
     <children>
         <TextField fx:id="nom_comp" layoutX="158.0" layoutY="66.0" prefHeight="25.0" prefWidth="179.0" promptText="nom" stylesheets="@codeCss.css" />
         <TextField fx:id="lieu" layoutX="158.0" layoutY="95.0" prefHeight="25.0" prefWidth="179.0" promptText="lieu" stylesheets="@codeCss.css" />
@@ -24,13 +24,13 @@
 
         <Button layoutX="205.0" layoutY="223.0" mnemonicParsing="false" onAction="#AddComp" prefHeight="25.0" prefWidth="80.0" stylesheets="@codeCss.css" text="Add" />
         <ComboBox fx:id="id_salle" layoutX="158.0" layoutY="188.0" onAction="#loadSalleIds" prefHeight="25.0" prefWidth="179.0" stylesheets="@codeCss.css" />
-        <Label fx:id="titre" layoutX="74.0" layoutY="14.0" prefHeight="37.0" prefWidth="271.0" stylesheets="@codeCss.css" text="                      Gestion Competition" />
+        <Label fx:id="titre" layoutX="167.0" layoutY="14.0" prefHeight="43.0" prefWidth="272.0" stylesheets="@codeCss.css" text="                      Gestion Competition" />
         <Label fx:id="nomCompErrorLabel" layoutX="348.0" layoutY="70.0" prefHeight="17.0" prefWidth="165.0" />
         <Label fx:id="lieuErrorLabel" layoutX="349.0" layoutY="99.0" prefHeight="17.0" prefWidth="179.0" />
         <Label fx:id="dateErrorLabel" layoutX="349.0" layoutY="128.0" prefHeight="17.0" prefWidth="165.0" />
         <Label fx:id="disciplineErrorLabel" layoutX="349.0" layoutY="162.0" prefHeight="17.0" prefWidth="174.0" />
         <Label fx:id="idSalleErrorLabel" layoutX="349.0" layoutY="192.0" prefHeight="17.0" prefWidth="179.0" />
-        <TreeTableView fx:id="tvc" editable="true" layoutX="74.0" layoutY="256.0" prefHeight="300.0" prefWidth="620.0" stylesheets="@codeCss.css">
+        <TreeTableView fx:id="tvc" editable="true" layoutX="38.0" layoutY="346.0" prefHeight="300.0" prefWidth="620.0" stylesheets="@codeCss.css">
 
             <columns>
                 <TreeTableColumn fx:id="id_comp" prefWidth="75.0" text="id_comp" />
@@ -41,8 +41,15 @@
                 <TreeTableColumn fx:id="IDsalle" prefWidth="75.0" text="id_salle" />
             </columns>
         </TreeTableView>
-      <Button layoutX="225.0" layoutY="576.0" mnemonicParsing="false" onAction="#AddCompetitors" text="Add Competitors to a Competition" />
-      <Button layoutX="563.0" layoutY="223.0" mnemonicParsing="false" onAction="#sort" text="Sort by date" />
-      <Button layoutX="563.0" layoutY="188.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="101.0" text="PDF" />
+      <Button layoutX="513.0" layoutY="115.0" mnemonicParsing="false" onAction="#AddCompetitors" text="Add Competitors to a Competition" />
+      <Button layoutX="587.0" layoutY="210.0" mnemonicParsing="false" onAction="#sort" text="Sort by date" />
+      <Button layoutX="587.0" layoutY="179.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="101.0" text="PDF" />
+      <Label fx:id="label1" layoutX="59.0" layoutY="249.0" prefHeight="33.0" prefWidth="578.0" />
+      <Label fx:id="label2" layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="578.0" />
+      <Label fx:id="label3" layoutX="59.0" layoutY="307.0" prefHeight="26.0" prefWidth="584.0" />
+      <Button layoutX="512.0" layoutY="149.0" mnemonicParsing="false" onAction="#cmp" text="Les compétitions les plus proches" />
+      <Button layoutX="688.0" layoutY="83.0" mnemonicParsing="false" onAction="#Map" text="Map" />
+      <Label layoutX="505.0" layoutY="62.0" text="-----&gt;Voir lieu de une compétition&lt;------" />
+      <ComboBox fx:id="id_comp_place" layoutX="528.0" layoutY="82.0" onAction="#loadCompIds" prefWidth="150.0" />
     </children>
 </AnchorPane>

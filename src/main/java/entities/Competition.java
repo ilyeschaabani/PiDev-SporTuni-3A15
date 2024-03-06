@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Competition {
 
-    private int id_comp ;
-    private  String nom_comp;
-    private  String lieu_comp;
-    private Date date ;
-    private  String discipline;
-    private  int id_salle;
+    private int id_comp;
+    private String nom_comp;
+    private String lieu_comp;
+    private Date date;
+    private String discipline;
+    private int id_salle;
 
     public Competition() {
     }
