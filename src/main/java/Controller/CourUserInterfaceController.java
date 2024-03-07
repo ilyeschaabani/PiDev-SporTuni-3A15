@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -74,6 +75,21 @@ public class CourUserInterfaceController {
     private List<Cour> coursInscrits = new ArrayList<>();
 
     private Connection conn;
+    @FXML
+    void Return(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/MenuUser.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
     @FXML
     void initialize() {
