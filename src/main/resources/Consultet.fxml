@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,6 +29,7 @@
         </Label>
         <Rating fx:id="rating" layoutX="284.0" layoutY="80.0" />
         <TextField fx:id="ratingID" layoutX="532.0" layoutY="83.0" prefHeight="26.0" prefWidth="97.0" />
+      <Button fx:id="cht" layoutX="279.0" layoutY="125.0" mnemonicParsing="false" onAction="#chatbot" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="ASK OUR CHAT" textFill="WHITE" />
 
 
     </children>

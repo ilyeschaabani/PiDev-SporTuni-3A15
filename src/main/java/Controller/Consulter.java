@@ -1,15 +1,24 @@
-package controller;
+package Controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.Rating;
 import Service.SalleService;
 import Entity.Salle;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,6 +31,8 @@ public class Consulter {
 
     @FXML
     private Label event_date;
+    @FXML
+    private Button cht;
 
     @FXML
     private Label event_place;
@@ -74,6 +85,7 @@ public class Consulter {
         });
 
     }
+
     private void updateRatingInDatabase(double newRating) {
         // Check if there is a valid Salle and ratingID is not empty
         if (currentSalle != null && !ratingID.getText().isEmpty()) {
@@ -114,6 +126,23 @@ public class Consulter {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    @FXML
+    void chatbot(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChatBot.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("ChatBot");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
     }
 }

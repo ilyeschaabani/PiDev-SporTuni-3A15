@@ -19,7 +19,7 @@
          <Font name="Montserrat SemiBold" size="15.0" />
       </font>
    </Button>
-   <Button fx:id="btn_gevenement" layoutX="499.0" layoutY="428.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Evénement" textFill="#f8f8f8">
+   <Button fx:id="btn_gevenement" layoutX="499.0" layoutY="428.0" mnemonicParsing="false" onAction="#GEVENEMNT" prefHeight="45.0" prefWidth="317.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Gestion Evénement" textFill="#f8f8f8">
       <font>
          <Font name="Montserrat SemiBold" size="15.0" />
       </font>

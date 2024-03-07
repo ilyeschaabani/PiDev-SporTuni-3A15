@@ -17,8 +17,8 @@ public class MailUtil {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myAccountEmail = "Ibtihelab9@gmail.com";
-        String password = "Esprit12345";
+        String myAccountEmail = "waves.esprit@gmail.com";
+        String password = "tgao tbqg wudl aluo";
 
         Session session = Session.getInstance(properties, new Authenticator() {
 

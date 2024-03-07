@@ -10,7 +10,6 @@ Utiils\SessionManager.class
 Entity\Discipline.class
 service\Gservice.class
 service\InscriptionCompService.class
-controllers\TwilioSMS.class
 Controller\ButtonCellFactoryUser$1.class
 Controller\ProduitDashbordController.class
 Entity\User.class
@@ -37,10 +36,12 @@ Controller\MenuController.class
 Controller\CourUserInterfaceController$1.class
 Entity\MailUtil$1.class
 Utiils\DataSource.class
+Controller\TwilioSMS.class
 org\example\Main.class
 Controller\LoginController$1.class
 service\ReservationService.class
 Controller\EventsListController.class
+Entity\ChatBot.class
 service\IService.class
 Controller\DisciplineDashbordController.class
 service\ICourService.class
@@ -68,4 +69,5 @@ service\SalleService.class
 Controller\CourUserInterfaceController.class
 Controller\ModifierPageController.class
 Controller\OneEventCardController.class
+Controller\ChatBotController.class
 service\ICompetitonService.class

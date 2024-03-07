@@ -28,7 +28,7 @@ public class ListSallesController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Consultet.fxml"));
                 AnchorPane eventCell = fxmlLoader.load();
 
-                controller.Consulter controller = fxmlLoader.getController();
+                Controller.Consulter controller = fxmlLoader.getController();
                 controller.setEventData(salle);
 
                 // Add the cell to the container.

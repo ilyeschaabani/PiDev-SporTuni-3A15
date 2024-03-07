@@ -21,8 +21,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ProduitDashbordController {
+    private ServiceProduct productService = new ServiceProduct();
+    @FXML
+    private Label lblTotalProductValue;
 
     @FXML
     private Button btnadd1;
@@ -48,8 +53,10 @@ public class ProduitDashbordController {
     @FXML
     private Label lbltotale;
 
+
     @FXML
-    private PieChart pi_chart;
+    private PieChart pi_chart_Product;
+
 
     @FXML
     private TextField searchField;
@@ -69,6 +76,8 @@ public class ProduitDashbordController {
     @FXML
     private void initialize() {
         try {
+            statPi();
+            afficherNombreTotalProduct();
             ObservableList<Product> observableList = FXCollections.observableList(ss.readAll());
             tvProduct.setItems(observableList);
             clnom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -232,6 +241,24 @@ public class ProduitDashbordController {
             showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
 
+    }
+    public void statPi() {
+        ObservableList<Product> productList = FXCollections.observableList(productService.readAll());
+
+        Map<String, Long> categoryCounts = productList.stream()
+                .collect(Collectors.groupingBy(Product::getCategory, Collectors.counting()));
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        categoryCounts.forEach((category, count) -> {
+            PieChart.Data data = new PieChart.Data(category, count);
+            pieChartData.add(data);
+        });
+
+        pi_chart_Product.setData(pieChartData);
+    }
+    public void afficherNombreTotalProduct() {
+        int totalProducts = productService.getNombreTotalProduct();
+        lblTotalProductValue.setText(Integer.toString(totalProducts));
     }
 
 }

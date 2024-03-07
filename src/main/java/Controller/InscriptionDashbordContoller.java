@@ -464,7 +464,7 @@ public class InscriptionDashbordContoller {
                     String message = "Bonjour " + prenom + ", ceci est un message pour la compétition " + id_comp1 + ".";
 
                     // Envoyer le SMS
-                    controllers.TwilioSMS.sendSMS(numeroTunisienFormatte, message);
+                    Controller.TwilioSMS.sendSMS(numeroTunisienFormatte, message);
                 }
             }
 
