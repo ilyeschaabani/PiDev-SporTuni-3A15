@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -131,18 +132,15 @@ public class Consulter {
 
     @FXML
     void chatbot(ActionEvent event) {
+        Parent root = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChatBot.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("ChatBot");
-            stage.setScene(new Scene(root1));
+            root = FXMLLoader.load(getClass().getResource("/ChatBot.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
-
+            throw new RuntimeException(e);
         }
     }
 }

@@ -15,7 +15,10 @@
             <Image url="@MenuBG2.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="65.0" layoutY="35.0" prefHeight="372.0" prefWidth="578.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;" />
+      <AnchorPane layoutX="65.0" layoutY="35.0" prefHeight="372.0" prefWidth="578.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+         <children>
+            <Button fx:id="btn_goback" layoutX="498.0" layoutY="333.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
+         </children></AnchorPane>
         <TextField fx:id="nom" layoutX="221.0" layoutY="111.0" />
         <TextField fx:id="prenom" layoutX="221.0" layoutY="153.0" />
         <TextField fx:id="age" layoutX="221.0" layoutY="195.0" />
@@ -37,6 +40,5 @@
         <Label layoutX="93.0" layoutY="153.0" prefHeight="25.0" prefWidth="150.0" text="Competitor-Name :" />
         <Label layoutX="96.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" text="weight :" />
         <Label fx:id="num_telErrorLabel" layoutX="221.0" layoutY="304.0" prefHeight="17.0" prefWidth="150.0" />
-        <Button layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="54.0" text="Back" />
     </children>
 </AnchorPane>

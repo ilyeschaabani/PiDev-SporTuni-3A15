@@ -24,4 +24,5 @@
         <font>
             <Font name="Montserrat ExtraBold" size="12.0" />
         </font></Button>
+   <Button fx:id="btn_goback" layoutX="23.0" layoutY="747.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
 </AnchorPane>

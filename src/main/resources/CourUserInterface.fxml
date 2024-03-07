@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CourUserInterfaceController">
    <children>
@@ -33,6 +33,7 @@
                   </TableColumn>
                </columns>
             </TableView>
+            <Button fx:id="btn_goback" layoutX="11.0" layoutY="505.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

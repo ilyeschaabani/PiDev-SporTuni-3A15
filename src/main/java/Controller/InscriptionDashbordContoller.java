@@ -497,4 +497,5 @@ public class InscriptionDashbordContoller {
             image.setImage(selectedImage);
         }
     }
+
 }

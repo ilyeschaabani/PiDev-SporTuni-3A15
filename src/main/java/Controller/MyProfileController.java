@@ -4,11 +4,18 @@ import Entity.User;
 import Service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import Utiils.SessionManager;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MyProfileController {
     @FXML
@@ -40,6 +47,20 @@ public class MyProfileController {
         cmbRole_modif.getItems().addAll("Coach", "adherant");
         cmbRole_modif.setValue("Role");
         setText(User.getCurentUser());
+    }
+    @FXML
+    void Return(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/MenuUser.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="484.0" prefWidth="368.0" style="-fx-background-color: #e3061f; -fx-background-radius: 13;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ModifierPageController">
+<AnchorPane prefHeight="484.0" prefWidth="368.0" style="-fx-background-color: #e3061f; -fx-background-radius: 13;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MyProfileController">
     <children>
         <AnchorPane layoutX="14.0" layoutY="18.0" prefHeight="457.0" prefWidth="347.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
             <children>   <TextField fx:id="tfnom_modif" layoutX="38.0" layoutY="75.0" prefHeight="40.0" prefWidth="250.0" promptText="nom" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
@@ -14,8 +14,9 @@
                 <TextField fx:id="tfadress_modif" layoutX="38.0" layoutY="229.0" prefHeight="40.0" prefWidth="250.0" promptText="adress" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
                 <TextField fx:id="tfemail_modif" layoutX="39.0" layoutY="285.0" prefHeight="40.0" prefWidth="250.0" promptText="email" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
                 <ComboBox fx:id="cmbRole_modif" layoutX="38.0" layoutY="343.0" prefHeight="40.0" prefWidth="250.0" promptText="Role" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
-                <Button fx:id="btn_modif" layoutX="125.0" layoutY="403.0" mnemonicParsing="false" onAction="#modifier" prefHeight="40.0" prefWidth="77.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Modifier" textFill="WHITE" />
+                <Button fx:id="btn_modif" layoutX="191.0" layoutY="403.0" mnemonicParsing="false" onAction="#modifier" prefHeight="40.0" prefWidth="77.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Modifier" textFill="WHITE" />
                 <TextField fx:id="tfid_modif" layoutX="38.0" layoutY="23.0" prefHeight="40.0" prefWidth="250.0" promptText="ID" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <Button fx:id="btn_goback" layoutX="48.0" layoutY="410.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
             </children></AnchorPane>
     </children>
 </AnchorPane>

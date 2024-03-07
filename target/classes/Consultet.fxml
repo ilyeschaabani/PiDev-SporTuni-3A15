@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane fx:id="events_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="853.0" style="-fx-background-color: fefef9;" stylesheets="@CSS/apii.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Consulter">
+<AnchorPane fx:id="events_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="853.0" style="-fx-background-color: fefef9;"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Consulter">
     <children>
         <Label fx:id="event_name" layoutX="19.0" layoutY="21.0" prefHeight="38.0" prefWidth="610.0" text="Collecte de Dons pour les Fournitures  Médicales d'Urgence" textFill="#e73434">
             <font>

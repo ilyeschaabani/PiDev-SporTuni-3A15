@@ -582,6 +582,20 @@ public class CompetitionDashbordContoller {
         System.out.println(closestCompetitions.size());
         displayCompetitions(closestCompetitions, numDays, label1, label2, label3);
     }
+    @FXML
+    void Back (ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/Menu.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 
     public void map(ActionEvent actionEvent) {
