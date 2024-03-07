@@ -13,7 +13,7 @@ public class ServiceProduct implements IProductService<Product> {
     private Connection connection;
 
     public ServiceProduct() {
-        connection = utils.DataSource.getInstance().getCnx();
+        connection = Utiils.DataSource.getInstance().getCnx();
     }
     public void update(Product product) {
         String req = "UPDATE produit SET nom=?, prix=?, Category=? WHERE id_Product=?";

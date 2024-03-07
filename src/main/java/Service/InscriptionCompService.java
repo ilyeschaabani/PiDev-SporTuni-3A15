@@ -2,7 +2,7 @@ package Service;
 
 import Service.ICompetitonService;
 import Entity.InscriptionComp;
-import utils.DataSource;
+import Utiils.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;

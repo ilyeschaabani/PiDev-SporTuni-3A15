@@ -1,7 +1,7 @@
-package service;
+package Service;
 
 import Entity.Dispo;
-import utils.DataSource;
+import Utiils.DataSource;
 import Entity.Salle;
 
 import java.sql.*;
@@ -88,6 +88,27 @@ public class SalleService implements service.ISalleService<Salle> {
             throw new RuntimeException(e);
         }
         return list;
+    }
+    public Salle findbynom_salle(String nomSalle) {
+        String requete = "SELECT * FROM salle WHERE nom = ?";
+        Salle salle = null;
+        try {
+            PreparedStatement ps = connexion.prepareStatement(requete);
+            ps.setString(1, nomSalle);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                salle = new Salle(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getInt("surface"),
+                        rs.getInt("capacite"),
+                        rs.getString("discipline")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return salle;
     }
 
     @Override

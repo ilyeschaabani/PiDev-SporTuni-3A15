@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EvenementDashbordController">
+    <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@DashbordBackGround.png" />
+    </ImageView>
+    <AnchorPane layoutX="49.0" layoutY="29.0" prefHeight="360.0" prefWidth="297.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+        <Button fx:id="btn_ajout" layoutX="30.0" layoutY="322.0" mnemonicParsing="false" onAction="#AjouterEvenement" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="AJOUTER" textFill="WHITE" />
+      <TextField fx:id="nom_e" layoutX="29.0" layoutY="11.0" prefHeight="33.0" prefWidth="215.0" promptText="Nom de l'événement" />
+      <ComboBox fx:id="nom_salle" layoutX="29.0" layoutY="52.0" prefHeight="33.0" prefWidth="215.0" promptText="Sélectionner une salle" />
+      <DatePicker fx:id="dateDebut" layoutX="31.0" layoutY="96.0" prefHeight="33.0" prefWidth="215.0" promptText="Date de début" />
+      <TextField fx:id="nom_discipline" layoutX="31.0" layoutY="140.0" prefHeight="33.0" prefWidth="215.0" promptText="Nom de la discipline" />
+      <DatePicker fx:id="dateFin" layoutX="35.0" layoutY="263.0" prefHeight="33.0" prefWidth="215.0" promptText="Date de fin" />
+      <TextField fx:id="nbr_max" layoutX="34.0" layoutY="222.0" prefHeight="33.0" prefWidth="215.0" promptText="Nombre maximum de participants" />
+      <TextField fx:id="description" layoutX="33.0" layoutY="180.0" prefHeight="33.0" prefWidth="215.0" promptText="Description" />
+    </AnchorPane>
+    <AnchorPane layoutX="372.0" layoutY="82.0" prefHeight="300.0" prefWidth="908.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+      <children>
+         <TableView fx:id="tv_evenements" layoutX="115.0" layoutY="14.0" prefHeight="250.0" prefWidth="679.0">
+            <columns>
+               <TableColumn fx:id="clnom_e" text="nom_e" />
+               <TableColumn fx:id="clnom_salle" prefWidth="96.0" text="nom_salle" />
+               <TableColumn fx:id="cldateDebut" prefWidth="104.0" text="dateDebut" />
+               <TableColumn fx:id="clnom_discipline" prefWidth="129.60003662109375" text="nom_discipline" />
+               <TableColumn fx:id="cldescription" prefWidth="84.0" text="description" />
+               <TableColumn fx:id="clnbr_max" prefWidth="93.5999755859375" text="nbr_max" />
+               <TableColumn fx:id="cldateFin" prefWidth="89.60000000000002" text="dateFin" />
+            </columns>
+         </TableView>
+      </children>
+    </AnchorPane>
+    <AnchorPane layoutX="372.0" layoutY="28.0" prefHeight="41.0" prefWidth="898.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+        <Button fx:id="btn_modif" layoutX="23.0" layoutY="8.0" mnemonicParsing="false" onAction="#modifierEvenement" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="MODIFIER" textFill="WHITE" />
+        <Button fx:id="btn_Supp" layoutX="110.0" layoutY="8.0" mnemonicParsing="false" onAction="#supprimerEvenement" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="SUPPRIMER" textFill="WHITE" />
+        <Button fx:id="btn_Trie" layoutX="212.0" layoutY="8.0" mnemonicParsing="false" onAction="#AfficherEvenement" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Rafraichir" textFill="WHITE" />
+      <Button layoutX="296.0" layoutY="9.0" mnemonicParsing="false" onAction="#goToPdf" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="PDF" textFill="WHITE" />
+    </AnchorPane>
+    <Button fx:id="btn_goback" layoutX="28.0" layoutY="737.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="GO BACK" textFill="WHITE" />
+    <AnchorPane layoutX="47.0" layoutY="400.0" prefHeight="337.0" prefWidth="524.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+        <children>
+            <PieChart fx:id="pi_chart_evenement" layoutX="12.0" layoutY="13.0" prefHeight="304.0" prefWidth="500.0" />
+        </children>
+    </AnchorPane>
+</AnchorPane>

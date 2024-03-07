@@ -123,13 +123,7 @@ public class Salle {
 
     @Override
     public String toString() {
-        return "Salle{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", surface=" + surface +
-                ", capacite=" + capacite +
-                ", discipline='" + discipline + '\'' +
-                '}';
+        return nom;
     }
 
 

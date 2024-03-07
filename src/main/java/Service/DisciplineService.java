@@ -12,7 +12,7 @@ import java.util.List;
 public class DisciplineService implements ICourService<Discipline> {
     private Connection connexion;
     public DisciplineService(){
-        connexion= utils.DataSource.getInstance().getCnx();
+        connexion= Utiils.DataSource.getInstance().getCnx();
     }
     private Statement ste ;
     public void add(Discipline d) {

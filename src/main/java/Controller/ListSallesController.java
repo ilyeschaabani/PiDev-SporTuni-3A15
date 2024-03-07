@@ -21,7 +21,7 @@ public class ListSallesController {
 
     private void loadEvents() {
 
-        List<Salle> salles = service.SalleService.getInstance().readAll();
+        List<Salle> salles = Service.SalleService.getInstance().readAll();
 
         for (Salle salle : salles) {
             try {

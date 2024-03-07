@@ -1,4 +1,4 @@
-package utils;
+package Utiils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ public class DataSource {
     private  String url ="jdbc:mysql://localhost:3306/sportuni";
     private  String login="root";
     private  String pwd="";
-    private  Connection cnx;
+    private static Connection cnx;
     private static DataSource instance;
 
     private DataSource(){
@@ -26,7 +26,7 @@ public class DataSource {
         return instance;
     }
 
-    public Connection getCnx() {
+    public static Connection getCnx() {
         return cnx;
     }
 }

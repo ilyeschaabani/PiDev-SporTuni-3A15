@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Rating;
-import service.SalleService;
+import Service.SalleService;
 import Entity.Salle;
 
 import java.time.LocalDateTime;

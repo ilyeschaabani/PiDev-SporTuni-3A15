@@ -15,7 +15,7 @@ public class CourService implements ICourService<Cour> {
     private PreparedStatement pst;
 
     public CourService() {
-        conn = utils.DataSource.getInstance().getCnx();
+        conn = Utiils.DataSource.getInstance().getCnx();
     }
 
 

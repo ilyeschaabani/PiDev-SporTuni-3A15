@@ -4,10 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.awt.*;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -22,7 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import Service.DispoService;
-import utils.DataSource;
+import Utiils.DataSource;
 import Entity.Salle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +37,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import service.SalleService;
+import Service.SalleService;
 import javafx.scene.input.MouseEvent;
 
 import java.util.List;
@@ -42,9 +45,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javafx.scene.chart.PieChart;
+import javafx.stage.Stage;
 
 public class SalleDashbordController {
-    SalleService ss=new service.SalleService();
+    SalleService ss=new Service.SalleService();
     DispoService ds=new DispoService();
 
     @FXML
@@ -154,6 +158,7 @@ public class SalleDashbordController {
                 tfsurf1.setText(String.valueOf(s.getSurface()));
                 tfcapa1.setText(String.valueOf(s.getCapacite()));
                 tfdisc1.setText(String.valueOf(s.getDiscipline()));
+               salle1 = s;
 
             }
 
@@ -282,6 +287,7 @@ public class SalleDashbordController {
         try {
             if(validateInput()) {
                 SalleService ss = new SalleService();
+                System.out.println(salle1);
                 salle1 = new Salle(salle1.getId(), tfnom1.getText(), Integer.parseInt(tfsurf1.getText()), Integer.parseInt(tfcapa1.getText()), tfdisc1.getText());
                 ss.updato(salle1);
                 initialize();
@@ -355,5 +361,20 @@ public class SalleDashbordController {
         // Set PieChart data
         pi_chart.setData(pieChartData);
     }
+    @FXML
+    void Return(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/Menu.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
 }

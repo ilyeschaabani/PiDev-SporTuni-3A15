@@ -18,14 +18,14 @@
                 <Image url="@DashbordBackGround.png" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="40.0" layoutY="35.0" prefHeight="337.0" prefWidth="299.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+        <AnchorPane layoutX="40.0" layoutY="38.0" prefHeight="337.0" prefWidth="299.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
             <children>
                 <Button fx:id="btnadd2" layoutX="34.0" layoutY="223.0" mnemonicParsing="false" onAction="#AddComp" prefHeight="25.0" prefWidth="199.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="AJOUTER" textFill="WHITE" />
-            <TextField fx:id="nom_comp" layoutX="43.0" layoutY="29.0" prefHeight="25.0" prefWidth="179.0" promptText="nom" stylesheets="@../../../../../Downloads/ProjetCompetition/ProjetCompetition/src/main/resources/codeCss.css" />
-            <TextField fx:id="lieu" layoutX="44.0" layoutY="67.0" prefHeight="25.0" prefWidth="179.0" promptText="lieu" stylesheets="@../../../../../Downloads/ProjetCompetition/ProjetCompetition/src/main/resources/codeCss.css" />
-            <TextField fx:id="discipline" layoutX="43.0" layoutY="143.0" prefHeight="25.0" prefWidth="179.0" promptText="discipline" stylesheets="@../../../../../Downloads/ProjetCompetition/ProjetCompetition/src/main/resources/codeCss.css" />
-            <DatePicker fx:id="date" layoutX="46.0" layoutY="103.0" onAction="#selectdate" promptText="aaaa-mm-jj" stylesheets="@../../../../../Downloads/ProjetCompetition/ProjetCompetition/src/main/resources/codeCss.css" />
-            <ComboBox fx:id="id_salle" layoutX="43.0" layoutY="180.0" onAction="#loadSalleIds" prefHeight="25.0" prefWidth="179.0" stylesheets="@../../../../../Downloads/ProjetCompetition/ProjetCompetition/src/main/resources/codeCss.css" />
+            <TextField fx:id="nom_comp" layoutX="43.0" layoutY="29.0" prefHeight="25.0" prefWidth="179.0" promptText="nom" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <TextField fx:id="lieu" layoutX="44.0" layoutY="67.0" prefHeight="25.0" prefWidth="179.0" promptText="lieu" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <TextField fx:id="discipline" layoutX="43.0" layoutY="143.0" prefHeight="25.0" prefWidth="179.0" promptText="discipline" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <DatePicker fx:id="date" layoutX="46.0" layoutY="103.0" onAction="#selectdate" promptText="aaaa-mm-jj" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
+            <ComboBox fx:id="id_salle" layoutX="43.0" layoutY="180.0" onAction="#loadSalleIds" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #0000; -fx-border-color: e3061f; -fx-border-radius: 8;" />
             <Label fx:id="nomCompErrorLabel" layoutX="48.0" layoutY="53.0" prefHeight="17.0" prefWidth="165.0" />
             <Label fx:id="lieuErrorLabel" layoutX="42.0" layoutY="93.0" prefHeight="17.0" prefWidth="179.0" />
             <Label fx:id="dateErrorLabel" layoutX="47.0" layoutY="128.0" prefHeight="17.0" prefWidth="165.0" />
@@ -48,11 +48,11 @@
          </children></AnchorPane>
         <AnchorPane layoutX="351.0" layoutY="35.0" prefHeight="38.0" prefWidth="901.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
             <children>
-            <ComboBox fx:id="id_comp_place" layoutX="657.0" layoutY="6.0" onAction="#loadCompIds" prefWidth="150.0" />
-            <Button layoutX="821.0" layoutY="6.0" mnemonicParsing="false" onAction="#Map" text="Map" />
-            <Button layoutX="372.0" layoutY="7.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="101.0" text="PDF" />
-            <Button layoutX="505.0" layoutY="7.0" mnemonicParsing="false" onAction="#sort" text="Sort by date" />
-            <Button layoutX="52.0" layoutY="-1.0" mnemonicParsing="false" onAction="#AddCompetitors" text="Add Competitors to a Competition" />
+            <ComboBox fx:id="id_comp_place" layoutX="657.0" layoutY="6.0" onAction="#loadCompIds" prefWidth="150.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;" />
+            <Button layoutX="821.0" layoutY="6.0" mnemonicParsing="false" onAction="#Map" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Map" textFill="#fcfcfc" />
+            <Button layoutX="253.0" layoutY="4.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="PDF" textFill="#f8f7f7" />
+            <Button layoutX="378.0" layoutY="4.0" mnemonicParsing="false" onAction="#sort" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Sort by date" textFill="#f2f2f2" />
+            <Button layoutX="34.0" layoutY="5.0" mnemonicParsing="false" onAction="#AddCompetitors" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Add Competitors to a Competition" textFill="#eeeeee" />
 
             </children></AnchorPane>
       <AnchorPane layoutX="351.0" layoutY="380.0" prefHeight="113.0" prefWidth="901.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
@@ -62,5 +62,6 @@
             <Label fx:id="label3" layoutX="139.0" layoutY="68.0" prefHeight="26.0" prefWidth="584.0" />
          </children>
       </AnchorPane>
+      <Button layoutX="44.0" layoutY="731.0" mnemonicParsing="false" onAction="#sort" style="-fx-background-color: e3061f; -fx-background-radius: 12;" text="Back" textFill="#f2f2f2" />
     </children>
 </AnchorPane>

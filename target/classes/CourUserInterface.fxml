@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="786.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CourUserInterfaceController">
+   <children>
+      <ImageView fitHeight="786.0" fitWidth="1315.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ListeSalle.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="249.0" layoutY="144.0" prefHeight="544.0" prefWidth="839.0" style="-fx-background-color: #f7f2f3; -fx-background-radius: 13;">
+         <children>
+            <TableView fx:id="tvCour" layoutX="14.0" layoutY="14.0" onMouseClicked="#mouseClicked2" prefHeight="445.0" prefWidth="805.0">
+               <columns>
+                  <TableColumn fx:id="clNom" prefWidth="76.80000305175781" text="Nom" />
+                  <TableColumn fx:id="clDiscipline" prefWidth="92.800048828125" text="Discipline" />
+                  <TableColumn fx:id="clDate" prefWidth="92.800048828125" text="Date" />
+                  <TableColumn fx:id="clHeureDebut" prefWidth="92.800048828125" text="Heure début" />
+                  <TableColumn fx:id="clHeureFin" prefWidth="92.800048828125" text="Heure fin" />
+                  <TableColumn fx:id="clNomSalle" prefWidth="92.800048828125" text="Nom salle" />
+                  <TableColumn fx:id="clNbParticipants" prefWidth="159.99997558593748" text="Nombre participants" />
+                  <TableColumn fx:id="clAction" prefWidth="100.0" text="S'inscrire">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="inscrireButton" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

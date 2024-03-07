@@ -2,7 +2,7 @@ package Service;
 
 import Entity.Competition;
 import Service.ICompetitonService;
-import utils.DataSource;
+import Utiils.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
